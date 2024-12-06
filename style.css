@@ -1,4 +1,113 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,900;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+.poppins-thin {
+    font-family: "Poppins", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+  }
+  
+  .poppins-extralight {
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+  }
+  
+  .poppins-light {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  .poppins-regular {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .poppins-medium {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+  .poppins-semibold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+  }
+  
+  .poppins-bold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  .poppins-extrabold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+  }
+  
+  .poppins-black {
+    font-family: "Poppins", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+  }
+  
+  .poppins-thin-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 100;
+    font-style: italic;
+  }
+  
+  .poppins-extralight-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-style: italic;
+  }
+  
+  .poppins-light-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: italic;
+  }
+  
+  .poppins-regular-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+  }
+  
+  .poppins-medium-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: italic;
+  }
+  
+  .poppins-semibold-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: italic;
+  }
+  
+  .poppins-bold-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+  }
+  
+  .poppins-extrabold-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 800;
+    font-style: italic;
+  }
+  
+  .poppins-black-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 900;
+    font-style: italic;
+  }
+  
 
 body{
   height: 100vh;
@@ -39,81 +148,58 @@ img{
     transform:  translate(-5vw, -5vw) rotate(-30deg);
   }
 }
-
-.navbar {
+section nav{
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  justify-content: space-around;
+  box-shadow: 0 0 8px rgba(0,0,0,0.6);
+  background: white;
   position: fixed;
-  width: 100%;
-  z-index: 10;
-  background: transparent; /* Transparent background */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
 }
 
-/* Logo */
-.navbar .logo {
-  color: #fff;
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-decoration: none;
+section nav .logo{
+  font-size: 35px;
+  color: #000000;
+  margin: 5px 0;
+  cursor: pointer;
+  position: relative;
+  left: -4%;
 }
 
-/* Navbar links */
-.navbar .nav-links {
-  display: flex;
+
+section nav ul{
   list-style: none;
 }
 
-.navbar .nav-links li {
-  margin: 0 10px;
+section nav ul li{
+  display: inline-block;
+  margin: 5px 15px;
 }
 
-.navbar .nav-links a {
-  color: #fff;
+section nav ul li a{
   text-decoration: none;
-  padding: 5px 10px;
-  font-size: 1rem;
-  transition: color 0.3s;
+  color: black;
+  transition: 0.2s;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
-.navbar .nav-links a:hover {
-  color: #ffcc00;
+section nav ul li a:hover{
+  color: #c72092;
 }
 
-/* Hamburger menu (hidden by default) */
-.hamburger {
-  display: none;
-  flex-direction: column;
+section nav .icons i{
+  margin: 0 4px;
   cursor: pointer;
+  font-size: 18px;
+  transition: 0.3s;
 }
 
-.hamburger div {
-  width: 25px;
-  height: 3px;
-  background-color: #fff;
-  margin: 3px 0;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .navbar .nav-links {
-    display: none;
-    flex-direction: column;
-    background: rgba(0, 0, 0, 0.8); /* Slight background for better readability */
-    position: absolute;
-    top: 60px;
-    right: 20px;
-    width: 150px;
-    border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  }
-
-  .navbar .nav-links.active {
-    display: flex;
-  }
-
-  .hamburger {
-    display: flex;
-  }
+section nav .icons i:hover{
+  color: #c72092;
 }
