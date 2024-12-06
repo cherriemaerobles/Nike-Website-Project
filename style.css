@@ -39,13 +39,16 @@ img{
     transform:  translate(-5vw, -5vw) rotate(-30deg);
   }
 }
-/* Navbar container */
+
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #333;
   padding: 10px 20px;
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+  background: transparent; /* Transparent background */
 }
 
 /* Logo */
@@ -70,12 +73,12 @@ img{
   color: #fff;
   text-decoration: none;
   padding: 5px 10px;
-  transition: background-color 0.3s;
+  font-size: 1rem;
+  transition: color 0.3s;
 }
 
 .navbar .nav-links a:hover {
-  background-color: #575757;
-  border-radius: 5px;
+  color: #ffcc00;
 }
 
 /* Hamburger menu (hidden by default) */
@@ -97,9 +100,9 @@ img{
   .navbar .nav-links {
     display: none;
     flex-direction: column;
-    background-color: #333;
+    background: rgba(0, 0, 0, 0.8); /* Slight background for better readability */
     position: absolute;
-    top: 50px;
+    top: 60px;
     right: 20px;
     width: 150px;
     border-radius: 5px;
