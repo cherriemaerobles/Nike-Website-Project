@@ -253,15 +253,18 @@ section nav .icons i:hover {
   overflow: hidden;
   font-family: "Poppins", sans-serif;
 }
-.login-container {
-  width: 300px;
+/*Login n Signup*/
+.container {
+  width: 500px;
+  height: 550px;
   padding: 20px;
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 5px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
 }
-.login-container .icon-close{
+.container .icon-close{
   position: absolute;
   top: 0;
   right: 0;
@@ -273,6 +276,7 @@ section nav .icons i:hover {
   justify-content: center;
   align-items: center;
 }
+
 
 h2 {
   text-align: center;
@@ -360,4 +364,8 @@ h2 {
 
 .forgot-password {
   margin-bottom: 10px;
+}
+.container .signupform{
+  position: absolute;
+  transform: translateX(400px);
 }

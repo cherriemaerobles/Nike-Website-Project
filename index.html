@@ -35,62 +35,116 @@
       </nav>
     </section>
 
-    <div class="login-container">
+    <div class="container">
+      <div class="loginform">
         <span class="icon-close">
-            <ion-icon name="close-outline"></ion-icon>
+          <ion-icon name="close-outline"></ion-icon>
         </span>
-      <h2>Login</h2>
-      <form class="login-form" onsubmit="validateLogin(event)">
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            autocomplete="off"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            autocomplete="off"
-            required
-          />
-        </div>
-        <div>
-          <input type="checkbox" id="rememberMe" />
-          <label for="rememberMe">Remember me</label>
-        </div>
-        <div class="forgot-password">
-          <a href="#">Forgot your password?</a>
-        </div>
-        <div class="form-group">
-          <button type="submit">Login</button>
-        </div>
-        <div class="social-login">
-          <button type="button" class="facebook-btn">
-            <img
-              src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png"
-              alt="Facebook logo"
+        <h2 id="login">Login</h2>
+        <form class="login-form" onsubmit="validateLogin(event)">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              autocomplete="off"
+              required
             />
-            Sign in with Facebook
-          </button>
-          <button type="button" class="google-btn">
-            <img
-              src="https://img.icons8.com/ios-filled/50/ffffff/google-logo.png"
-              alt="Google logo"
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              autocomplete="off"
+              required
             />
-            Sign in with Google
-          </button>
+          </div>
+          <div>
+            <input type="checkbox" id="rememberMe" />
+            <label for="rememberMe">Remember me</label>
+          </div>
+          <div class="forgot-password">
+            <a href="#">Forgot your password?</a>
+          </div>
+          <div class="form-group">
+            <button type="submit">Login</button>
+          </div>
+          <div class="social-login">
+            <button type="button" class="facebook-btn">
+              <img
+                src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png"
+                alt="Facebook logo"
+              />
+              Sign in with Facebook
+            </button>
+            <button type="button" class="google-btn">
+              <img
+                src="https://img.icons8.com/ios-filled/50/ffffff/google-logo.png"
+                alt="Google logo"
+              />
+              Sign in with Google
+            </button>
+          </div>
+          <div class="register">
+            <p>Don't have an account? <a href="#signup">Register here!</a></p>
+          </div>
+        </form>
+      </div>
+      <div class="signupform">
+        <h2 id="signup">Sign Up</h2>
+        <form class="signup-form" onsubmit="validateSignup(event)">
+          <div class="form-group">
+            <label for="fullname">Full Name</label>
+            <input type="text" id="fullname" name="fullname" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required />
+          </div>
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              required
+            />
+          </div>
+          <div class="terms">
+            <input type="checkbox" id="terms" required />
+            <label for="terms">I accept the Terms and Conditions</label>
+          </div>
+          <div class="form-group">
+            <button type="submit">Sign Up</button>
+          </div>
+          <div class="social-login">
+            <button type="button" class="facebook-btn">
+              <img
+                src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png"
+                alt="Facebook logo"
+              />
+              Sign up with Facebook
+            </button>
+            <button type="button" class="google-btn">
+              <img
+                src="https://img.icons8.com/ios-filled/50/ffffff/google-logo.png"
+                alt="Google logo"
+              />
+              Sign up with Google
+            </button>
+          </div>
+        </form>
+        <div class="login-link">
+          <p>Already have an account? <a href="#login">Login here</a></p>
         </div>
-        <div class="register">
-          <p>Don't have an account? <a href="signup.html">Register here!</a></p>
-        </div>
-      </form>
+      </div>
     </div>
 
     <div class="parallax-text">
@@ -103,9 +157,14 @@
       <h2>product</h2>
     </div>
 
-    <script href="index.js">
-    </script>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script href="index.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
   </body>
 </html>
