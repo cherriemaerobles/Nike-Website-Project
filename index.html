@@ -30,114 +30,102 @@
         <div class="icons">
           <i class="fa-solid fa-heart"></i>
           <i class="fa-solid fa-cart-shopping"></i>
-          <button class="btnlogin">
-            <i class="fa-solid fa-user">
-            </i>
-          </button>
-          
+          <i class="fa-solid fa-user"></i>
         </div>
       </nav>
     </section>
-
-    <div class="container">
-      <div class="form-box-login">
-        <h2>Login</h2>
-        <form action="#">
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              autocomplete="off"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              autocomplete="off"
-              required
-            />
-          </div>
-          <div>
-            <input type="checkbox" id="rememberMe" />
-            <label for="rememberMe">Remember me</label>
-          </div>
-          <div class="forgot-password">
-            <a href="#">Forgot your password?</a>
-          </div>
-          <div class="form-group">
-            <button type="submit">Login</button>
-          </div>
-          <div class="social-login">
-            <button type="button" class="facebook-btn">
-              <ion-icon name="logo-facebook"></ion-icon>
-              Sign in with Facebook
-            </button>
-            <button type="button" class="google-btn">
-              <ion-icon name="logo-google"></ion-icon>
-              Sign in with Google
-            </button>
-          </div>
-          <div class="login-register">
-            <p>
-              Don't have an account?
-              <a href="#" class="register-link">Register here!</a>
-            </p>
-          </div>
-        </form>
-      </div>
-      <div class="form-box-signup">
-        <h2>Sign Up</h2>
-        <form action="#">
-            <div class="form-group">
-                <label for="fullname">Full Name</label>
-                <input type="text" id="fullname" name="fullname" required>
-            </div>
-            <div class="form-group">
+    <div class="modal-overlay">
+        <div class="container">
+          
+          <div class="form-box-login">
+            <h2>Login</h2>
+            <form action="#">
+              <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="eemail" name="email" required>
-            </div>
-            <div class="form-group">
+                <input type="email" id="email" name="email" autocomplete="off" required />
+              </div>
+              <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="ppassword" name="password" required>
-            </div>
-            <div class="form-group">
-                <label for="confirmPassword">Confirm Password</label>
-                <input type="password" id="confirmPassword" name="confirmPassword" required>
-            </div>
-            <div class="terms">
-                <input type="checkbox" id="terms" required>
-                <label for="terms">I accept the Terms and Conditions</label>
-            </div>
-            <div class="form-group">
-                <button type="submit">Sign Up</button>
-            </div>
-            <div class="social-login">
+                <input type="password" id="password" name="password" autocomplete="off" required />
+              </div>
+              <div>
+                <input type="checkbox" id="rememberMe" />
+                <label for="rememberMe">Remember me</label>
+              </div>
+              <div class="forgot-password">
+                <a href="#">Forgot your password?</a>
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btnlogin">Login</button>
+              </div>
+              <div class="social-login">
                 <button type="button" class="facebook-btn">
-                    <ion-icon name="logo-facebook"></ion-icon>
-                    Sign in with Facebook
-                  </button>
-                  <button type="button" class="google-btn">
-                    <ion-icon name="logo-google"></ion-icon>
-                    Sign in with Google
-                  </button>
+                  <ion-icon name="logo-facebook"></ion-icon>
+                  Sign in with Facebook
+                </button>
+                <button type="button" class="google-btn">
+                  <ion-icon name="logo-google"></ion-icon>
+                  Sign in with Google
+                </button>
+              </div>
+              <div class="login-register">
+                <p>
+                  Don't have an account?
+                  <a href="#" class="register-link">Register here!</a>
+                </p>
+              </div>
+            </form>
+          </div>
+      
+          <div class="form-box-signup">
+            <h2>Sign Up</h2>
+            <form action="#">
+              <div class="form-group">
+                <label for="fullname">Full Name</label>
+                <input type="text" id="fullname" name="fullname" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required />
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required />
+              </div>
+              <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required />
+              </div>
+              <div class="terms">
+                <input type="checkbox" id="terms" required />
+                <label for="terms">I accept the Terms and Conditions</label>
+              </div>
+              <div class="form-group">
+                <button type="submit">Sign Up</button>
+              </div>
+              <div class="social-login">
+                <button type="button" class="facebook-btn">
+                  <ion-icon name="logo-facebook"></ion-icon>
+                  Sign in with Facebook
+                </button>
+                <button type="button" class="google-btn">
+                  <ion-icon name="logo-google"></ion-icon>
+                  Sign in with Google
+                </button>
+              </div>
+            </form>
+            <div class="login-register">
+              <p>Already have an account? <a href="#" class="login-link">Login here</a></p>
             </div>
-        </form>
-        <div class="login-Signup">
-            <p>Already have an account? <a href="#" class="login-link">Login here</a></p>
+          </div>
         </div>
       </div>
-    </div>
-
-    <!--<div class="parallax-text">
+      
+      
+    <div class="parallax-text">
       <span class="parallax-text" text="NIKE"> NIKE </span>
       <img src="img/shoes.png" alt="Nike sneaker" />
-    </div>-->
+    </div>
 
     <div class="featured-box">
       <h1>featured</h1>
