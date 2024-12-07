@@ -11,12 +11,20 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
         }
+
+        /* Header Styles */
         header {
             background-color: white;
-            border-top: 2px solid black; 
-            border-bottom: 2px solid black;
             padding: 10px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for subtle effect */
         }
         
         .navbar-container {
@@ -37,6 +45,10 @@
             font-weight: 600; 
             font-size: 14px;
             text-transform: uppercase; 
+        }
+
+        .navbar-links a:hover {
+            color: #c72092;
         }
 
         .action-buttons {
@@ -205,26 +217,24 @@
 </head>
 <body>
     <!-- Header -->
-    <section>
-        <nav>
-          <div class="logo">
-              <h1>Nike</h1>
-          </div>
-      
-          <ul>
-              <li><a href="#Home">HOME</a></li>
-              <li><a href="#Products">ABOUT</a></li>
-              <li><a href="#About">CATEGORIES</a></li>
-              <li><a href="#Review">CONTACT US</a></li>
-          </ul>
-      
-          <div class="icons">
-              <i class="fa-solid fa-heart"></i>
-              <i class="fa-solid fa-cart-shopping"></i>
-              <i class="fa-solid fa-user"></i>
-          </div>
-      </nav>
-      </section>
+    <header>
+        <div class="navbar-container">
+            <div class="logo">
+                <h1>Nike</h1>
+            </div>
+            <div class="navbar-links">
+                <a href="index.html">Home</a>
+                <a href="#Products">About</a>
+                <a href="#Categories">Categories</a>
+                <a href="#Contact">Contact Us</a>
+            </div>
+            <div class="action-buttons">
+                <i class="fa-solid fa-heart"></i>
+                <i class="fa-solid fa-cart-shopping"></i>
+                <i class="fa-solid fa-user"></i>
+            </div>
+        </div>
+    </header>
 
     <!-- Products Section -->
     <div class="box-container">
@@ -319,5 +329,3 @@
             </div>
         </div>
     </footer>
-</body>
-</html>
