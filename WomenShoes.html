@@ -146,6 +146,21 @@
             color: #000;
         }
 
+        .btn.view-details {
+            font-size: 1rem;
+            padding: 10px 20px;
+            background-color: #3B5998;
+            color: #fff;
+            border-radius: 5px;
+            border: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn.view-details:hover {
+            background-color: #F6E96B;
+            color: #000;
+        }
+
         footer {
             background-color: #000;
             color: white;
@@ -224,10 +239,24 @@
             min-width: 20px;
         }
 
+        .favorite-badge {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background-color: #c72092;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 50%;
+            padding: 2px 6px;
+            text-align: center;
+            min-width: 20px;
+        }
+
+
     </style>
 
     <script src="cart.js"></script>
-    <script src="favorite.js"></script>
 
 </head>
 <body>
@@ -244,11 +273,13 @@
                 <a href="#Contact">Contact Us</a>
             </div>
             <div class="action-buttons">
-                <i class="fa-solid fa-heart"></i>
-                <i class="fa-solid fa-cart-shopping"></i> <!-- This is the cart icon -->
-                <i class="fa-solid fa-user"></i>
-            </div>            
-        </div>
+                <i class="fa-solid fa-heart">
+                    <span class="favorite-badge">0</span> <!-- Badge showing the favorite count -->
+                </i>
+                <i class="fa-solid fa-cart-shopping"></i> <!-- Cart Icon -->
+                <i class="fa-solid fa-user"></i> <!-- User Icon -->
+            </div>
+            
     </header>
 
     <!-- Products Section -->
@@ -347,47 +378,75 @@
         ];
 
         const productCardsContainer = document.getElementById('product-cards-container');
-        const modal = document.getElementById('productModal');
-        const closeModal = document.querySelector('.close');
+    const modal = document.getElementById('productModal');
+    const closeModal = document.querySelector('.close');
 
-        products.forEach((product, index) => {
-            const productCard = document.createElement('div');
-            productCard.classList.add('col-md-4', 'col-lg-3');
-            productCard.innerHTML = `
-                <div class="box">
-                    <img src="${product.image}" alt="${product.name}">
-                    <h3>${product.name}</h3>
-                    <div class="price">${product.price}</div>
-                    <button class="btn add-cart">Add to Cart</button>
-                    <button class="btn add-fav" data-index="${index}">Details</button>
-                </div>
-            `;
-            productCardsContainer.appendChild(productCard);
+    let favoriteCount = 0;
+    const favoritedProducts = [];
+
+    const updateFavoriteCounter = () => {
+        const heartIcon = document.querySelector('.fa-heart');
+        const favoriteBadge = heartIcon.querySelector('.favorite-badge');
+        favoriteBadge.textContent = favoriteCount;
+    };
+
+    // Create product cards dynamically
+    products.forEach((product, index) => {
+        const productCard = document.createElement('div');
+        productCard.classList.add('col-md-4', 'col-lg-3');
+        productCard.innerHTML = `
+            <div class="box">
+                <img src="${product.image}" alt="${product.name}">
+                <h3>${product.name}</h3>
+                <div class="price">${product.price}</div>
+                <button class="btn add-cart">Add to Cart</button>
+                <button class="btn view-details" data-index="${index}">Details</button>
+            </div>
+        `;
+        productCardsContainer.appendChild(productCard);
+    });
+
+    // Show product details in the modal when the Details button is clicked
+    document.querySelectorAll('.btn.view-details').forEach(button => {
+        button.addEventListener('click', (event) => {
+            const productIndex = event.target.getAttribute('data-index');
+            const product = products[productIndex];
+
+            // Show the product details inside the modal
+            document.getElementById('productTitle').textContent = product.name;
+            document.getElementById('productDescription').innerHTML = product.description;
+            document.getElementById('productPrice').textContent = product.price;
+
+            // Show the modal
+            modal.style.display = "block";
+
+            // Add functionality for the Add to Favorites button inside the modal
+            const addToFavButton = document.querySelector('.btn.add-fav');
+            addToFavButton.onclick = () => {
+                if (favoritedProducts.includes(product.id)) {
+                    alert("You have already added this product to favorites.");
+                    return;
+                }
+
+                favoritedProducts.push(product.id); // Add product to favorites
+                favoriteCount++; // Increment favorite count
+                updateFavoriteCounter(); // Update the favorite count display
+                alert("Product added to favorites!");
+            };
         });
+    });
 
-        document.querySelectorAll('.btn.add-fav').forEach(button => {
-            button.addEventListener('click', (event) => {
-                const productIndex = event.target.getAttribute('data-index');
-                const product = products[productIndex];
+    // Close the modal when the close button is clicked
+    closeModal.addEventListener('click', () => {
+        modal.style.display = "none";
+    });
 
-                document.getElementById('productTitle').textContent = product.name;
-                document.getElementById('productDescription').innerHTML = product.description;
-                document.getElementById('productPrice').textContent = product.price;
-
-                modal.style.display = "block";
-            });
-        });
-
-        closeModal.addEventListener('click', () => {
+    // Close the modal if the user clicks outside of the modal content
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
             modal.style.display = "none";
-        });
-
-        window.addEventListener('click', (event) => {
-            if (event.target === modal) {
-                modal.style.display = "none";
-            }
-        });
-        
-    </script>
+        }
+    });
+</script>
 </body>
 </html>
