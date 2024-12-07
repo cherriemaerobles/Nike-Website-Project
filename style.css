@@ -205,6 +205,10 @@ section nav .icons i {
 section nav .icons i:hover {
   color: #3b5998;
 }
+.icons .btnlogin{
+  background: transparent;
+  border: #ffffff;
+}
 
 .featured-box {
   width: 100%;
@@ -258,27 +262,50 @@ section nav .icons i:hover {
 .container{
   width: 500px;
   height: 500px;
-  padding: 20px;
+  padding: 10px;
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 5px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, .5);
-  position: relative;
+  position: fixed;
   border: 1px solid #000000;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: height .2s ease;
+  transition: transform .5s ease, height .2s ease;
+  overflow: hidden;
+  transform: scale(0);
+  z-index: 10;
+}
+.container.active-popup{
+  transform: scale(1);
 }
 
-.container .form-box-login, .form-box-signup h2{
+
+.container .form-box-login h2{
   text-align: center;
 }
-.container .active{
+.container  .form-box-signup h2{
+  text-align: center;
+}
+.container.active .form-box-login{
+  transition: none;
+  transform: translateX(-400px);
+}
+.container .form-box-login{
+  transition: transform .18s ease;
+  transform: translateX(0);
+}
+.container.active .form-box-signup{
+  transition: transform .18s ease;
+  transform: translateX(0);
+}
+.container.active{
   height: 550px;
 }
 .container .form-box-signup{
   position: absolute;
+  transition: none;
   transform: translateX(380px);
 }
 
