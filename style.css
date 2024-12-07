@@ -116,7 +116,7 @@ body {
   align-items: center;
   justify-content: center;
 }
-
+/*
 .parallax-text {
   position: absolute;
   font-family: "Montserrat", sans-serif;
@@ -150,6 +150,7 @@ img {
     transform: translate(-5vw, -5vw) rotate(-30deg);
   }
 }
+*/
 section nav {
   display: flex;
   align-items: center;
@@ -254,36 +255,29 @@ section nav .icons i:hover {
   font-family: "Poppins", sans-serif;
 }
 /*Login n Signup*/
-.container {
-  width: 500px;
-  height: 550px;
+.container{
+  width: 300px;
   padding: 20px;
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 5px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  transition: height .2s ease;
-}
-.container .icon-close{
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 0;
-  height: 0;
-  font-size: 2em;
-  color: #000000;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, .5);
+  position: relative;
+  border: 1px solid #000000;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.container.active{
-  height: 550px;
-}
-
-h2 {
+.container .form-box-login h2{
   text-align: center;
-  margin-bottom: 20px;
+}
+.container .form-box-login{
+  display: none;
+}
+.container .form-box-signup{
+  position: absolute;
+  transform: translateX(400px);
 }
 
 .form-group {
@@ -323,7 +317,7 @@ h2 {
 .social-login {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
 }
 
 .facebook-btn, .google-btn {
@@ -367,8 +361,4 @@ h2 {
 
 .forgot-password {
   margin-bottom: 10px;
-}
-.container .signupform{
-  position: absolute;
-  transform: translateX(400px);
 }
