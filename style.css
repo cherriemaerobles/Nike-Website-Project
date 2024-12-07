@@ -261,6 +261,18 @@ section nav .icons i:hover {
   border-radius: 5px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
+.login-container .icon-close{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  font-size: 2em;
+  color: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 h2 {
   text-align: center;
