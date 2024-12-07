@@ -6,13 +6,13 @@ const hamburger = document.querySelector('.hamburger');
     });
 
 const container = document.querySelector('.container');
-const loginhere = document.querySelector('.loginhere');
-const signuphere = document.querySelector('.signuphere');
+const registerlink = document.querySelector('.register-link');
+const loginlink = document.querySelector('.login-link');
 
-signuphere.addEventListener('click', ()=> {
+registerlink.addEventListener('click', ()=> {
   container.classList.add('active');
 });
 
-loginhere.addEventListener('click', ()=> {
+loginlink.addEventListener('click', ()=> {
   container.classList.remove('acive');
 });

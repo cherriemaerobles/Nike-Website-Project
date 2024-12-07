@@ -256,7 +256,8 @@ section nav .icons i:hover {
 }
 /*Login n Signup*/
 .container{
-  width: 300px;
+  width: 500px;
+  height: 500px;
   padding: 20px;
   background-color: #fff;
   border: 1px solid #ddd;
@@ -267,17 +268,18 @@ section nav .icons i:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: height .2s ease;
 }
 
-.container .form-box-login h2{
+.container .form-box-login, .form-box-signup h2{
   text-align: center;
 }
-.container .form-box-login{
-  display: none;
+.container .active{
+  height: 550px;
 }
 .container .form-box-signup{
   position: absolute;
-  transform: translateX(400px);
+  transform: translateX(380px);
 }
 
 .form-group {
