@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <style>
+        /* Style for the heart icon */
+        .fa-heart {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .favorite-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: #c72092;
+            color: white;
+            border-radius: 50%;
+            padding: 5px;
+            font-size: 12px;
+            font-weight: bold;
+            min-width: 20px;
+            text-align: center;
+            transform: translate(50%, -50%);
+        }
+
+    </style>
+</body>
+</html>
+
+<!-- Product Card with Favorite and Details Buttons -->
+<div class="product-card">
+    <div class="product-name">Nike Air Max 90</div>
+    <button class="btn add-fav" data-index="0">Add to Favorite</button> <!-- Favorite Button -->
+    <button class="btn details" data-index="0">Details</button> <!-- Details Button -->
+</div>
+
+
