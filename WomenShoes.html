@@ -345,6 +345,18 @@
         </div>
     </div>
 
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="cartClose">&times;</span>
+            <h2>Cart</h2>
+            <div id="cartContainer">
+                <!-- Cart products will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+
 
     <!-- Footer -->
     <footer>
@@ -419,7 +431,7 @@
             }
         ];
 
-        const productCardsContainer = document.getElementById('product-cards-container');
+    const productCardsContainer = document.getElementById('product-cards-container');
     const modal = document.getElementById('productModal');
     const closeModal = document.querySelector('.close');
 
@@ -502,13 +514,13 @@
     heartIcon.addEventListener('click', displayFavorites);
 
     const favoritesModal = document.getElementById('favoritesModal');
-const favoritesContainer = document.getElementById('favoritesContainer');
-const favoritesClose = document.getElementById('favoritesClose');
+    const favoritesContainer = document.getElementById('favoritesContainer');
+    const favoritesClose = document.getElementById('favoritesClose');
 
-// Open the favorites modal when the heart icon is clicked
-heartIcon.addEventListener('click', () => {
-    // Clear the container before adding items
-    favoritesContainer.innerHTML = '';
+    // Open the favorites modal when the heart icon is clicked
+    heartIcon.addEventListener('click', () => {
+        // Clear the container before adding items
+        favoritesContainer.innerHTML = '';
 
     if (favoritedProducts.length === 0) {
         favoritesContainer.innerHTML = '<p>No favorites yet.</p>';
@@ -535,17 +547,17 @@ heartIcon.addEventListener('click', () => {
     favoritesModal.style.display = 'block';
 });
 
-// Close the favorites modal when the close button is clicked
-favoritesClose.addEventListener('click', () => {
-    favoritesModal.style.display = 'none';
-});
-
-// Close the modal if the user clicks outside of the modal content
-window.addEventListener('click', (event) => {
-    if (event.target === favoritesModal) {
+    // Close the favorites modal when the close button is clicked
+    favoritesClose.addEventListener('click', () => {
         favoritesModal.style.display = 'none';
-    }
-});
+    });
+
+    // Close the modal if the user clicks outside of the modal content
+    window.addEventListener('click', (event) => {
+        if (event.target === favoritesModal) {
+            favoritesModal.style.display = 'none';
+        }
+    });
 
 
 
