@@ -1,3 +1,10 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
 header {
     background-color: white;
     padding: 10px 0;
@@ -91,4 +98,8 @@ header {
 .btn.add-fav:hover {
     background-color: #F6E96B; 
     color: #000; 
+}
+
+.containerProduct .row {
+    justify-content: center;
 }
