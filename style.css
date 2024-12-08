@@ -549,7 +549,7 @@ section .main .main_content {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-top: -50%;
+  margin-top: -20%;
 }
 .team-content {
   width: 100%;
@@ -574,6 +574,7 @@ section .main .main_content {
     font-weight: 700;
     font-style: normal;
     margin-left: 80%;
+    margin-bottom: 10%;
   }
 .teams {
   padding: 16px;
@@ -593,6 +594,9 @@ section .main .main_content {
   color: #b7b4bb;
   margin-bottom: 15px;
   letter-spacing: 2px;
+}
+.teams .icon{
+  color: #3b5998;
 }
 .icon i {
   display: inline-block;
