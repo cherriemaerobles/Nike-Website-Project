@@ -434,7 +434,7 @@
     };
 
     const displayFavorites = () => {
-        alert("Favorited Products:\n" + favoritedProducts.map(id => {
+        alert("Favorite Products:\n" + favoritedProducts.map(id => {
             const product = products.find(p => p.id === id);
             return product ? product.name : '';
         }).join('\n') || "No favorites yet!");
