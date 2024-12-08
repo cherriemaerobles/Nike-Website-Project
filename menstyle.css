@@ -196,3 +196,78 @@ section nav .icons i:hover{
 .action-buttons i:hover {
     color: gray; 
 }
+/* Shoe Details Section */
+.shoe-detail-container {
+    margin-top: 100px;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.shoe-detail-box {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.shoe-detail-box img {
+    width: 300px;
+    height: auto;
+    object-fit: contain;
+    border: 1px solid black; /* Pink border for frame */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Space between image and border */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Optional shadow for more emphasis */
+}
+
+.shoe-detail-box .details {
+    text-align: left;
+    max-width: 600px;
+    padding: 20px;
+}
+
+.shoe-detail-box .details h2 {
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.shoe-detail-box .details .price {
+    font-size: 22px;
+    color: #333;
+    margin: 15px 0;
+}
+
+.shoe-detail-box .details .description {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.shoe-detail-box .details .btn {
+    background-color: #000;
+    color: #fff;
+    padding: 15px 30px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.shoe-detail-box .details .btn:hover {
+    background-color: #F6E96B;
+    color: #000;
+}
+
+.shoe-detail-box .details .add-fav {
+    background-color: #3B5998; /* Blue background */
+    color: white;
+    padding: 15px 30px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.shoe-detail-box .details .add-fav:hover {
+    background-color: #F6E96B; /* Darker blue on hover */
+}
