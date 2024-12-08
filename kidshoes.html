@@ -329,11 +329,24 @@
         .listcart::-webkit-scrollbar{
             width: 0;
         }
+
+        .total-price {
+    display: flex;
+    justify-content: flex-end;  /* Align to the right */
+    margin-top: 20px;
+    border-top: 2px solid #ccc;  /* Add border above the total price */
+    padding-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#cart-items {
+    margin-bottom: 20px;
+}
     </style>
 </head>
 
-<body></body>
-
+<body>
     <script src="kids.js"></script>
 
     <!-- Header -->
@@ -350,7 +363,7 @@
             </div>
             <div class="action-buttons">
                 <i class="fa-solid fa-heart"></i>
-                <i class="fa-solid fa-cart-shopping"><span>0</span></i>
+                <i class="fa-solid fa-cart-shopping" onclick="goToCart()"><span id="cart-count">0</span></i>
                 <i class="fa-solid fa-user"></i>
             </div>
         </div>
@@ -366,7 +379,7 @@
                         <img src="Shoes/kids shoes 1.png" alt="Nike Tanjun EasyOn">
                         <h3>Nike Tanjun EasyOn</h3>
                         <div class="price">₱2,309</div>
-                        <a class="btn add-cart" href="#">Add to Cart</a>
+                        <a class="btn add-cart" href="#" onclick="addToCart('Nike Tanjun EasyOn', 2309, 'Shoes/kids shoes 1.png')">Add to Cart</a>
                         <a class="btn add-fav" href="#">Details</a>
                     </div>
                 </div>
@@ -375,7 +388,7 @@
                         <img src="Shoes/kids shoes 2.png" alt="Nike Air Max 90 LTR">
                         <h3>Nike Air Max 90 LTR</h3>
                         <div class="price">₱3,219</div>
-                        <a class="btn add-cart" href="#">Add to Cart</a>
+                        <a class="btn add-cart" href="#" onclick="addToCart('Nike Air Max 90 LTR', 3219, 'Shoes/kids shoes 2.png')">Add to Cart</a>
                         <a class="btn add-fav" href="#">Details</a>
                     </div>
                 </div>
@@ -384,7 +397,7 @@
                         <img src="Shoes/kids shoes 3.png" alt="Nike Flex Plus 2">
                         <h3>Nike Flex Plus 2</h3>
                         <div class="price">₱2,479</div>
-                        <a class="btn add-cart" href="#">Add to Cart</a>
+                        <a class="btn add-cart" href="#"onclick="addToCart('Nike Flex Plus 2', 2479, 'Shoes/kids shoes 3.png')">Add to Cart</a>
                         <a class="btn add-fav" href="#">Details</a>
                     </div>
                 </div>
@@ -393,7 +406,7 @@
                         <img src="Shoes/kids shoes 4.png" alt="Nike Crosscourt">
                         <h3>Nike Crosscourt</h3>
                         <div class="price">₱3,995</div>
-                        <a class="btn add-cart" href="#">Add to Cart</a>
+                        <a class="btn add-cart" href="#"onclick="addToCart('Nike Crosscourt', 3995, 'Shoes/kids shoes 4.png')">Add to Cart</a>
                         <a class="btn add-fav" href="#">Details</a>
                     </div>
                 </div>
@@ -402,7 +415,7 @@
                         <img src="Shoes/kids shoes 5.png" alt="Nike Infinity Flow">
                         <h3>Nike Infinity Flow</h3>
                         <div class="price">₱2,799</div>
-                        <a class="btn add-cart" href="#">Add to Cart</a>
+                        <a class="btn add-cart" href="#"onclick="addToCart('Nike Infinity Flow', 2799, 'Shoes/kids shoes 5.png')">Add to Cart</a>
                         <a class="btn add-fav" href="#">Details</a>
                     </div>
                 </div>
@@ -411,7 +424,7 @@
                         <img src="Shoes/kids shoes 6.png" alt="Nike Air Flight 89">
                         <h3>Nike Air Flight 89</h3>
                         <div class="price">₱4,195</div>
-                        <a class="btn add-cart" href="#">Add to Cart</a>
+                        <a class="btn add-cart" href="#"onclick="addToCart('Nike Air Flight 89', 4195, 'Shoes/kids shoes 6.png')">Add to Cart</a>
                         <a class="btn add-fav" href="#">Details</a>
                     </div>
                 </div>
@@ -420,7 +433,7 @@
                         <img src="Shoes/kids shoes 7.png" alt="Nike Revolution 7">
                         <h3>Nike Revolution 7</h3>
                         <div class="price">₱1,499</div>
-                        <a class="btn add-cart" href="#">Add to Cart</a>
+                        <a class="btn add-cart" href="#"onclick="addToCart('Nike Revolution 7', 1499, 'Shoes/kids shoes 7.png')">Add to Cart</a>
                         <a class="btn add-fav" href="#">Details</a>
                     </div>
                 </div>
@@ -429,7 +442,7 @@
                         <img src="Shoes/kids shoes 8.png" alt="Air Max SYSTM">
                         <h3>Air Max SYSTM</h3>
                         <div class="price">₱2,719</div>
-                        <a class="btn add-cart" href="#">Add to Cart</a>
+                        <a class="btn add-cart" href="#"onclick="addToCart('Air Max SYSTM', 2719, 'Shoes/kids shoes 8.png')">Add to Cart</a>
                         <a class="btn add-fav" href="#">Details</a>
                     </div>
                 </div>
@@ -439,24 +452,13 @@
 
     <div class="cartTab">
         <h1>Shopping Cart</h1>
-        <div class="listcart">
-                <div class="item">
-                    <div class="image">
-                    <img src="Shoes/kids shoes 1.png" alt="">
-                </div>
-                <div class="name">
-                    Name
-                </div>
-                <div class="totalPrice">
-                    ₱2,309
-                </div>
-                <div class="quantity">
-                    <span class="minus"><</span>
-                    <span>1</span>
-                    <span class="plus">></span>
-                </div>
-            </div>
+        <div class="listcart" id="cart-items">
+            <!-- Cart items will be dynamically added here -->
         </div>
+        
+        <!-- Total Price Section with Border -->
+        <div id="total-price" class="total-price">Total: ₱0.00</div>
+    
         <div class="cartbtn">
             <button class="close">CLOSE</button>
             <button class="checkOut">CHECK OUT</button>
