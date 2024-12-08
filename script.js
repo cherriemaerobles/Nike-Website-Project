@@ -1,10 +1,3 @@
-const hamburger = document.querySelector('.hamburger');
-const navLinks = document.querySelector('.nav-links');
-
-hamburger.addEventListener('click', () => {
-  navLinks.classList.toggle('active');
-});
-
 const wrapper = document.querySelector('.wrapper');
 const registerlink = document.querySelector('.register-link');
 const loginlink = document.querySelector('.login-link');
