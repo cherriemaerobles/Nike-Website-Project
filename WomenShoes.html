@@ -154,6 +154,8 @@
             border-radius: 5px;
             border: none;
             transition: background-color 0.3s ease, color 0.3s ease;
+            margin-top: 10px;
+            margin-left: 15px;
         }
 
         .btn.view-details:hover {
@@ -282,6 +284,37 @@
             margin-right: 15px;
         }
 
+        /* Quantity */
+        .product-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Adjust spacing between the quantity input and the button */
+        }
+
+        .quantity-input {
+            width: 50px; /* Small width for the input */
+            height: 40px; /* Adjust height to match the button */
+            text-align: center; /* Align the value in the center */
+            font-size: 14px; /* Small font size */
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .add-to-cart-btn {
+            padding: 8px 16px;
+            font-size: 14px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: #0056b3;
+        }
+
+
     </style>
 
     <script src="cart.js"></script>
@@ -354,9 +387,10 @@
             <div style="margin-top: 20px;">
                 <strong>Total:</strong> <span id="cartTotal">₱0</span>
             </div>
-            <button id="checkoutButton" class="btn add-cart" style="margin-top: 20px; width: 100%;">Checkout</button>
+            <buttons id="checkoutButton" class="btn add-cart" style="margin-top: 20px; width: 100%;">Checkout</buttons>
         </div>
     </div>
+    
 
 
     <!-- Footer -->
@@ -656,6 +690,17 @@ document.querySelectorAll('.btn.add-cart').forEach((button, index) => {
         updateCartBadge();  // Update cart icon badge
     });
 });
+
+// validation
+const quantityInput = document.getElementById('productQuantity');
+
+// Ensure the quantity is at least 1
+quantityInput.addEventListener('change', function() {
+    if (quantityInput.value < 1) {
+        quantityInput.value = 1;
+    }
+});
+
 
 </script>
 </body>
