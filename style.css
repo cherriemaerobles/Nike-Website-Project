@@ -476,6 +476,7 @@ section .main .main_content{
 .about .about_main .about_image{
   display: flex;
   margin-top: 50px;
+  margin-left: 10%;
 }
 
 .about .about_main .about_image .about_small_image{
@@ -517,6 +518,7 @@ section .main .main_content{
 
 .about .about_main .about_text{
   margin-top: 45px;
+  margin-right: 10%;
 }
 
 .about .about_main .about_text p{
