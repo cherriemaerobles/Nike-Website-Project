@@ -5,36 +5,37 @@ hamburger.addEventListener('click', () => {
   navLinks.classList.toggle('active');
 });
 
-const modalOverlay = document.querySelector('.modal-overlay');
-const container = document.querySelector('.container');
+const wrapper = document.querySelector('.wrapper');
 const registerlink = document.querySelector('.register-link');
 const loginlink = document.querySelector('.login-link');
 const btn = document.querySelector('.fa-solid fa-user');
 
 
 registerlink.addEventListener('click', () => {
-  modalOverlay.style.display = 'flex'; 
-  container.classList.add('active'); 
+  wrapper.classList.add('active'); 
 });
 
 
 loginlink.addEventListener('click', () => {
-  container.classList.remove('active');
-  setTimeout(() => {
-    modalOverlay.style.display = 'none'; 
-  }, 300); 
+  wrapper.classList.remove('active');
 });
 
-
-modalOverlay.addEventListener('click', (e) => {
-  if (e.target === modalOverlay) {
-    container.classList.remove('active');
-    setTimeout(() => {
-      modalOverlay.style.display = 'none';
-    }, 300);
-  }
-});
 
 btn.addEventListener('click', () => {
-  container.classList.add('active-popup');
+  wrapper.classList.add('active-popup');
+});
+
+document.getElementById('openModal').addEventListener('click', function () {
+  document.getElementById('modal').classList.add('active');
+});
+
+document.getElementById('closeModal').addEventListener('click', function () {
+  document.getElementById('modal').classList.remove('active');
+});
+
+window.addEventListener('click', function (event) {
+  const modal = document.getElementById('modal');
+  if (event.target === modal) {
+      modal.classList.remove('active');
+  }
 });
