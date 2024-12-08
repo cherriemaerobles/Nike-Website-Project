@@ -1,20 +1,19 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
 
     const cartIcon = document.querySelector(".fa-cart-shopping");
     const cartTab = document.querySelector(".cartTab");
     const closeBtn = cartTab.querySelector(".close");
 
+    cartIcon.addEventListener("click", function () {
 
-    cartIcon.addEventListener("click", function() {
-
-        if (cartTab.style.transform === "translateX(0)") {   
+        if (cartTab.style.transform === "translateX(0)") {
             cartTab.style.transform = "translateX(100%)";
-        } else {    
+        } else {
             cartTab.style.transform = "translateX(0)";
         }
     });
 
-    closeBtn.addEventListener("click", function() {
+    closeBtn.addEventListener("click", function () {
         cartTab.style.transform = "translateX(100%)";
     });
 });
@@ -27,7 +26,7 @@ function addToCart(productName, productPrice, productImage) {
     localStorage.setItem('cart', JSON.stringify(cart));
 
     updateCartCount();
-    loadCartItems();  // Ensure cart is reloaded immediately
+    loadCartItems();
 }
 
 // Function to update cart count
@@ -41,10 +40,9 @@ function updateCartCount() {
 function loadCartItems() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const cartItemsContainer = document.getElementById('cart-items');
-    cartItemsContainer.innerHTML = ''; // Clear current items
+    cartItemsContainer.innerHTML = '';
 
-    let totalPrice = 0;  // Initialize total price variable
-
+    let totalPrice = 0;
     cart.forEach(item => {
         const itemElement = document.createElement('div');
         itemElement.classList.add('item');
@@ -79,7 +77,7 @@ function updateQuantity(productName, delta) {
         item.quantity += delta;
         if (item.quantity <= 0) {
             const index = cart.indexOf(item);
-            cart.splice(index, 1); // Remove item if quantity is 0 or less
+            cart.splice(index, 1);
         }
         localStorage.setItem('cart', JSON.stringify(cart));
         loadCartItems();
@@ -95,12 +93,11 @@ function goToCart() {
 
 // Function to close cart
 function closeCart() {
-    // Implement closing cart logic (e.g., hide cart or navigate back)
     alert('Cart closed');
 }
 
 // Initialize cart count on page load
 document.addEventListener('DOMContentLoaded', () => {
     updateCartCount();
-    loadCartItems();  // Load cart items immediately on page load
+    loadCartItems();
 });
