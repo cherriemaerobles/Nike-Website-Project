@@ -569,6 +569,12 @@ section .main .main_content {
   margin-bottom: 15px;
   object-fit: cover;
 }
+.team h1{
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    margin-left: 80%;
+  }
 .teams {
   padding: 16px;
   background: #1b1229;
