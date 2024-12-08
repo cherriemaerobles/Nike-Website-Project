@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-
     const cartIcon = document.querySelector(".fa-cart-shopping");
     const cartTab = document.querySelector(".cartTab");
     const closeBtn = cartTab.querySelector(".close");
@@ -27,23 +26,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Check if the cart is empty
         if (cart.length === 0 || cart.every(item => item.quantity === 0)) {
-            alert("Your cart is empty. Please add items to the cart before proceeding to checkout.");
+            // Show the custom empty cart message
+            const confirmClose = confirm("Your cart is empty. Please add items to the cart before proceeding to checkout.");
+
+            if (confirmClose) {
+                // Close the cart tab after user clicks "OK" on the confirmation
+                cartTab.style.transform = "translateX(100%)";
+            }
             return; // Exit the function to prevent checkout
         }
 
-        // Display checkout popup when checkout button is clicked
-        checkoutPopup.style.display = "flex";
+        // Close the cart tab immediately after clicking checkout
+        cartTab.style.transform = "translateX(100%)";
+
+        // Display success message after the cart closes
+        setTimeout(() => {
+            alert("Checkout successful! Your order has been placed.");
+        }, 300); // Delay for cart tab to close first
 
         // Clear the cart in local storage and the UI
         localStorage.removeItem('cart');
         loadCartItems(); // Update UI after clearing the cart
         updateCartCount(); // Update the cart count in the header
-        
-        // Close the cartTab automatically after checkout
-        cartTab.style.transform = "translateX(100%)"; // Close the cart tab
-
-        // Display success message
-        alert("Checkout successful! Your order has been placed.");
     });
 
     closePopupBtn.addEventListener("click", function () {
