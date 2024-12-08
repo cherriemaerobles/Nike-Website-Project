@@ -9,107 +9,51 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
    </head>
+<script src="cart.js"></script>
+
+</head>
 <body>
+    <!-- Header -->
     <header>
         <div class="navbar-container">
             <div class="logo">
                 <h1>Nike</h1>
             </div>
-
             <div class="navbar-links">
                 <a href="index.html">Home</a>
                 <a href="#Products">About</a>
                 <a href="#Categories">Categories</a>
                 <a href="#Contact">Contact Us</a>
             </div>
-
             <div class="action-buttons">
-                <i class="fa-solid fa-heart"></i>
-                <i class="fa-solid fa-cart-shopping"></i>
-                <i class="fa-solid fa-user"></i>
+                <i class="fa-solid fa-heart">
+                    <span class="favorite-badge">0</span> <!-- Badge showing the favorite count -->
+                </i>
+                <i class="fa-solid fa-cart-shopping"></i> <!-- Cart Icon -->
+                <i class="fa-solid fa-user"></i> <!-- User Icon -->
             </div>
-        </div>
+            
     </header>
 
+    <!-- Products Section -->
     <div class="box-container">
         <div class="containerProduct">
-            <div class="row">
-                <!-- Product Cards -->
-                <div class="col-md-4 col-lg-3">
-                    <div class="box">
-                        <img src="Shoes/men shoes 1.jpg" alt="Nike Air Force 1 '07">
-                        <h3>Nike Air Force 1 '07</h3>
-                        <div class="price">₱6,195.00</div>
-                        <a class="btn add-cart" href="#">Add to Cart</a>
-                        <a class="btn add-fav" href="menshoesdetails.html">Details</a>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-lg-3">
-                    <div class="box">
-                        <img src="Shoes/men shoes 2.jpg" alt="Nike Court Vision Low">
-                        <h3>Nike Court Vision Low</h3>
-                        <div class="price">₱3,695.00</div>
-                        <a class="btn add-cart" href="#">Add to Cart</a>
-                        <a class="btn add-fav" href="#">Details</a>
-                    </div>
-                </div>
-
-                <div class="col-md-4 col-lg-3">
-                    <div class="box">
-                        <img src="Shoes/men shoes 3.jpg" alt="Air Jordan 3 Retro 'Black Cement'">
-                        <h3>Air Jordan 3 Retro 'Black Cement'</h3>
-                        <div class="price">₱11,295.00</div>
-                        <a class="btn add-cart" href="#">Add to Cart</a>
-                        <a class="btn add-fav" href="#">Details</a>
-                    </div>
-                </div>
-                <div class="col-md-4 col-lg-3">
-                    <div class="box">
-                        <img src="Shoes/men shoes 4.jpg" alt="Kobe 9 Elite Low Protro">
-                        <h3>Kobe 9 Elite Low Protro</h3>
-                        <div class="price">₱11,295.00</div>
-                        <a class="btn add-cart" href="#">Add to Cart</a>
-                        <a class="btn add-fav" href="#">Details</a>
-                    </div>
-                </div>
-                <div class="col-md-4 col-lg-3">
-                    <div class="box">
-                        <img src="Shoes/men shoes 5.jpg" alt="Anthracite and Medium Grey">
-                        <h3>Anthracite and Medium Grey</h3>
-                        <div class="price">₱8,895.00</div>
-                        <a class="btn add-cart" href="#">Add to Cart</a>
-                        <a class="btn add-fav" href="#">Details</a>
-                    </div>
-                </div>
-                <div class="col-md-4 col-lg-3">
-                    <div class="box">
-                        <img src="Shoes/men shoes 6.jpg" alt="Nike V2K Run">
-                        <h3>Nike V2K Run</h3>
-                        <div class="price">₱6,895.00</div>
-                        <a class="btn add-cart" href="#">Add to Cart</a>
-                        <a class="btn add-fav" href="#">Details</a>      
-                    </div>
-                </div>
-                <div class="col-md-4 col-lg-3">
-                    <div class="box">
-                        <img src="Shoes/men shoes 7.jpg" alt="Sabrina 2 EP">
-                        <h3>Sabrina 2 EP</h3>
-                        <div class="price">₱7,395.00</div>
-                        <a class="btn add-cart" href="#">Add to Cart</a>
-                        <a class="btn add-fav" href="#">Details</a>      
-                    </div>
-                </div>
-                <div class="col-md-4 col-lg-3">
-                    <div class="box">
-                        <img src="Shoes/men shoes 8.jpg" alt="Air Foamposite One">
-                        <h3>Air Foamposite One</h3>
-                        <div class="price">₱12,295.00</div>
-                        <a class="btn add-cart" href="#">Add to Cart</a>
-                        <a class="btn add-fav" href="#">Details</a>      
-                    </div>
-                </div>
+            <div class="row" id="product-cards-container">
+                <!-- Product Cards will be dynamically inserted here -->
             </div>
+        </div>
+    </div>
+
+    <!-- Product Description Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="productTitle"></h2>
+            <div id="productDescription"></div>
+            <div class="price" id="productPrice"></div>
+            <button class="btn add-cart">Add to Cart</button>
+            <br>
+            <button class="btn add-fav">Favorite</button>
         </div>
     </div>
 
@@ -125,6 +69,137 @@
             </div>
         </div>
     </footer>
-    
+
+    <script>
+        const products = [
+            {
+                id: 1,
+                name: "Nike Air Force 1 '07",
+                image: "Shoes/men shoes 1.jpg",
+                price: "₱6,195",
+                description: "The radiance lives on with the b-ball original. Crossing hardwood comfort with off-court flair, it puts a fresh spin on what you know best: '80s-inspired construction, bold details and nothin'-but-net style."
+            },
+            {
+                id: 2,
+                name: "Nike Court Legacy",
+                image: "Shoes/women shoes 2.jpg",
+                price: "₱1,299",
+                description: "The Nike Court Legacy is a classic, re-imagined with a timeless design that blends style and comfort for everyday wear.  <br><br> <strong>Colour Shown:</strong> Red Stardust <br><strong>Style:</strong> HF0782-101 <br><strong>Country/Region of Origin:</strong> Vietnam"
+            },
+            {
+                id: 3,
+                name: "Nike Air Max 97",
+                image: "Shoes/women shoes 3.jpg",
+                price: "₱6,179",
+                description: "The Nike Air Max 97 gives you a sleek, modern look with full-length visible Air cushioning that delivers all-day comfort.  <br><br> <strong>Colour Shown:</strong> Red Stardust <br><strong>Style:</strong> HF0782-101 <br><strong>Country/Region of Origin:</strong> Vietnam"
+            },
+            {
+                id: 4,
+                name: "Nike Dunk Low Twist",
+                image: "Shoes/women shoes 4.jpg",
+                price: "₱3,719",
+                description: "The Nike Dunk Low Twist is a modern twist on the classic Dunk silhouette, delivering a fresh look and comfortable feel.  <br><br> <strong>Colour Shown:</strong> Red Stardust <br><strong>Style:</strong> HF0782-101 <br><strong>Country/Region of Origin:</strong> Vietnam"
+            },
+            {
+                id: 5,
+                name: "Air Jordan 1 Mid",
+                image: "Shoes/women shoes 5.jpg",
+                price: "₱4,259",
+                description: "The Air Jordan 1 Mid combines heritage style with modern details, offering the perfect blend of comfort and style.  <br><br> <strong>Colour Shown:</strong> Red Stardust <br><strong>Style:</strong> HF0782-101 <br><strong>Country/Region of Origin:</strong> Vietnam"
+            },
+            {
+                id: 6,
+                name: "Nike Air Max Plus",
+                image: "Shoes/women shoes 6.jpg",
+                price: "₱5,639",
+                description: "The Nike Air Max Plus features a stylish, unique design with responsive cushioning for long-lasting comfort.  <br><br> <strong>Colour Shown:</strong> Red Stardust <br><strong>Style:</strong> HF0782-101 <br><strong>Country/Region of Origin:</strong> Vietnam"
+            },
+            {
+                id: 7,
+                name: "Air Jordan 1 Elevate",
+                image: "Shoes/women shoes 7.png",
+                price: "₱4,259",
+                description: "The Air Jordan 1 Elevate brings you a sleek and stylish update to the classic silhouette, designed for all-day comfort and support.  <br><br> <strong>Colour Shown:</strong> Red Stardust <br><strong>Style:</strong> HF0782-101 <br><strong>Country/Region of Origin:</strong> Vietnam"
+            },
+            {
+                id: 8,
+                name: "Nike Air Max Plus",
+                image: "Shoes/women shoes 8.png",
+                price: "₱5,939",
+                description: "Nike Air Max Plus brings an iconic, sporty look with responsive cushioning and a durable build for everyday wear.  <br><br> <strong>Colour Shown:</strong> Red Stardust <br><strong>Style:</strong> HF0782-101 <br><strong>Country/Region of Origin:</strong> Vietnam"
+            }
+        ];
+
+        const productCardsContainer = document.getElementById('product-cards-container');
+    const modal = document.getElementById('productModal');
+    const closeModal = document.querySelector('.close');
+
+    let favoriteCount = 0;
+    const favoritedProducts = [];
+
+    const updateFavoriteCounter = () => {
+        const heartIcon = document.querySelector('.fa-heart');
+        const favoriteBadge = heartIcon.querySelector('.favorite-badge');
+        favoriteBadge.textContent = favoriteCount;
+    };
+
+    // Create product cards dynamically
+    products.forEach((product, index) => {
+        const productCard = document.createElement('div');
+        productCard.classList.add('col-md-4', 'col-lg-3');
+        productCard.innerHTML = `
+            <div class="box">
+                <img src="${product.image}" alt="${product.name}">
+                <h3>${product.name}</h3>
+                <div class="price">${product.price}</div>
+                <button class="btn add-cart">Add to Cart</button>
+                <button class="btn view-details" data-index="${index}">Details</button>
+            </div>
+        `;
+        productCardsContainer.appendChild(productCard);
+    });
+
+    // Show product details in the modal when the Details button is clicked
+    document.querySelectorAll('.btn.view-details').forEach(button => {
+        button.addEventListener('click', (event) => {
+            const productIndex = event.target.getAttribute('data-index');
+            const product = products[productIndex];
+
+            // Show the product details inside the modal
+            document.getElementById('productTitle').textContent = product.name;
+            document.getElementById('productDescription').innerHTML = product.description;
+            document.getElementById('productPrice').textContent = product.price;
+
+            // Show the modal
+            modal.style.display = "block";
+
+            // Add functionality for the Add to Favorites button inside the modal
+            const addToFavButton = document.querySelector('.btn.add-fav');
+            addToFavButton.onclick = () => {
+                if (favoritedProducts.includes(product.id)) {
+                    alert("You have already added this product to favorites.");
+                    return;
+                }
+
+                favoritedProducts.push(product.id); // Add product to favorites
+                favoriteCount++; // Increment favorite count
+                updateFavoriteCounter(); // Update the favorite count display
+                alert("Product added to favorites!");
+            };
+        });
+    });
+
+    // Close the modal when the close button is clicked
+    closeModal.addEventListener('click', () => {
+        modal.style.display = "none";
+    });
+
+    // Close the modal if the user clicks outside of the modal content
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    });
+</script>
 </body>
 </html>
