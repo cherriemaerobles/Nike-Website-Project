@@ -463,19 +463,21 @@
 
     // Create product cards dynamically
     products.forEach((product, index) => {
-        const productCard = document.createElement('div');
-        productCard.classList.add('col-md-4', 'col-lg-3');
-        productCard.innerHTML = `
-            <div class="box">
-                <img src="${product.image}" alt="${product.name}">
-                <h3>${product.name}</h3>
-                <div class="price">${product.price}</div>
-                <button class="btn add-cart">Add to Cart</button>
-                <button class="btn view-details" data-index="${index}">Details</button>
-            </div>
-        `;
-        productCardsContainer.appendChild(productCard);
-    });
+    const productCard = document.createElement('div');
+    productCard.classList.add('col-md-4', 'col-lg-3');
+    productCard.innerHTML = `
+        <div class="box">
+            <img src="${product.image}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <div class="price">${product.price}</div>
+            <input type="number" class="quantity-input" value="1" min="1" id="quantity-${product.id}">
+            <button class="btn add-cart" data-index="${index}">Add to Cart</button>
+            <button class="btn view-details" data-index="${index}">Details</button>
+        </div>
+    `;
+    productCardsContainer.appendChild(productCard);
+});
+
 
     // Show product details in the modal when the Details button is clicked
     document.querySelectorAll('.btn.view-details').forEach(button => {
@@ -581,11 +583,14 @@ let cartItems = [];
 // Function to update the cart modal content
 const updateCartModal = () => {
     cartContainer.innerHTML = '';
+    let totalAmount = 0;
 
     if (cartItems.length === 0) {
         cartContainer.innerHTML = '<p>No items in the cart.</p>';
     } else {
         cartItems.forEach(item => {
+            totalAmount += item.totalPrice;
+
             const cartItem = document.createElement('div');
             cartItem.style.display = 'flex';
             cartItem.style.alignItems = 'center';
@@ -595,14 +600,25 @@ const updateCartModal = () => {
                 <img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; object-fit: cover; margin-right: 10px; border-radius: 5px;">
                 <div>
                     <h4 style="margin: 0;">${item.name}</h4>
-                    <p style="margin: 0;">${item.price}</p>
+                    <p style="margin: 0;">${item.price} x ${item.quantity}</p>
+                    <p style="margin: 0;">Total: ₱${item.totalPrice.toFixed(2)}</p>
                 </div>
             `;
 
             cartContainer.appendChild(cartItem);
         });
     }
+
+    document.getElementById('cartTotal').textContent = `₱${totalAmount.toFixed(2)}`;
 };
+
+// function updates the cart icon badge to show the number of items in the cart
+const updateCartBadge = () => {
+    const cartBadge = document.querySelector('.cart-badge');
+    const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
+    cartBadge.textContent = totalItems;
+};
+
 
 // Open the cart modal when the cart icon is clicked
 cartIcon.addEventListener('click', () => {
@@ -625,11 +641,31 @@ window.addEventListener('click', (event) => {
 // Add "Add to Cart" button functionality
 document.querySelectorAll('.btn.add-cart').forEach((button, index) => {
     button.addEventListener('click', () => {
+        const quantityInput = document.getElementById(`quantity-${products[index].id}`);
+        const quantity = parseInt(quantityInput.value);
         const product = products[index];
-        cartItems.push(product); // Add product to cart
-        alert(`${product.name} has been added to the cart!`);
+        
+        // Add product to cart
+        const cartItem = {
+            ...product,
+            quantity: quantity,
+            totalPrice: parseFloat(product.price.replace('₱', '').replace(',', '')) * quantity
+        };
+
+        // Check if the product is already in the cart
+        const existingItemIndex = cartItems.findIndex(item => item.id === product.id);
+        if (existingItemIndex !== -1) {
+            cartItems[existingItemIndex].quantity += quantity;  // Increase quantity if product already in cart
+            cartItems[existingItemIndex].totalPrice = cartItems[existingItemIndex].quantity * parseFloat(product.price.replace('₱', '').replace(',', ''));
+        } else {
+            cartItems.push(cartItem);
+        }
+
+        updateCartModal();  // Update the cart modal
+        updateCartBadge();  // Update cart icon badge
     });
 });
+
 
 
 
