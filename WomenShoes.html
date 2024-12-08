@@ -314,6 +314,26 @@
             background-color: #0056b3;
         }
 
+        /* CART */
+        .cart-icon {
+            position: relative;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .cart-quantity {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background-color: red;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 50%;
+            padding: 4px 6px;
+            min-width: 18px;
+            text-align: center;
+        }
 
     </style>
 
@@ -390,8 +410,6 @@
             <buttons id="checkoutButton" class="btn add-cart" style="margin-top: 20px; width: 100%;">Checkout</buttons>
         </div>
     </div>
-    
-
 
     <!-- Footer -->
     <footer>
@@ -701,6 +719,24 @@ quantityInput.addEventListener('change', function() {
     }
 });
 
+// Handle Cart Updates
+document.getElementById('addToCartBtn').addEventListener('click', function() {
+    const quantityInput = document.getElementById('productQuantity');
+    const cartQuantity = document.getElementById('cartQuantity');
+
+    // Get the current quantity value
+    const addedQuantity = parseInt(quantityInput.value) || 0;
+
+    // Get the existing quantity in the cart
+    const currentCartQuantity = parseInt(cartQuantity.textContent) || 0;
+
+    // Update the cart quantity
+    const newCartQuantity = currentCartQuantity + addedQuantity;
+    cartQuantity.textContent = newCartQuantity;
+
+    // Reset the input value (optional)
+    quantityInput.value = 1;
+});
 
 </script>
 </body>
