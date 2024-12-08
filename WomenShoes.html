@@ -353,8 +353,18 @@
             <div id="cartContainer">
                 <!-- Cart products will be dynamically inserted here -->
             </div>
+            <div style="margin-top: 20px;">
+                <strong>Total:</strong> <span id="cartTotal">₱0</span>
+            </div>
+            <button id="checkoutButton" class="btn add-cart" style="margin-top: 20px; width: 100%;">Checkout</button>
         </div>
     </div>
+
+    <!-- Inside the dynamically generated product card -->
+<button class="btn add-cart" onclick="addToCart(${product.id}, ${index})">Add to Cart</button>
+<inputs type="number" class="quantity-input" value="1" min="1" id="quantity-${product.id}" />
+
+    
 
 
 
