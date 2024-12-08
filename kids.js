@@ -30,18 +30,18 @@ document.addEventListener("DOMContentLoaded", function () {
             if (confirmClose) {
                 cartTab.style.transform = "translateX(100%)";
             }
-            return; 
+            return;
         }
 
         cartTab.style.transform = "translateX(100%)";
 
         setTimeout(() => {
             alert("Checkout successful! Your order has been placed.");
-        }, 300); 
+        }, 300);
 
         localStorage.removeItem('cart');
-        loadCartItems(); 
-        updateCartCount(); 
+        loadCartItems();
+        updateCartCount();
     });
 
     closePopupBtn.addEventListener("click", function () {
@@ -83,7 +83,7 @@ function loadCartItems() {
     cartItemsContainer.innerHTML = '';
 
     if (cart.length === 0) {
-        cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>"; 
+        cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
     }
 
     let totalPrice = 0;
