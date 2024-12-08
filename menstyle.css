@@ -102,3 +102,14 @@ header {
 .containerProduct .row {
     justify-content: center;
 }
+
+footer {
+    background-color: #000;
+    color: white;
+    padding: 20px 0;
+}
+
+footer .social-icons a {
+    margin: 0 10px;
+    color: white;
+}
