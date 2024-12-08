@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
 
     const cartIcon = document.querySelector(".fa-cart-shopping");
     const cartTab = document.querySelector(".cartTab");
@@ -8,15 +8,15 @@ document.addEventListener("DOMContentLoaded", function () {
     cartTab.style.transform = "translateX(100%)";  // Ensures the cart is closed
     localStorage.removeItem('cart'); // Clear the cart from localStorage
 
-    cartIcon.addEventListener("click", function () {
-        if (cartTab.style.transform === "translateX(0)") {
+    cartIcon.addEventListener("click", function() {
+        if (cartTab.style.transform === "translateX(0)") {   
             cartTab.style.transform = "translateX(100%)";
-        } else {
+        } else {    
             cartTab.style.transform = "translateX(0)";
         }
     });
 
-    closeBtn.addEventListener("click", function () {
+    closeBtn.addEventListener("click", function() {
         cartTab.style.transform = "translateX(100%)";
     });
 });
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function addToCart(productName, productPrice, productImage) {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const existingProduct = cart.find(item => item.name === productName);
-
+    
     if (existingProduct) {
         existingProduct.quantity++;
     } else {
@@ -60,8 +60,9 @@ function loadCartItems() {
                 <span class="minus" onclick="updateQuantity('${item.name}', -1)">-</span>
                 <span>${item.quantity}</span>
                 <span class="plus" onclick="updateQuantity('${item.name}', 1)">+</span>
+                <span class="delete" onclick="deleteItem('${item.name}')">X</span>
             </div>
-        `;
+        `;    
         cartItemsContainer.appendChild(itemElement);
         totalPrice += item.price * item.quantity;
     });
@@ -85,6 +86,18 @@ function updateQuantity(productName, delta) {
         loadCartItems();
         updateCartCount();
     }
+}
+
+function deleteItem(productName) {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const updatedCart = cart.filter(item => item.name !== productName);
+
+    // Update the cart in localStorage
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+    
+    // Reload cart items and update count
+    loadCartItems();
+    updateCartCount();
 }
 
 function goToCart() {

@@ -227,7 +227,7 @@
         }
 
         .cartTab {
-            width: 360px;
+            width: 380px;
             height: 100%;
             background-color: white;
             color: black;
@@ -299,31 +299,41 @@
         }
 
         .cartTab .listcart .item {
-            display: grid;
-            grid-template-columns: 50px 100px 50px 1fr;
-            gap: 10px;
-            text-align: center;
-            align-items: center;
-        }
+    display: grid;
+    grid-template-columns: 50px 100px 50px 1fr auto; /* Added auto for the X button column */
+    gap: 10px;
+    text-align: center;
+    align-items: center;
+}
 
-        .listcart .quantity span {
-            display: inline-block;
-            width: 22px;
-            height: 22px;
-            background-color: black;
-            color: white;
-            border-radius: 50%;
-            cursor: pointer;
-        }
+.listcart .quantity {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-        .listcart .quantity span:nth-child(2) {
-            background-color: transparent;
-            color: #000;
-        }
+.listcart .quantity span {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    background-color: black;
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 0 5px;
+}
 
-        .listcart item:nth-child(even) {
-            background-color: wheat;
-        }
+.listcart .quantity span:nth-child(2) {
+    background-color: transparent;
+    color: #000;
+}
+
+.listcart .item .delete {
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+}
 
         .listcart {
             overflow: auto;
@@ -476,7 +486,7 @@
         </div>
     </div>
 
-    
+
     <!-- Footer -->
     <footer>
         <div class="container text-center">
