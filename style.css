@@ -160,6 +160,9 @@ section nav .logo{
   cursor: pointer;
   position: relative;
   left: -4%;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: normal;
 }
 
 section nav ul{
@@ -175,6 +178,9 @@ section nav ul li a{
   text-decoration: none;
   color: black;
   transition: 0.2s;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: normal;
 }
 
 section nav ul li a:hover{
