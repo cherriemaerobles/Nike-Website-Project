@@ -282,8 +282,6 @@
             margin-right: 15px;
         }
 
-
-
     </style>
 
     <script src="cart.js"></script>
@@ -361,13 +359,10 @@
     </div>
 
     <!-- Inside the dynamically generated product card -->
-<button class="btn add-cart" onclick="addToCart(${product.id}, ${index})">Add to Cart</button>
+<buttons class="btn add-cart" onclick="addToCart(${product.id}, ${index})">Add to Cart</buttons>
 <inputs type="number" class="quantity-input" value="1" min="1" id="quantity-${product.id}" />
 
     
-
-
-
     <!-- Footer -->
     <footer>
         <div class="container text-center">
@@ -665,10 +660,6 @@ document.querySelectorAll('.btn.add-cart').forEach((button, index) => {
         updateCartBadge();  // Update cart icon badge
     });
 });
-
-
-
-
 
 </script>
 </body>
