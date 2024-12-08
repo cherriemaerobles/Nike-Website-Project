@@ -253,6 +253,36 @@
             min-width: 20px;
         }
 
+        #favoritesModal .modal-content {
+    width: 80%;
+    max-width: 500px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+    margin: 10% auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+#favoritesModal .close {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #888;
+}
+
+#favoritesModal .close:hover {
+    color: black;
+}
+
+#favoritesContainer img {
+    border-radius: 8px;
+    margin-right: 15px;
+}
+
+
 
     </style>
 
@@ -305,14 +335,16 @@
     </div>
 
     <!-- Favorites Modal -->
-    <div id="favoritesModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Favorited Products</h2>
-            <div id="favoritesContainer">
-                <!-- Favorited products will be dynamically inserted here -->
-            </div>
+<div id="favoritesModal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="favoritesClose">&times;</span>
+        <h2>Favorited Products</h2>
+        <div id="favoritesContainer">
+            <!-- Favorited products will be dynamically inserted here -->
         </div>
+    </div>
+</div>
+
 
 
     <!-- Footer -->
@@ -469,6 +501,54 @@
     // Add click event listener to the heart icon
     const heartIcon = document.querySelector('.fa-heart');
     heartIcon.addEventListener('click', displayFavorites);
+
+    const favoritesModal = document.getElementById('favoritesModal');
+const favoritesContainer = document.getElementById('favoritesContainer');
+const favoritesClose = document.getElementById('favoritesClose');
+
+// Open the favorites modal when the heart icon is clicked
+heartIcon.addEventListener('click', () => {
+    // Clear the container before adding items
+    favoritesContainer.innerHTML = '';
+
+    if (favoritedProducts.length === 0) {
+        favoritesContainer.innerHTML = '<p>No favorites yet.</p>';
+    } else {
+        favoritedProducts.forEach(productId => {
+            const product = products.find(p => p.id === productId);
+            const favoriteItem = document.createElement('div');
+            favoriteItem.style.display = 'flex';
+            favoriteItem.style.alignItems = 'center';
+            favoriteItem.style.marginBottom = '15px';
+
+            favoriteItem.innerHTML = `
+                <img src="${product.image}" alt="${product.name}" style="width: 60px; height: 60px; object-fit: cover; margin-right: 10px; border-radius: 5px;">
+                <div>
+                    <h4 style="margin: 0;">${product.name}</h4>
+                    <p style="margin: 0;">${product.price}</p>
+                </div>
+            `;
+
+            favoritesContainer.appendChild(favoriteItem);
+        });
+    }
+
+    favoritesModal.style.display = 'block';
+});
+
+// Close the favorites modal when the close button is clicked
+favoritesClose.addEventListener('click', () => {
+    favoritesModal.style.display = 'none';
+});
+
+// Close the modal if the user clicks outside of the modal content
+window.addEventListener('click', (event) => {
+    if (event.target === favoritesModal) {
+        favoritesModal.style.display = 'none';
+    }
+});
+
+
 
 </script>
 </body>
