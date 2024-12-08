@@ -228,11 +228,21 @@
         background-color: white;
         color: black;
         position: fixed;
-        inset: 0 0 0 auto;
+        inset: 0 -400px 0 auto;
         display: grid;
         grid-template-rows: 70px 1fr 70px;
         box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
         z-index: 1000;
+        transition: transform 0.5s;
+        }
+
+        body.showCart .cartTab{
+            inset: 0 0 0 auto;
+        }
+
+        body.showCart .container{
+            transform: translateX(-250px);
+
         }
 
         .cartTab h1 {
@@ -308,6 +318,7 @@
             background-color: black;
             color: white;
             border-radius: 50%;
+            cursor: pointer;
         }
 
         .listcart .quantity span:nth-child(2){
@@ -315,10 +326,22 @@
             color: #000;
         }
 
+        .listcart item:nth-child(even){
+            background-color: wheat;
+        }
+
+        .listcart{
+            overflow: auto;
+
+        }
+
+        .listcart::-webkit-scrollbar{
+            width: 0;
+        }
     </style>
 </head>
 
-<body>
+<body class="showCart">
     <!-- Header -->
     <header>
         <div class="navbar-container">
