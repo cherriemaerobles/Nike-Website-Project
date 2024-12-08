@@ -17,37 +17,135 @@
   </head>
   <body>
     <section>
-        <nav>
-            <div class="logo">
-                <h1>Nike</h1>
-            </div>
-    
-            <ul class="menu">
-                <li><a href="#Home">HOME</a></li>
-                <li><a href="#About">ABOUT</a></li>
-                <li class="dropdown">
-                    <a href="#Categories">CATEGORIES</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#MensShoes">Men's Shoes</a></li>
-                        <li><a href="#WomensShoes">Women's Shoes</a></li>
-                        <li><a href="#KidsShoes">Kids' Shoes</a></li>
-                    </ul>
-                </li>
-                <li><a href="#Contact">CONTACT US</a></li>
-            </ul>
-    
-            <div class="icons">
-                <i class="fa-solid fa-heart"></i>
-                <i class="fa-solid fa-cart-shopping"></i>
-                <i class="fa-solid fa-user"></i>
-            </div>
-        </nav>
-    
-        <div class="main" id="Home"></div>
-    </section>
-    
+      <nav>
+        <div class="logo">
+          <h1>Nike</h1>
+        </div>
 
-    
+        <ul class="menu">
+          <li><a href="#Home">HOME</a></li>
+          <li><a href="#About">ABOUT</a></li>
+          <li class="dropdown">
+            <a href="#Categories">CATEGORIES</a>
+            <ul class="dropdown-menu">
+              <li><a href="#MensShoes">Men's Shoes</a></li>
+              <li><a href="#WomensShoes">Women's Shoes</a></li>
+              <li><a href="#KidsShoes">Kids' Shoes</a></li>
+            </ul>
+          </li>
+          <li><a href="#Contact">CONTACT US</a></li>
+        </ul>
+
+        <div class="icons">
+          <i class="fa-solid fa-heart"></i>
+          <i class="fa-solid fa-cart-shopping"></i>
+          <i class="fa-solid fa-user"></i>
+        </div>
+      </nav>
+
+      <div class="main" id="Home"></div>
+    </section>
+
+    <!--Login n SignUp-->
+<div class="wrapper">
+    <div class="login-container">
+      <h2>Login</h2>
+      <form action="">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            autocomplete="off"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            autocomplete="off"
+            required
+          />
+        </div>
+        <div>
+          <input type="checkbox" id="rememberMe" />
+          <label for="rememberMe">Remember me</label>
+        </div>
+        <div class="forgot-password">
+          <a href="#">Forgot your password?</a>
+        </div>
+        <div class="form-group">
+          <button type="submit">Login</button>
+        </div>
+        <div class="social-login">
+          <button type="button" class="facebook-btn">
+            <img
+              src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png"
+              alt="Facebook logo"
+            />
+            Sign in with Facebook
+          </button>
+          <button type="button" class="google-btn">
+            <img
+              src="https://img.icons8.com/ios-filled/50/ffffff/google-logo.png"
+              alt="Google logo"
+            />
+            Sign in with Google
+          </button>
+        </div>
+        <div class="register">
+          <p>Don't have an account? <a href="#" class="register-link">Register here!</a></p>
+        </div>
+      </form>
+    </div>
+    <div class="signup-container">
+        <h2>Sign Up</h2>
+        <form class="signup-form" onsubmit="validateSignup(event)">
+            <div class="form-group">
+                <label for="fullname">Full Name</label>
+                <input type="text" id="fullname" name="fullname" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+            </div>
+            <div class="terms">
+                <input type="checkbox" id="terms" required>
+                <label for="terms">I accept the Terms and Conditions</label>
+            </div>
+            <div class="form-group">
+                <button type="submit">Sign Up</button>
+            </div>
+            <div class="social-login">
+                <button type="button" class="facebook-btn">
+                    <img src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png" alt="Facebook logo">
+                    Sign up with Facebook
+                </button>
+                <button type="button" class="google-btn">
+                    <img src="https://img.icons8.com/ios-filled/50/ffffff/google-logo.png" alt="Google logo">
+                    Sign up with Google
+                </button>
+            </div>
+        </form>
+        <div class="login-link">
+            <p>Already have an account? <a href="login.html">Login here</a></p>
+        </div>
+    </div>
+</div>
+
+
 
     <div class="parallax-text">
       <span class="parallax-text" text="NIKE"> NIKE </span>
@@ -131,13 +229,13 @@
 
         <div class="about_text">
           <p>
-            <b>Nike: Empowering Every Athlete</b><br>
-            Nike is more than just a brand—it's a
-            symbol of inspiration, innovation, and excellence in sportswear and
-            lifestyle apparel. Founded in 1964 as Blue Ribbon Sports, Nike has
-            grown to become one of the most recognizable names in the world,
-            with its iconic Swoosh logo and "Just Do It" slogan.
-            <br><b>Nike: Innovation in Every Step</b><br />
+            <b>Nike: Empowering Every Athlete</b><br />
+            Nike is more than just a brand—it's a symbol of inspiration,
+            innovation, and excellence in sportswear and lifestyle apparel.
+            Founded in 1964 as Blue Ribbon Sports, Nike has grown to become one
+            of the most recognizable names in the world, with its iconic Swoosh
+            logo and "Just Do It" slogan.
+            <br /><b>Nike: Innovation in Every Step</b><br />
             Nike combines performance and style, inspiring athletes and
             trendsetters worldwide with iconic designs like Air Max and Jordan.
             <br /><b>Empower Your Journey</b><br />
@@ -165,97 +263,98 @@
     </div>
 
     <section id="team">
-        <h1 class="heading">
-            <i class="fas fa-rocket"></i><strong>OUR TEAM</strong>
-        </h1>
-        <div class="container">
-            <div class="box1">
-                <div class="top-bar"></div>
-                    <div class="details">
-                        <img src="img/chirimi.jpg" alt="">
-                        <strong style="color: white;">Robles, Cherrie Mae</strong>
-                        <p>22-63247@g.batstate-u.edu.ph</p>
-                    </div>
-  
-                    <div class="btn1">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-            <div class="box1">
-                <div class="top-bar"></div>
-                    <div class="details">
-                        <img src="img/pola.jpg" alt="">
-                        <strong style="color: white;">Aquivido, Jean Paula</strong>
-                        <p>22-69061@g.batstate-u.edu.ph</p>
-                    </div>
-  
-                    <div class="btn1">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-            <div class="box1">
-                <div class="top-bar"></div>
-                    <div class="details">
-                        <img src="img/lyn.jpg" alt="">
-                        <strong style="color: white;">Saguan, Lielyn</strong>
-                        <p>22-60289@g.batstate-u.edu.ph</p>
-                    </div>
-  
-                    <div class="btn1">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                  </div>
-            <div class="box1">
-                <div class="top-bar"></div>
-                    <div class="details">
-                        <img src="img/rhyun.jpg" alt="">
-                        <strong style="color: white;">Manalang, Enrico</strong>
-                        <p>21-00431@g.batstate-u.edu.ph</p>
-                    </div>
-  
-                    <div class="btn1">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                
-            </div>
+      <h1 class="heading">
+        <i class="fas fa-rocket"></i><strong>OUR TEAM</strong>
+      </h1>
+      <div class="container">
+        <div class="box1">
+          <div class="top-bar"></div>
+          <div class="details">
+            <img src="img/chirimi.jpg" alt="" />
+            <strong style="color: white">Robles, Cherrie Mae</strong>
+            <p>22-63247@g.batstate-u.edu.ph</p>
+          </div>
+
+          <div class="btn1">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
         </div>
+        <div class="box1">
+          <div class="top-bar"></div>
+          <div class="details">
+            <img src="img/pola.jpg" alt="" />
+            <strong style="color: white">Aquivido, Jean Paula</strong>
+            <p>22-69061@g.batstate-u.edu.ph</p>
+          </div>
+
+          <div class="btn1">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="box1">
+          <div class="top-bar"></div>
+          <div class="details">
+            <img src="img/lyn.jpg" alt="" />
+            <strong style="color: white">Saguan, Lielyn</strong>
+            <p>22-60289@g.batstate-u.edu.ph</p>
+          </div>
+
+          <div class="btn1">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="box1">
+          <div class="top-bar"></div>
+          <div class="details">
+            <img src="img/rhyun.jpg" alt="" />
+            <strong style="color: white">Manalang, Enrico</strong>
+            <p>21-00431@g.batstate-u.edu.ph</p>
+          </div>
+
+          <div class="btn1">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
     </section>
 
     <footer>
-        <div class="footerContainer" id="Contact">
-            <div class="socialIcons">
-                <a href=""><i class="fa-brands fa-facebook"></i></a>
-                <a href=""><i class="fa-brands fa-instagram"></i></a>
-                <a href=""><i class="fa-brands fa-twitter"></i></a>
-                <a href=""><i class="fa-brands fa-youtube"></i></a>
-                <a href=""><i class="fa-brands fa-github"></i></a>
-                <a href=""><i class="fa-brands fa-linkedin"></i></a>
-                <a href=""><i class="fa-brands fa-tiktok"></i></a>
-            </div>
-            <div class="footerNav">
-                <ul>
-                    <li><a href="">NIKE</a></li>
-                </ul>
-            </div>
-            
+      <div class="footerContainer" id="Contact">
+        <div class="socialIcons">
+          <a href=""><i class="fa-brands fa-facebook"></i></a>
+          <a href=""><i class="fa-brands fa-instagram"></i></a>
+          <a href=""><i class="fa-brands fa-twitter"></i></a>
+          <a href=""><i class="fa-brands fa-youtube"></i></a>
+          <a href=""><i class="fa-brands fa-github"></i></a>
+          <a href=""><i class="fa-brands fa-linkedin"></i></a>
+          <a href=""><i class="fa-brands fa-tiktok"></i></a>
         </div>
-        <div class="footerBottom">
-            <p>Copyright &copy;2024; Designed by <span class="designer">POWERPUFF GURLS @ MOJOJOJO</span></p>
+        <div class="footerNav">
+          <ul>
+            <li><a href="">NIKE</a></li>
+          </ul>
         </div>
+      </div>
+      <div class="footerBottom">
+        <p>
+          Copyright &copy;2024; Designed by
+          <span class="designer">POWERPUFF GURLS @ MOJOJOJO</span>
+        </p>
+      </div>
     </footer>
-    
+
     <script href="script.js"></script>
     <script
       type="module"
