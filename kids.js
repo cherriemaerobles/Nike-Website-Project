@@ -24,34 +24,27 @@ document.addEventListener("DOMContentLoaded", function () {
     checkoutBtn.addEventListener("click", function () {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-        // Check if the cart is empty
         if (cart.length === 0 || cart.every(item => item.quantity === 0)) {
-            // Show the custom empty cart message
             const confirmClose = confirm("Your cart is empty. Please add items to the cart before proceeding to checkout.");
 
             if (confirmClose) {
-                // Close the cart tab after user clicks "OK" on the confirmation
                 cartTab.style.transform = "translateX(100%)";
             }
-            return; // Exit the function to prevent checkout
+            return; 
         }
 
-        // Close the cart tab immediately after clicking checkout
         cartTab.style.transform = "translateX(100%)";
 
-        // Display success message after the cart closes
         setTimeout(() => {
             alert("Checkout successful! Your order has been placed.");
-        }, 300); // Delay for cart tab to close first
+        }, 300); 
 
-        // Clear the cart in local storage and the UI
         localStorage.removeItem('cart');
-        loadCartItems(); // Update UI after clearing the cart
-        updateCartCount(); // Update the cart count in the header
+        loadCartItems(); 
+        updateCartCount(); 
     });
 
     closePopupBtn.addEventListener("click", function () {
-        // Close the checkout popup
         checkoutPopup.style.display = "none";
     });
 });
@@ -78,21 +71,19 @@ function updateCartCount() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const cartCount = document.getElementById('cart-count');
 
-    // Calculate total quantity of items in the cart, limit to 99
     const totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
     const displayedCount = totalQuantity > 99 ? 99 : totalQuantity;  // Limit the count to 99
 
-    // Update cart count display
     cartCount.textContent = displayedCount;
 }
 
 function loadCartItems() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const cartItemsContainer = document.getElementById('cart-items');
-    cartItemsContainer.innerHTML = ''; // Clear cart items in the UI
+    cartItemsContainer.innerHTML = '';
 
     if (cart.length === 0) {
-        cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>"; // Display a message if cart is empty
+        cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>"; 
     }
 
     let totalPrice = 0;
