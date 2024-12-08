@@ -1,7 +1,23 @@
-let iconCart = document.querySelector('.fa-solid fa-cart-shopping');
-let closeCart = document.querySelector('.close');
-let body = document.querySelector('body');
+document.addEventListener("DOMContentLoaded", function() {
+    // Get the necessary elements
+    const cartIcon = document.querySelector(".fa-cart-shopping");
+    const cartTab = document.querySelector(".cartTab");
+    const closeBtn = cartTab.querySelector(".close");
 
-iconCart.addEventListener('click', () => {
-    body.classList.toggle('showCart')
-    })
+    // Toggle the cart visibility when the cart icon is clicked
+    cartIcon.addEventListener("click", function() {
+        // Check if the cart is currently open or closed
+        if (cartTab.style.transform === "translateX(0)") {
+            // Close the cart
+            cartTab.style.transform = "translateX(100%)";
+        } else {
+            // Open the cart
+            cartTab.style.transform = "translateX(0)";
+        }
+    });
+
+    // Close the cart when the close button is clicked
+    closeBtn.addEventListener("click", function() {
+        cartTab.style.transform = "translateX(100%)";
+    });
+});
