@@ -304,6 +304,17 @@
         </div>
     </div>
 
+    <!-- Favorites Modal -->
+    <div id="favoritesModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Favorited Products</h2>
+            <div id="favoritesContainer">
+                <!-- Favorited products will be dynamically inserted here -->
+            </div>
+        </div>
+
+
     <!-- Footer -->
     <footer>
         <div class="container text-center">
@@ -390,6 +401,13 @@
         favoriteBadge.textContent = favoriteCount;
     };
 
+    const displayFavorites = () => {
+        alert("Favorited Products:\n" + favoritedProducts.map(id => {
+            const product = products.find(p => p.id === id);
+            return product ? product.name : '';
+        }).join('\n') || "No favorites yet!");
+    };
+
     // Create product cards dynamically
     products.forEach((product, index) => {
         const productCard = document.createElement('div');
@@ -447,6 +465,11 @@
             modal.style.display = "none";
         }
     });
+
+    // Add click event listener to the heart icon
+    const heartIcon = document.querySelector('.fa-heart');
+    heartIcon.addEventListener('click', displayFavorites);
+
 </script>
 </body>
 </html>
