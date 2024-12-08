@@ -4,9 +4,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const cartTab = document.querySelector(".cartTab");
     const closeBtn = cartTab.querySelector(".close");
 
-    
-    cartTab.style.transform = "translateX(100%)"; 
-    localStorage.removeItem('cart'); 
+
+    cartTab.style.transform = "translateX(100%)";
+    localStorage.removeItem('cart');
 
     cartIcon.addEventListener("click", function () {
         if (cartTab.style.transform === "translateX(0)") {
@@ -27,7 +27,7 @@ function addToCart(productName, productPrice, productImage) {
 
     if (existingProduct) {
         if (existingProduct.quantity < 99) {
-            existingProduct.quantity++; 
+            existingProduct.quantity++;
         }
     } else {
         const product = { name: productName, price: productPrice, image: productImage, quantity: 1 };
@@ -35,18 +35,18 @@ function addToCart(productName, productPrice, productImage) {
     }
 
     localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartCount(); 
+    updateCartCount();
     loadCartItems();
 }
 
 function updateCartCount() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const cartCount = document.getElementById('cart-count');
-    
+
     // Calculate total quantity of items in the cart, limit to 99
     const totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
     const displayedCount = totalQuantity > 99 ? 99 : totalQuantity;  // Limit the count to 99
-    
+
     // Update cart count display
     cartCount.textContent = displayedCount;
 }
@@ -90,11 +90,11 @@ function updateQuantity(productName, delta) {
             cart.splice(index, 1);
         }
         if (item.quantity > 99) {
-            item.quantity = 99; 
+            item.quantity = 99;
         }
         localStorage.setItem('cart', JSON.stringify(cart));
         loadCartItems();
-        updateCartCount(); 
+        updateCartCount();
     }
 }
 
@@ -108,6 +108,6 @@ function closeCart() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    updateCartCount();  
+    updateCartCount();
     loadCartItems();
 });
