@@ -24,3 +24,9 @@ header {
 .navbar-links a:hover {
     color: #c72092;
 }
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+}
