@@ -1,27 +1,30 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
 
     const cartIcon = document.querySelector(".fa-cart-shopping");
     const cartTab = document.querySelector(".cartTab");
     const closeBtn = cartTab.querySelector(".close");
 
+    // Close the cart and clear cart data on page load
+    cartTab.style.transform = "translateX(100%)";  // Ensures the cart is closed
+    localStorage.removeItem('cart'); // Clear the cart from localStorage
 
-    cartIcon.addEventListener("click", function() {
-
-        if (cartTab.style.transform === "translateX(0)") {   
+    cartIcon.addEventListener("click", function () {
+        if (cartTab.style.transform === "translateX(0)") {
             cartTab.style.transform = "translateX(100%)";
-        } else {    
+        } else {
             cartTab.style.transform = "translateX(0)";
         }
     });
 
-    closeBtn.addEventListener("click", function() {
+    closeBtn.addEventListener("click", function () {
         cartTab.style.transform = "translateX(100%)";
     });
 });
+
 function addToCart(productName, productPrice, productImage) {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const existingProduct = cart.find(item => item.name === productName);
-    
+
     if (existingProduct) {
         existingProduct.quantity++;
     } else {
@@ -58,18 +61,16 @@ function loadCartItems() {
                 <span>${item.quantity}</span>
                 <span class="plus" onclick="updateQuantity('${item.name}', 1)">+</span>
             </div>
-        `;    
+        `;
         cartItemsContainer.appendChild(itemElement);
         totalPrice += item.price * item.quantity;
     });
-
 
     const totalPriceElement = document.getElementById('total-price');
     if (totalPriceElement) {
         totalPriceElement.textContent = `Total: ₱${totalPrice.toFixed(2)}`;
     }
 }
-
 
 function updateQuantity(productName, delta) {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -86,17 +87,14 @@ function updateQuantity(productName, delta) {
     }
 }
 
-
 function goToCart() {
     window.location.href = '#cartTab';
     loadCartItems();
 }
 
-
 function closeCart() {
     alert('Cart closed');
 }
-
 
 document.addEventListener('DOMContentLoaded', () => {
     updateCartCount();
