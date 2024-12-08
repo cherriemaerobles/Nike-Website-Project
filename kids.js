@@ -4,9 +4,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const cartTab = document.querySelector(".cartTab");
     const closeBtn = cartTab.querySelector(".close");
 
-    // Close the cart and clear cart data on page load
-    cartTab.style.transform = "translateX(100%)";  // Ensures the cart is closed
-    localStorage.removeItem('cart'); // Clear the cart from localStorage
+    
+    cartTab.style.transform = "translateX(100%)"; 
+    localStorage.removeItem('cart'); 
 
     cartIcon.addEventListener("click", function () {
         if (cartTab.style.transform === "translateX(0)") {
@@ -26,21 +26,29 @@ function addToCart(productName, productPrice, productImage) {
     const existingProduct = cart.find(item => item.name === productName);
 
     if (existingProduct) {
-        existingProduct.quantity++;
+        if (existingProduct.quantity < 99) {
+            existingProduct.quantity++; 
+        }
     } else {
         const product = { name: productName, price: productPrice, image: productImage, quantity: 1 };
         cart.push(product);
     }
 
     localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartCount();
+    updateCartCount(); 
     loadCartItems();
 }
 
 function updateCartCount() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const cartCount = document.getElementById('cart-count');
-    cartCount.textContent = cart.length;
+    
+    // Calculate total quantity of items in the cart, limit to 99
+    const totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
+    const displayedCount = totalQuantity > 99 ? 99 : totalQuantity;  // Limit the count to 99
+    
+    // Update cart count display
+    cartCount.textContent = displayedCount;
 }
 
 function loadCartItems() {
@@ -81,9 +89,12 @@ function updateQuantity(productName, delta) {
             const index = cart.indexOf(item);
             cart.splice(index, 1);
         }
+        if (item.quantity > 99) {
+            item.quantity = 99; 
+        }
         localStorage.setItem('cart', JSON.stringify(cart));
         loadCartItems();
-        updateCartCount();
+        updateCartCount(); 
     }
 }
 
@@ -97,6 +108,6 @@ function closeCart() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    updateCartCount();
+    updateCartCount();  
     loadCartItems();
 });
