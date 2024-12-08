@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// Function to add item to the cart
+
 function addToCart(productName, productPrice, productImage) {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const product = { name: productName, price: productPrice, image: productImage, quantity: 1 };
@@ -29,14 +29,14 @@ function addToCart(productName, productPrice, productImage) {
     loadCartItems();
 }
 
-// Function to update cart count
+
 function updateCartCount() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const cartCount = document.getElementById('cart-count');
     cartCount.textContent = cart.length;
 }
 
-// Function to load cart items and calculate total price
+
 function loadCartItems() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const cartItemsContainer = document.getElementById('cart-items');
@@ -58,18 +58,18 @@ function loadCartItems() {
         `;
         cartItemsContainer.appendChild(itemElement);
 
-        // Add this item's total to the overall total
+
         totalPrice += item.price * item.quantity;
     });
 
-    // Display the total price in the cart
+
     const totalPriceElement = document.getElementById('total-price');
     if (totalPriceElement) {
         totalPriceElement.textContent = `Total: ₱${totalPrice.toFixed(2)}`;
     }
 }
 
-// Function to update item quantity in cart
+
 function updateQuantity(productName, delta) {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const item = cart.find(product => product.name === productName);
@@ -85,18 +85,18 @@ function updateQuantity(productName, delta) {
     }
 }
 
-// Function to navigate to cart section
+
 function goToCart() {
     window.location.href = '#cartTab';
     loadCartItems();
 }
 
-// Function to close cart
+
 function closeCart() {
     alert('Cart closed');
 }
 
-// Initialize cart count on page load
+
 document.addEventListener('DOMContentLoaded', () => {
     updateCartCount();
     loadCartItems();
