@@ -559,6 +559,67 @@
         }
     });
 
+    const cartIcon = document.querySelector('.fa-cart-shopping');
+const cartModal = document.getElementById('cartModal');
+const cartContainer = document.getElementById('cartContainer');
+const cartClose = document.getElementById('cartClose');
+
+let cartItems = [];
+
+// Function to update the cart modal content
+const updateCartModal = () => {
+    cartContainer.innerHTML = '';
+
+    if (cartItems.length === 0) {
+        cartContainer.innerHTML = '<p>No items in the cart.</p>';
+    } else {
+        cartItems.forEach(item => {
+            const cartItem = document.createElement('div');
+            cartItem.style.display = 'flex';
+            cartItem.style.alignItems = 'center';
+            cartItem.style.marginBottom = '15px';
+
+            cartItem.innerHTML = `
+                <img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; object-fit: cover; margin-right: 10px; border-radius: 5px;">
+                <div>
+                    <h4 style="margin: 0;">${item.name}</h4>
+                    <p style="margin: 0;">${item.price}</p>
+                </div>
+            `;
+
+            cartContainer.appendChild(cartItem);
+        });
+    }
+};
+
+// Open the cart modal when the cart icon is clicked
+cartIcon.addEventListener('click', () => {
+    updateCartModal();
+    cartModal.style.display = 'block';
+});
+
+// Close the cart modal when the close button is clicked
+cartClose.addEventListener('click', () => {
+    cartModal.style.display = 'none';
+});
+
+// Close the modal if the user clicks outside of the modal content
+window.addEventListener('click', (event) => {
+    if (event.target === cartModal) {
+        cartModal.style.display = 'none';
+    }
+});
+
+// Add "Add to Cart" button functionality
+document.querySelectorAll('.btn.add-cart').forEach((button, index) => {
+    button.addEventListener('click', () => {
+        const product = products[index];
+        cartItems.push(product); // Add product to cart
+        alert(`${product.name} has been added to the cart!`);
+    });
+});
+
+
 
 
 </script>
