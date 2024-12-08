@@ -68,7 +68,16 @@
         .action-buttons i {
             transition: color 0.2s;
         }
+        .action-buttons span {
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           color: black;
+           border-radius: 20%;
+           position: absolute;
+           top: 20%;
 
+        }
         .action-buttons i:hover {
             color: gray; 
         }
@@ -213,8 +222,102 @@
             color: #c72092;
         }
 
+        .cartTab {
+        width: 360px;
+        height: 100%;
+        background-color: white;
+        color: black;
+        position: fixed;
+        inset: 0 0 0 auto;
+        display: grid;
+        grid-template-rows: 70px 1fr 70px;
+        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        }
+
+        .cartTab h1 {
+            padding: 20px;
+            margin: 0;
+            font-size: 20px;
+            font-weight: 300;
+            color: black;
+            text-align: left;
+        }
+
+        .cartTab .listcart {
+            overflow-y: auto;
+            padding: 15px;
+        }
+
+        .cartTab .cartbtn {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            height: 50px;
+        }
+
+        .cartTab .cartbtn button {
+            font-size: 14px;
+            border: none;
+            background-color: #333;
+            color: white;
+            cursor: pointer;
+        }
+
+        .cartTab .cartbtn button:hover {
+            background-color: #F6E96B;
+            color: black;
+            transition: background-color 0.3s ease, color 0.3s ease; 
+        }
+
+        .cartTab .cartbtn .close {
+            background-color: #000;
+        }
+
+        .cartTab .cartbtn .close:hover {
+            background-color: #F6E96B;
+            color: black;
+            transition: background-color 0.3s ease, color 0.3s ease; 
+        }
+
+        .cartTab .cartbtn .checkOut {
+            background-color: #3B5998;
+        }
+
+        .cartTab .cartbtn .checkOut:hover {
+            background-color: #F6E96B;
+            color: black;
+            transition: background-color 0.3s ease, color 0.3s ease; 
+        }
+
+        .cartTab .listcart .item img{
+            width: 100%;
+        }
+
+        .cartTab .listcart .item{
+            display: grid;
+            grid-template-columns:50px 100px 50px 1fr;
+            gap:  10px;
+            text-align: center;
+            align-items: center; 
+        }
+
+        .listcart .quantity span{
+            display: inline-block;
+            width: 22px;
+            height: 22px;
+            background-color: black;
+            color: white;
+            border-radius: 50%;
+        }
+
+        .listcart .quantity span:nth-child(2){
+            background-color: transparent;
+            color: #000;
+        }
+
     </style>
 </head>
+
 <body>
     <!-- Header -->
     <header>
@@ -230,7 +333,7 @@
             </div>
             <div class="action-buttons">
                 <i class="fa-solid fa-heart"></i>
-                <i class="fa-solid fa-cart-shopping"></i>
+                <i class="fa-solid fa-cart-shopping"><span>0</span></i>
                 <i class="fa-solid fa-user"></i>
             </div>
         </div>
@@ -316,6 +419,33 @@
             </div>
         </div>
     </div>
+
+    <div class="cartTab">
+        <h1>Shopping Cart</h1>
+        <div class="listcart">
+                <div class="item">
+                    <div class="image">
+                    <img src="Shoes/kids shoes 1.png" alt="">
+                </div>
+                <div class="name">
+                    Name
+                </div>
+                <div class="totalPrice">
+                    ₱2,309
+                </div>
+                <div class="quantity">
+                    <span class="minus"><</span>
+                    <span>1</span>
+                    <span class="plus">></span>
+                </div>
+            </div>
+        </div>
+        <div class="cartbtn">
+            <button class="close">CLOSE</button>
+            <button class="checkOut">CHECK OUT</button>
+        </div>
+    </div>
+    
 
     <!-- Footer -->
     <footer>
