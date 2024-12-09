@@ -269,7 +269,7 @@ section .main .main_content {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 35%;
+  margin-left: 30%;
   margin-top: -30%;
   transition: height .2s ease;
 }
@@ -376,15 +376,38 @@ section .main .main_content {
   margin-right: 10px;
 }
 
-.register, .forgot-password {
-  text-align: center;
-  margin-top: 10px;
+.register p a{
+  color: #000;
+  text-decoration: none;
+  font-weight: 600;
 }
-
+.register p a:hover{
+  text-decoration: underline;
+}
 .forgot-password {
-  margin-bottom: 10px;
+  font-size: .9em;
+  color: black;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  margin: -15px 0 15px;
+  display: flex;
+  justify-content: space-between;
 }
-
+.forgot-password label input{
+  accent-color: black;
+  margin-right: 3px;
+  margin-top: 1px;
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+}
+.forgot-password a{
+  color: black;
+  text-decoration: none;
+}
+.forgot-password a:hover{
+  text-decoration: underline;
+}
 /*Yung shoes na nalutang*/
 .parallax-text {
   position: absolute;
