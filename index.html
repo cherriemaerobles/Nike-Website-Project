@@ -14,6 +14,10 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
   </head>
   <body>
     <section>
@@ -21,7 +25,6 @@
         <div class="logo">
           <h1>Nike</h1>
         </div>
-
         <ul class="menu">
           <li><a href="#Home">HOME</a></li>
           <li><a href="#About">ABOUT</a></li>
@@ -102,64 +105,70 @@
             <div class="register">
               <p>
                 Don't have an account?
-                <a href="#" id="register-link">Register here!</a>
+                <a href="#" class="register-link">Register here!</a>
               </p>
             </div>
           </form>
         </div>
-      </div>
-      <div class="signup-container">
-        <h2>Sign Up</h2>
-        <form class="signup-form" onsubmit="validateSignup(event)">
-          <div class="form-group">
-            <label for="fullname">Full Name</label>
-            <input type="text" id="fullname" name="fullname" required />
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required />
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required />
-          </div>
-          <div class="form-group">
-            <label for="confirmPassword">Confirm Password</label>
-            <input
-              type="password"
-              id="confirmPassword"
-              name="confirmPassword"
-              required
-            />
-          </div>
-          <div class="terms">
-            <input type="checkbox" id="terms" required />
-            <label for="terms">I accept the Terms and Conditions</label>
-          </div>
-          <div class="form-group">
-            <button type="submit">Sign Up</button>
-          </div>
-          <div class="social-login">
-            <button type="button" class="facebook-btn">
-              <img
-                src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png"
-                alt="Facebook logo"
+        <div class="signup-container">
+          <h2>Sign Up</h2>
+          <form class="signup-form">
+            <div class="form-group">
+              <label for="fullname">Full Name</label>
+              <input type="text" id="fullname" name="fullname" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="signup-email" name="email" required />
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                id="signup-password"
+                name="password"
+                required
               />
-              Sign up with Facebook
-            </button>
-            <button type="button" class="google-btn">
-              <img
-                src="https://img.icons8.com/ios-filled/50/ffffff/google-logo.png"
-                alt="Google logo"
+            </div>
+            <div class="form-group">
+              <label for="confirmPassword">Confirm Password</label>
+              <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                required
               />
-              Sign up with Google
-            </button>
+            </div>
+            <div class="terms">
+              <input type="checkbox" id="terms" required />
+              <label for="terms">I accept the Terms and Conditions</label>
+            </div>
+            <div class="form-group">
+              <button type="submit">Sign Up</button>
+            </div>
+            <div class="social-login">
+              <button type="button" class="facebook-btn">
+                <img
+                  src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png"
+                  alt="Facebook logo"
+                />
+                Sign up with Facebook
+              </button>
+              <button type="button" class="google-btn">
+                <img
+                  src="https://img.icons8.com/ios-filled/50/ffffff/google-logo.png"
+                  alt="Google logo"
+                />
+                Sign up with Google
+              </button>
+            </div>
+          </form>
+          <div class="register">
+            <p>
+              Already have an account?
+              <a href="#" class="login-link">Login here</a>
+            </p>
           </div>
-        </form>
-        <div class="Register">
-          <p>
-            Already have an account? <a href="#" id="login-link">Login here</a>
-          </p>
         </div>
       </div>
     </div>
