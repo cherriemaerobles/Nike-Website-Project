@@ -221,6 +221,7 @@ section .main .main_content {
   border-radius: 5px;
 }
 
+
 /* Dropdown Menu */
 .dropdown-menu {
   list-style: none;
@@ -256,75 +257,50 @@ section .main .main_content {
 }
 
 /*Login & SignUp*/
-/* Modal Overlay Styles */
-.wrapper-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-/* Show Modal */
-.wrapper-modal.active {
-  display: flex;
-}
-
-/* Close Button */
-.close-btn {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  font-size: 25px;
-  color: black;
-  cursor: pointer;
-  z-index: 1100;
-}
 
 .wrapper{
   position: relative;
-  width: 350px;
+  width: 400px;
   height: 500px;
-  background: whitesmoke;
+  background: white;
   border: 1px solid black;
-  box-shadow: #000;
+  border-radius: 20px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 35%;
+  margin-top: -30%;
   transition: height .2s ease;
-  overflow: hidden;
 }
-.wrapper .signup-container{
-  position: absolute;
-  transition: none;
-  transform: translateX(400px);
+.wrapper.active{
+  height: 520px;
 }
-.wrapper.active {
-  height: 570px;
-}
-.login-container h2, .signup-container h2{
-  font-size: 2em;
+.wrapper .login-container h2, .signup-container h2{
   font-family: "Poppins", sans-serif;
   font-weight: 700;
   font-style: normal;
   text-align: center;
 }
-.wrapper.active .login-container{
-  transition: none;
-  transform: translateX(-400px);
+.wrapper .close-btn{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 45px;
+  height: 45px;
+  background: black;
+  font-size: 2em;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom-left-radius: 20px;
+  cursor: pointer;
+  z-index: 1;
 }
-.wrapper .login-container{
-  transition: transform .18s ease;
-  transform: translateX(0);
-}
-.wrapper.active .signup-container{
-  transition: transform .18s ease;
-  transform: translateX(0);
+.wrapper .signup-container{
+  position: absolute;
+  transform: translateX(400px)
 }
 .form-group {
   margin-bottom: 15px;

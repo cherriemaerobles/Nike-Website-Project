@@ -1,36 +1,36 @@
 
-const openModalButton = document.getElementById('.openModal');
-const closeModalButton = document.getElementById('.closeModal');
-const modal = document.getElementById('.modal');
-
-
 const wrapper = document.querySelector('.wrapper');
-const registerLink = document.querySelector('.register-link');
-const loginLink = document.querySelector('.login-link');
+const loginlink = document.querySelector('.login-link');
+const registerlink = document.querySelector('.register-link');
+const btn = document.querySelector('.openModal');
+const iconclose = document.querySelector('.close-btn');
+const modalOverlay = document.querySelector('.wrapper-modal'); 
 
 
-openModalButton.addEventListener('click', () => {
-  modal.classList.add('active');
-});
-
-
-closeModalButton.addEventListener('click', () => {
-  modal.classList.remove('active');
-});
-
-
-window.addEventListener('click', (event) => {
-  if (event.target === modal) {
-    modal.classList.remove('active');
-  }
-});
-
-registerLink.addEventListener('click', (event) => {
-  event.preventDefault(); 
+registerlink.addEventListener('click', () => {
   wrapper.classList.add('active');
 });
 
-loginLink.addEventListener('click', (event) => {
-  event.preventDefault(); 
+loginlink.addEventListener('click', () => {
   wrapper.classList.remove('active');
+});
+
+
+btn.addEventListener('click', () => {
+  wrapper.classList.add('active-popup');
+  modalOverlay.classList.add('active'); 
+});
+
+
+iconclose.addEventListener('click', () => {
+  wrapper.classList.remove('active-popup');
+  modalOverlay.classList.remove('active'); 
+});
+
+
+modalOverlay.addEventListener('click', (e) => {
+  if (e.target === modalOverlay) { 
+    wrapper.classList.remove('active-popup');
+    modalOverlay.classList.remove('active');
+  }
 });
