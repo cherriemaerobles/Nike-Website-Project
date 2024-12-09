@@ -35,6 +35,13 @@
             
     </header>
 
+    <div class="navbar-subtitle">
+        <h2>Men's Shoes</h2>
+    </div>
+    <section class="products-container" id="Products">
+        <!-- Product boxes go here -->
+    </section>
+
     <!-- Products Section -->
     <div class="box-container">
         <div class="containerProduct">
@@ -56,6 +63,33 @@
             <button class="btn add-fav">Favorite</button>
         </div>
     </div>
+
+       <!-- Favorites Modal -->
+       <div id="favoritesModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="favoritesClose">&times;</span>
+            <h2>Favorite Products</h2>
+            <div id="favoritesContainer">
+                <!-- Favorited products will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="cartClose">&times;</span>
+            <h2>Cart</h2>
+            <div id="cartContainer">
+                <!-- Cart products will be dynamically inserted here -->
+            </div>
+            <div style="margin-top: 20px;">
+                <strong>Total:</strong> <span id="cartTotal">₱0</span>
+            </div>
+            <buttons id="checkoutButton" class="btn add-cart" style="margin-top: 20px; width: 100%;">Checkout</buttons>
+        </div>
+    </div>
+
 
     <!-- Footer -->
     <footer>
@@ -143,6 +177,13 @@
         favoriteBadge.textContent = favoriteCount;
     };
 
+    const displayFavorites = () => {
+        alert("Favorite Products:\n" + favoritedProducts.map(id => {
+            const product = products.find(p => p.id === id);
+            return product ? product.name : '';
+        }).join('\n') || "No favorites yet!");
+    };
+
     // Create product cards dynamically
     products.forEach((product, index) => {
         const productCard = document.createElement('div');
@@ -200,6 +241,181 @@
             modal.style.display = "none";
         }
     });
+
+    / Add click event listener to the heart icon
+    const heartIcon = document.querySelector('.fa-heart');
+    heartIcon.addEventListener('click', displayFavorites);
+
+    const favoritesModal = document.getElementById('favoritesModal');
+    const favoritesContainer = document.getElementById('favoritesContainer');
+    const favoritesClose = document.getElementById('favoritesClose');
+
+    // Open the favorites modal when the heart icon is clicked
+    heartIcon.addEventListener('click', () => {
+        // Clear the container before adding items
+        favoritesContainer.innerHTML = '';
+
+    if (favoritedProducts.length === 0) {
+        favoritesContainer.innerHTML = '<p>No favorites yet.</p>';
+    } else {
+        favoritedProducts.forEach(productId => {
+            const product = products.find(p => p.id === productId);
+            const favoriteItem = document.createElement('div');
+            favoriteItem.style.display = 'flex';
+            favoriteItem.style.alignItems = 'center';
+            favoriteItem.style.marginBottom = '15px';
+
+            favoriteItem.innerHTML = `
+                <img src="${product.image}" alt="${product.name}" style="width: 60px; height: 60px; object-fit: cover; margin-right: 10px; border-radius: 5px;">
+                <div>
+                    <h4 style="margin: 0;">${product.name}</h4>
+                    <p style="margin: 0;">${product.price}</p>
+                </div>
+            `;
+
+            favoritesContainer.appendChild(favoriteItem);
+        });
+    }
+
+    favoritesModal.style.display = 'block';
+});
+
+    // Close the favorites modal when the close button is clicked
+    favoritesClose.addEventListener('click', () => {
+        favoritesModal.style.display = 'none';
+    });
+
+    // Close the modal if the user clicks outside of the modal content
+    window.addEventListener('click', (event) => {
+        if (event.target === favoritesModal) {
+            favoritesModal.style.display = 'none';
+        }
+    });
+
+    // ABOUT CART MODAL ICON
+
+    const cartIcon = document.querySelector('.fa-cart-shopping');
+    const cartModal = document.getElementById('cartModal');
+    const cartContainer = document.getElementById('cartContainer');
+    const cartClose = document.getElementById('cartClose');
+
+let cartItems = [];
+
+    // Function to update the cart modal content
+const updateCartModal = () => {
+    cartContainer.innerHTML = '';  // Clear the previous cart items
+    let totalAmount = 0;  // Variable to keep track of the total amount
+
+    if (cartItems.length === 0) {
+        cartContainer.innerHTML = '<p>No items in the cart.</p>';  // If the cart is empty
+    } else {
+        // Loop through each item in the cart and display it
+        cartItems.forEach(item => {
+            totalAmount += item.totalPrice;  // Add the item total to the totalAmount
+
+            const cartItem = document.createElement('div');
+            cartItem.style.display = 'flex';
+            cartItem.style.alignItems = 'center';
+            cartItem.style.marginBottom = '15px';
+
+            cartItem.innerHTML = `
+                <img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; object-fit: cover; margin-right: 10px; border-radius: 5px;">
+                <div>
+                    <h4 style="margin: 0;">${item.name}</h4>
+                    <p style="margin: 0;">${item.price} x ${item.quantity}</p>
+                </div>
+            `;
+
+            cartContainer.appendChild(cartItem);  // Add the item to the cart modal
+        });
+    }
+
+    // Display the overall total at the bottom
+    document.getElementById('cartTotal').textContent = `₱${totalAmount.toFixed(2)}`;  // Total of all items
+};
+
+// Function to update the cart icon badge to show the number of items in the cart
+const updateCartBadge = () => {
+    const cartBadge = document.querySelector('.cart-badge');
+    const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);  // Calculate total items
+    cartBadge.textContent = totalItems;  // Update the cart icon badge
+};
+
+
+    // Open the cart modal when the cart icon is clicked
+    cartIcon.addEventListener('click', () => {
+        updateCartModal();
+        cartModal.style.display = 'block';
+    });
+
+    // Close the cart modal when the close button is clicked
+    cartClose.addEventListener('click', () => {
+        cartModal.style.display = 'none';
+    });
+
+    // Close the modal if the user clicks outside of the modal content
+    window.addEventListener('click', (event) => {
+        if (event.target === cartModal) {
+            cartModal.style.display = 'none';
+        }
+    });
+
+    // Add "Add to Cart" button functionality
+    document.querySelectorAll('.btn.add-cart').forEach((button, index) => {
+        button.addEventListener('click', () => {
+            const quantityInput = document.getElementById(`quantity-${products[index].id}`);
+            const quantity = parseInt(quantityInput.value);
+            const product = products[index];
+            
+            // Add product to cart
+            const cartItem = {
+                ...product,
+                quantity: quantity,
+                totalPrice: parseFloat(product.price.replace('₱', '').replace(',', '')) * quantity
+            };
+
+        // Check if the product is already in the cart
+        const existingItemIndex = cartItems.findIndex(item => item.id === product.id);
+        if (existingItemIndex !== -1) {
+            cartItems[existingItemIndex].quantity += quantity;  // Increase quantity if product already in cart
+            cartItems[existingItemIndex].totalPrice = cartItems[existingItemIndex].quantity * parseFloat(product.price.replace('₱', '').replace(',', ''));
+        } else {
+            cartItems.push(cartItem);
+        }
+
+        updateCartModal();  // Update the cart modal
+        updateCartBadge();  // Update cart icon badge
+    });
+});
+
+    // validation
+    const quantityInput = document.getElementById('productQuantity');
+
+    // Ensure the quantity is at least 1
+    quantityInput.addEventListener('change', function() {
+        if (quantityInput.value < 1) {
+            quantityInput.value = 1;
+        }
+    });
+
+// Handle Cart Updates
+document.getElementById('addToCartBtn').addEventListener('click', function() {
+    const quantityInput = document.getElementById('productQuantity');
+    const cartQuantity = document.getElementById('cartQuantity');
+
+    // Get the current quantity value
+    const addedQuantity = parseInt(quantityInput.value) || 0;
+
+    // Get the existing quantity in the cart
+    const currentCartQuantity = parseInt(cartQuantity.textContent) || 0;
+
+    // Update the cart quantity
+    const newCartQuantity = currentCartQuantity + addedQuantity;
+    cartQuantity.textContent = newCartQuantity;
+
+    // Reset the input value (optional)
+    quantityInput.value = 1;
+});
 </script>
 </body>
 </html>
