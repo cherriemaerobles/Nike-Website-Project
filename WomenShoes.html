@@ -130,6 +130,36 @@
             color: #000;
         }
 
+        .btn.add-to-cart-modal {
+            font-size: 1rem;
+            padding: 10px 20px;
+            background-color: #000;
+            color: #fff;
+            border-radius: 5px;
+            border: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn.add-to-cart-modal:hover {
+            background-color: #F6E96B;
+            color: #000;
+        }
+
+        .btn.checkout {
+            font-size: 1rem;
+            padding: 10px 20px;
+            background-color: #000;
+            color: #fff;
+            border-radius: 5px;
+            border: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn.checkout:hover {
+            background-color: #F6E96B;
+            color: #000;
+        }
+
         .btn.add-fav {
             font-size: 1rem;
             padding: 10px 20px;
@@ -254,6 +284,7 @@
             min-width: 20px;
         }
 
+
         #favoritesModal .modal-content {
             width: 80%;
             max-width: 500px;
@@ -319,7 +350,19 @@
             font-size: 24px;
             color: #333;
         }
-
+        #cartBadge {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background-color: #c72092;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 50%;
+            padding: 2px 6px;
+            text-align: center;
+            min-width: 20px;
+        }
         .cart-quantity {
             position: absolute;
             top: -5px;
@@ -368,7 +411,9 @@
                 <i class="fa-solid fa-heart">
                     <span class="favorite-badge">0</span> <!-- Badge showing the favorite count -->
                 </i>
-                <i class="fa-solid fa-cart-shopping"></i> <!-- Cart Icon -->
+                <i class="fa-solid fa-cart-shopping">                
+                    <span id="cartBadge">0</span> <!-- Cart Badge (will display the number of items) -->
+                </i> <!-- Cart Icon -->
                 <i class="fa-solid fa-user"></i> <!-- User Icon -->
             </div>
             
@@ -391,18 +436,23 @@
         </div>
     </div>
 
-    <!-- Product Description Modal -->
-    <div id="productModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2 id="productTitle"></h2>
-            <div id="productDescription"></div>
-            <div class="price" id="productPrice"></div>
-            <button class="btn add-cart">Add to Cart</button>
-            <br>
-            <button class="btn add-fav">Favorite</button>
-        </div>
+<!-- Product Description Modal -->
+<div id="productModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="productTitle"></h2>
+        <div id="productDescription"></div>
+        <div class="price" id="productPrice"></div>
+        <!-- Add Quantity Input for Modal -->
+        <input type="number" class="quantity-input" value="1" min="1" id="quantity-modal">
+        <!-- Use a different class name for the button in the modal -->
+        <button class="btn add-to-cart-modal">Add to Cart</button>
+        <br>
+        <button class="btn add-fav">Favorite</button>
     </div>
+</div>
+
+
 
     <!-- Favorites Modal -->
     <div id="favoritesModal" class="modal">
@@ -426,7 +476,7 @@
             <div style="margin-top: 20px;">
                 <strong>Total:</strong> <span id="cartTotal">₱0</span>
             </div>
-            <buttons id="checkoutButton" class="btn add-cart" style="margin-top: 20px; width: 100%;">Checkout</buttons>
+            <buttons id="checkoutButton" class="btn checkout" style="margin-top: 20px; width: 100%;">Checkout</buttons>
         </div>
     </div>
 
@@ -540,36 +590,72 @@
     productCardsContainer.appendChild(productCard);
 });
 
-    // Show product details in the modal when the Details button is clicked
-    document.querySelectorAll('.btn.view-details').forEach(button => {
-        button.addEventListener('click', (event) => {
-            const productIndex = event.target.getAttribute('data-index');
-            const product = products[productIndex];
+// Show product details in the modal when the Details button is clicked
+document.querySelectorAll('.btn.view-details').forEach(button => {
+    button.addEventListener('click', (event) => {
+        const productIndex = event.target.getAttribute('data-index');
+        const product = products[productIndex];
 
-            // Show the product details inside the modal
-            document.getElementById('productTitle').textContent = product.name;
-            document.getElementById('productDescription').innerHTML = product.description;
-            document.getElementById('productPrice').textContent = product.price;
+        // Show the product details inside the modal
+        document.getElementById('productTitle').textContent = product.name;
+        document.getElementById('productDescription').innerHTML = product.description || 'No description available';
+        document.getElementById('productPrice').textContent = product.price;
 
-            // Show the modal
-            modal.style.display = "block";
+        // Show the modal
+        modal.style.display = "block";
 
-            // Add functionality for the Add to Favorites button inside the modal
-            const addToFavButton = document.querySelector('.btn.add-fav');
-            addToFavButton.onclick = () => {
-                if (favoritedProducts.includes(product.id)) {
-                    alert("You have already added this product to favorites.");
-                    return;
-                }
+        // Add functionality for the Add to Favorites button inside the modal
+        const addToFavButton = document.querySelector('.btn.add-fav');
+        addToFavButton.onclick = () => {
+            if (favoritedProducts.includes(product.id)) {
+                alert("You have already added this product to favorites.");
+                return;
+            }
 
-                favoritedProducts.push(product.id); // Add product to favorites
-                favoriteCount++; // Increment favorite count
-                updateFavoriteCounter(); // Update the favorite count display
-                alert("Product added to favorites!");
+            favoritedProducts.push(product.id); // Add product to favorites
+            favoriteCount++; // Increment favorite count
+            updateFavoriteCounter(); // Update the favorite count display
+            alert("Product added to favorites!");
+        };
+
+        // Add functionality for the Add to Cart button inside the modal (with the new class)
+        const addToCartButton = document.querySelector('.btn.add-to-cart-modal');  // Use the new class name
+        addToCartButton.onclick = () => {
+            // Get quantity from the modal's input field
+            const quantityInput = document.getElementById('quantity-modal'); // You will need to add this input field in your modal HTML
+            const quantity = parseInt(quantityInput.value) || 1; // Default to 1 if invalid value
+
+            // Create the cart item
+            const cartItem = {
+                ...product,
+                quantity: quantity,
+                totalPrice: parseFloat(product.price.replace('₱', '').replace(',', '')) * quantity
             };
-        });
-    });
 
+            // Check if the product is already in the cart
+            const existingItemIndex = cartItems.findIndex(item => item.id === product.id);
+            if (existingItemIndex !== -1) {
+                // Update the quantity and total price if the product is already in the cart
+                cartItems[existingItemIndex].quantity += quantity;
+                cartItems[existingItemIndex].totalPrice = cartItems[existingItemIndex].quantity * parseFloat(product.price.replace('₱', '').replace(',', ''));
+            } else {
+                // Add the new item to the cart
+                cartItems.push(cartItem);
+            }
+
+            // Update the cart modal and cart badge
+            updateCartModal();
+            updateCartBadge();
+
+            // Close the modal after adding to cart
+            modal.style.display = 'none';
+        };
+    });
+});
+// Modal close button functionality
+document.querySelector('.modal .close').addEventListener('click', () => {
+    modal.style.display = 'none';  // Close the modal when the user clicks the close button
+});
     // Close the modal when the close button is clicked
     closeModal.addEventListener('click', () => {
         modal.style.display = "none";
@@ -675,11 +761,18 @@ const updateCartModal = () => {
 };
 
 // Function to update the cart icon badge to show the number of items in the cart
-const updateCartBadge = () => {
-    const cartBadge = document.querySelector('.cart-badge');
-    const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);  // Calculate total items
-    cartBadge.textContent = totalItems;  // Update the cart icon badge
-};
+function updateCartBadge() {
+    const cartBadge = document.getElementById('cartBadge'); // Get the cart badge element
+
+    // If the cartBadge element exists, update its text content
+    if (cartBadge) {
+        const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+        cartBadge.textContent = totalItems;  // Update the badge with the total item count
+    } else {
+        console.warn("Cart badge element not found.");
+    }
+}
+
 
 
     // Open the cart modal when the cart icon is clicked
