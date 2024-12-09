@@ -64,31 +64,7 @@ const removeCartItem = (productId) => {
     openCartModal(); // Refresh the modal 
 }; 
  
-// Function to initialize the cart and button events 
-const initializeCart = () => { 
-    // Event listener for "Add to Cart" buttons 
-    document.querySelectorAll('.btn.add-cart').forEach(button => { 
-        button.addEventListener('click', (event) => { 
-            // Example: assume each button has a "data-index" attribute with the product index 
-            const productIndex = event.target.getAttribute('data-index'); 
-            const product = products[productIndex];  // Get product details 
-            cart.push(product);  // Add the selected product to the cart 
-            cartCount++; 
-            updateCartCounter();  // Update the cart icon 
-        }); 
-    }); 
- 
-    // Event listener for cart icon click (to open the modal) 
-    document.querySelector('.fa-cart-shopping').addEventListener('click', openCartModal); 
- 
-    // Event listener for Remove buttons inside the cart modal 
-    document.getElementById('cartItemsContainer').addEventListener('click', (event) => { 
-        if (event.target.classList.contains('remove-cart-item')) { 
-            const productId = event.target.getAttribute('data-id'); 
-            removeCartItem(productId);  // Remove the clicked item 
-        } 
-    }); 
-}; 
+
  
 // Initialize the cart functionality when the DOM is fully loaded 
 document.addEventListener('DOMContentLoaded', initializeCart);

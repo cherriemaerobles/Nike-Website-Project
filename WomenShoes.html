@@ -388,6 +388,7 @@
             font-family: 'Poppins', sans-serif;
         }
 
+
     </style>
 
     <script src="cart.js"></script>
@@ -450,6 +451,8 @@
         <button class="btn add-fav">Favorite</button>
     </div>
 </div>
+
+
 
     <!-- Favorites Modal -->
     <div id="favoritesModal" class="modal">
@@ -543,7 +546,7 @@
             },
             {
                 id: 8,
-                name: "Nike Air Max Plus",
+                name: "Nike Air Max Plus Plus",
                 image: "Shoes/women shoes 8.png",
                 price: "₱5,939",
                 description: "Nike Air Max Plus brings an iconic, sporty look with responsive cushioning and a durable build for everyday wear.  <br><br> <strong>Colour Shown:</strong> Red Stardust <br><strong>Style:</strong> HF0782-101 <br><strong>Country/Region of Origin:</strong> Vietnam"
@@ -570,100 +573,105 @@
         }).join('\n') || "No favorites yet!");
     };
 
-        // Create product cards dynamically
-        products.forEach((product, index) => {
-        const productCard = document.createElement('div');
-        productCard.classList.add('col-md-4', 'col-lg-3');
-        productCard.innerHTML = `
-            <div class="box">
-                <img src="${product.image}" alt="${product.name}">
-                <h3>${product.name}</h3>
-                <div class="price">${product.price}</div>
-                <input type="number" class="quantity-input" value="1" min="1" id="quantity-${product.id}">
-                <button class="btn add-cart" data-index="${index}">Add to Cart</button>
-                <button class="btn view-details" data-index="${index}">Details</button>
-            </div>
-        `;
-        productCardsContainer.appendChild(productCard);
+    // Create product cards dynamically
+    products.forEach((product, index) => {
+    const productCard = document.createElement('div');
+    productCard.classList.add('col-md-4', 'col-lg-3');
+    productCard.innerHTML = `
+        <div class="box">
+            <img src="${product.image}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <div class="price">${product.price}</div>
+            <input type="number" class="quantity-input" value="1" min="1" id="quantity-${product.id}">
+            <button class="btn add-cart" data-index="${index}">Add to Cart</button>
+            <button class="btn view-details" data-index="${index}">Details</button>
+        </div>
+    `;
+    productCardsContainer.appendChild(productCard);
+});
+
+// Show product details in the modal when the Details button is clicked
+document.querySelectorAll('.btn.view-details').forEach(button => {
+    button.addEventListener('click', (event) => {
+        const productIndex = event.target.getAttribute('data-index');
+        const product = products[productIndex];
+
+        // Show the product details inside the modal
+        document.getElementById('productTitle').textContent = product.name;
+        document.getElementById('productDescription').innerHTML = product.description || 'No description available';
+        document.getElementById('productPrice').textContent = product.price;
+
+        // Show the modal
+        modal.style.display = "block";
+
+        // Add functionality for the Add to Favorites button inside the modal
+        const addToFavButton = document.querySelector('.btn.add-fav');
+        addToFavButton.onclick = () => {
+            if (favoritedProducts.includes(product.id)) {
+                alert("You have already added this product to favorites.");
+                return;
+            }
+
+            favoritedProducts.push(product.id); // Add product to favorites
+            favoriteCount++; // Increment favorite count
+            updateFavoriteCounter(); // Update the favorite count display
+            alert("Product added to favorites!");
+        };
+
+        // Add functionality for the Add to Cart button inside the modal
+        const addToCartButton = document.querySelector('.btn.add-to-cart-modal');
+        addToCartButton.onclick = () => {
+            const quantityInput = document.getElementById('quantity-modal');
+            const quantity = parseInt(quantityInput.value) || 1; // Default to 1 if invalid value
+
+            // Create the cart item
+            const cartItem = {
+                ...product,
+                quantity: quantity,
+                totalPrice: parseFloat(product.price.replace('₱', '').replace(',', '')) * quantity
+            };
+
+            // Check if the product is already in the cart
+            const existingItemIndex = cartItems.findIndex(item => item.id === product.id);
+            if (existingItemIndex !== -1) {
+                // Update the quantity and total price if the product is already in the cart
+                cartItems[existingItemIndex].quantity += quantity;
+                cartItems[existingItemIndex].totalPrice = cartItems[existingItemIndex].quantity * parseFloat(product.price.replace('₱', '').replace(',', ''));
+            } else {
+                // Add the new item to the cart if it doesn't already exist
+            const cartItem = {
+                ...product,
+                quantity: quantity,
+                totalPrice: parseFloat(product.price.replace('₱', '').replace(',', '')) * quantity
+            };
+            cartItems.push(cartItem);
+            }
+
+            // Update the cart modal and cart badge
+            updateCartModal(); 
+            updateCartBadge();
+
+            // Close the modal after adding to cart
+            modal.style.display = 'none';
+        };
+    });
+});
+
+// Modal close button functionality
+document.querySelector('.modal .close').addEventListener('click', () => {
+    modal.style.display = 'none';  // Close the modal when the user clicks the close button
+});
+    // Close the modal when the close button is clicked
+    closeModal.addEventListener('click', () => {
+        modal.style.display = "none";
     });
 
-        // Show product details in the modal when the Details button is clicked
-        document.querySelectorAll('.btn.view-details').forEach(button => {
-            button.addEventListener('click', (event) => {
-                const productIndex = event.target.getAttribute('data-index');
-                const product = products[productIndex];
-
-                // Show the product details inside the modal
-                document.getElementById('productTitle').textContent = product.name;
-                document.getElementById('productDescription').innerHTML = product.description || 'No description available';
-                document.getElementById('productPrice').textContent = product.price;
-
-                // Show the modal
-                modal.style.display = "block";
-
-                // Add functionality for the Add to Favorites button inside the modal
-                const addToFavButton = document.querySelector('.btn.add-fav');
-                addToFavButton.onclick = () => {
-                    if (favoritedProducts.includes(product.id)) {
-                        alert("You have already added this product to favorites.");
-                        return;
-                    }
-
-                    favoritedProducts.push(product.id); // Add product to favorites
-                    favoriteCount++; // Increment favorite count
-                    updateFavoriteCounter(); // Update the favorite count display
-                    alert("Product added to favorites!");
-                };
-
-                // Add functionality for the Add to Cart button inside the modal (with the new class)
-                const addToCartButton = document.querySelector('.btn.add-to-cart-modal');  // Use the new class name
-                addToCartButton.onclick = () => {
-                    // Get quantity from the modal's input field
-                    const quantityInput = document.getElementById('quantity-modal'); // You will need to add this input field in your modal HTML
-                    const quantity = parseInt(quantityInput.value) || 1; // Default to 1 if invalid value
-
-                    // Create the cart item
-                    const cartItem = {
-                        ...product,
-                        quantity: quantity,
-                        totalPrice: parseFloat(product.price.replace('₱', '').replace(',', '')) * quantity
-                    };
-
-                    // Check if the product is already in the cart
-                    const existingItemIndex = cartItems.findIndex(item => item.id === product.id);
-                    if (existingItemIndex !== -1) {
-                        // Update the quantity and total price if the product is already in the cart
-                        cartItems[existingItemIndex].quantity += quantity;
-                        cartItems[existingItemIndex].totalPrice = cartItems[existingItemIndex].quantity * parseFloat(product.price.replace('₱', '').replace(',', ''));
-                    } else {
-                        // Add the new item to the cart
-                        cartItems.push(cartItem);
-                    }
-
-                    // Update the cart modal and cart badge
-                    updateCartModal();
-                    updateCartBadge();
-
-                    // Close the modal after adding to cart
-                    modal.style.display = 'none';
-                };
-            });
-        });
-        // Modal close button functionality
-        document.querySelector('.modal .close').addEventListener('click', () => {
-            modal.style.display = 'none';  // Close the modal when the user clicks the close button
-        });
-        // Close the modal when the close button is clicked
-        closeModal.addEventListener('click', () => {
+    // Close the modal if the user clicks outside of the modal content
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
             modal.style.display = "none";
-        });
-
-        // Close the modal if the user clicks outside of the modal content
-        window.addEventListener('click', (event) => {
-            if (event.target === modal) {
-                modal.style.display = "none";
-            }
-        });
+        }
+    });
 
     // Add click event listener to the heart icon
     const heartIcon = document.querySelector('.fa-heart');
@@ -722,99 +730,109 @@
     const cartContainer = document.getElementById('cartContainer');
     const cartClose = document.getElementById('cartClose');
 
-        let cartItems = [];
+let cartItems = [];
 
-            // Function to update the cart modal content
-        const updateCartModal = () => {
-            cartContainer.innerHTML = '';  // Clear the previous cart items
-            let totalAmount = 0;  // Variable to keep track of the total amount
+    // Function to update the cart modal content
+const updateCartModal = () => {
+    cartContainer.innerHTML = '';  // Clear the previous cart items
+    let totalAmount = 0;  // Variable to keep track of the total amount
 
-            if (cartItems.length === 0) {
-                cartContainer.innerHTML = '<p>No items in the cart.</p>';  // If the cart is empty
-            } else {
-                // Loop through each item in the cart and display it
-                cartItems.forEach(item => {
-                    totalAmount += item.totalPrice;  // Add the item total to the totalAmount
+    if (cartItems.length === 0) {
+        cartContainer.innerHTML = '<p>No items in the cart.</p>';  // If the cart is empty
+    } else {
+        // Loop through each item in the cart and display it
+        cartItems.forEach(item => {
+            totalAmount += item.totalPrice;  // Add the item total to the totalAmount
 
-                    const cartItem = document.createElement('div');
-                    cartItem.style.display = 'flex';
-                    cartItem.style.alignItems = 'center';
-                    cartItem.style.marginBottom = '15px';
+            const cartItem = document.createElement('div');
+            cartItem.style.display = 'flex';
+            cartItem.style.alignItems = 'center';
+            cartItem.style.marginBottom = '15px';
 
-                    cartItem.innerHTML = `
-                        <img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; object-fit: cover; margin-right: 10px; border-radius: 5px;">
-                        <div>
-                            <h4 style="margin: 0;">${item.name}</h4>
-                            <p style="margin: 0;">${item.price} x ${item.quantity}</p>
-                        </div>
-                    `;
+            cartItem.innerHTML = `
+                <img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; object-fit: cover; margin-right: 10px; border-radius: 5px;">
+                <div>
+                    <h4 style="margin: 0;">${item.name}</h4>
+                    <p style="margin: 0;">${item.price} x ${item.quantity}</p>
+                </div>
+            `;
 
-                    cartContainer.appendChild(cartItem);  // Add the item to the cart modal
-                });
-            }
+            cartContainer.appendChild(cartItem);  // Add the item to the cart modal
+        });
+    }
 
-            // Display the overall total at the bottom
-            document.getElementById('cartTotal').textContent = `₱${totalAmount.toFixed(2)}`;  // Total of all items
-        };
+    // Display the overall total at the bottom
+    document.getElementById('cartTotal').textContent = `₱${totalAmount.toFixed(2)}`;  // Total of all items
+};
 
-        // Function to update the cart icon badge to show the number of items in the cart
-        function updateCartBadge() {
-            const cartBadge = document.getElementById('cartBadge'); // Get the cart badge element
+// Function to update the cart icon badge to show the number of unique items (products) in the cart
+function updateCartBadge() {
+    const cartBadge = document.getElementById('cartBadge'); // Get the cart badge element
 
-            // If the cartBadge element exists, update its text content
-            if (cartBadge) {
-                const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
-                cartBadge.textContent = totalItems;  // Update the badge with the total item count
-            } else {
-                console.warn("Cart badge element not found.");
-            }
+    // If the cartBadge element exists, update its text content
+    if (cartBadge) {
+        const uniqueProductCount = cartItems.length;  // The number of unique products in the cart
+        cartBadge.textContent = uniqueProductCount;  // Update the badge with the total count of unique products
+    } else {
+        console.warn("Cart badge element not found.");
+    }
+}
+
+
+
+
+
+    // Open the cart modal when the cart icon is clicked
+    cartIcon.addEventListener('click', () => {
+        updateCartModal();
+        cartModal.style.display = 'block';
+    });
+
+    // Close the cart modal when the close button is clicked
+    cartClose.addEventListener('click', () => {
+        cartModal.style.display = 'none';
+    });
+
+    // Close the modal if the user clicks outside of the modal content
+    window.addEventListener('click', (event) => {
+        if (event.target === cartModal) {
+            cartModal.style.display = 'none';
+        }
+    });
+
+// Add "Add to Cart" button functionality
+document.querySelectorAll('.btn.add-cart').forEach((button, index) => {
+    button.addEventListener('click', () => {
+        const quantityInput = document.getElementById(`quantity-${products[index].id}`);
+        const quantity = parseInt(quantityInput.value) || 1; // Default to 1 if invalid value
+        const product = products[index];
+
+        const cartItem = {
+                ...product,
+                quantity: quantity,
+                totalPrice: parseFloat(product.price.replace('₱', '').replace(',', '')) * quantity
+            };
+
+        // Check if the product is already in the cart
+        const existingItemIndex = cartItems.findIndex(item => item.id === product.id);
+
+        if (existingItemIndex !== -1) {
+            // Update the quantity and total price if the product is already in the cart
+            cartItems[existingItemIndex].quantity += quantity;  // Increment quantity
+            cartItems[existingItemIndex].totalPrice = cartItems[existingItemIndex].quantity * parseFloat(product.price.replace('₱', '').replace(',', ''));
+        } else {
+            // Add the new item to the cart if it doesn't already exist
+            
+            cartItems.push(cartItem);
         }
 
-        // Open the cart modal when the cart icon is clicked
-        cartIcon.addEventListener('click', () => {
-            updateCartModal();
-            cartModal.style.display = 'block';
-        });
-
-        // Close the cart modal when the close button is clicked
-        cartClose.addEventListener('click', () => {
-            cartModal.style.display = 'none';
-        });
-
-        // Close the modal if the user clicks outside of the modal content
-        window.addEventListener('click', (event) => {
-            if (event.target === cartModal) {
-                cartModal.style.display = 'none';
-            }
-        });
-
-        // Add "Add to Cart" button functionality
-        document.querySelectorAll('.btn.add-cart').forEach((button, index) => {
-            button.addEventListener('click', () => {
-                const quantityInput = document.getElementById(`quantity-${products[index].id}`);
-                const quantity = parseInt(quantityInput.value);
-                const product = products[index];
-                
-                // Add product to cart
-                const cartItem = {
-                    ...product,
-                    quantity: quantity,
-                    totalPrice: parseFloat(product.price.replace('₱', '').replace(',', '')) * quantity
-                };
-
-            // Check if the product is already in the cart
-            const existingItemIndex = cartItems.findIndex(item => item.id === product.id);
-            if (existingItemIndex !== -1) {
-                cartItems[existingItemIndex].quantity += quantity;  // Increase quantity if product already in cart
-                cartItems[existingItemIndex].totalPrice = cartItems[existingItemIndex].quantity * parseFloat(product.price.replace('₱', '').replace(',', ''));
-            } else {
-                cartItems.push(cartItem);
-            }
-
-            updateCartModal();  // Update the cart modal
-            updateCartBadge();  // Update cart icon badge
-        });
+        // Update the cart modal and cart badge
+        updateCartModal(); 
+        updateCartBadge(); // Update the cart badge with unique item count
     });
+});
+
+
 
     // validation
     const quantityInput = document.getElementById('productQuantity');
@@ -826,24 +844,24 @@
         }
     });
 
-    // Handle Cart Updates
-        document.getElementById('addToCartBtn').addEventListener('click', function() {
-            const quantityInput = document.getElementById('productQuantity');
-            const cartQuantity = document.getElementById('cartQuantity');
+// Handle Cart Updates
+document.getElementById('addToCartBtn').addEventListener('click', function() {
+    const quantityInput = document.getElementById('productQuantity');
+    const cartQuantity = document.getElementById('cartQuantity');
 
-            // Get the current quantity value
-            const addedQuantity = parseInt(quantityInput.value) || 0;
+    // Get the current quantity value
+    const addedQuantity = parseInt(quantityInput.value) || 0;
 
-            // Get the existing quantity in the cart
-            const currentCartQuantity = parseInt(cartQuantity.textContent) || 0;
+    // Get the existing quantity in the cart
+    const currentCartQuantity = parseInt(cartQuantity.textContent) || 0;
 
-            // Update the cart quantity
-            const newCartQuantity = currentCartQuantity + addedQuantity;
-            cartQuantity.textContent = newCartQuantity;
+    // Update the cart quantity
+    const newCartQuantity = currentCartQuantity + addedQuantity;
+    cartQuantity.textContent = newCartQuantity;
 
-            // Reset the input value (optional)
-            quantityInput.value = 1;
-        });
+    // Reset the input value (optional)
+    quantityInput.value = 1;
+});
 
 </script>
 </body>
