@@ -642,43 +642,44 @@
 let cartItems = [];
 
     // Function to update the cart modal content
-    const updateCartModal = () => {
-        cartContainer.innerHTML = '';
-        let totalAmount = 0;
+const updateCartModal = () => {
+    cartContainer.innerHTML = '';  // Clear the previous cart items
+    let totalAmount = 0;  // Variable to keep track of the total amount
 
-        if (cartItems.length === 0) {
-            cartContainer.innerHTML = '<p>No items in the cart.</p>';
-        } else {
-            cartItems.forEach(item => {
-                totalAmount += item.totalPrice;
+    if (cartItems.length === 0) {
+        cartContainer.innerHTML = '<p>No items in the cart.</p>';  // If the cart is empty
+    } else {
+        // Loop through each item in the cart and display it
+        cartItems.forEach(item => {
+            totalAmount += item.totalPrice;  // Add the item total to the totalAmount
 
-                const cartItem = document.createElement('div');
-                cartItem.style.display = 'flex';
-                cartItem.style.alignItems = 'center';
-                cartItem.style.marginBottom = '15px';
+            const cartItem = document.createElement('div');
+            cartItem.style.display = 'flex';
+            cartItem.style.alignItems = 'center';
+            cartItem.style.marginBottom = '15px';
 
-                cartItem.innerHTML = `
-                    <img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; object-fit: cover; margin-right: 10px; border-radius: 5px;">
-                    <div>
-                        <h4 style="margin: 0;">${item.name}</h4>
-                        <p style="margin: 0;">${item.price} x ${item.quantity}</p>
-                        <p style="margin: 0;">Total: ₱${item.totalPrice.toFixed(2)}</p>
-                    </div>
-                `;
+            cartItem.innerHTML = `
+                <img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; object-fit: cover; margin-right: 10px; border-radius: 5px;">
+                <div>
+                    <h4 style="margin: 0;">${item.name}</h4>
+                    <p style="margin: 0;">${item.price} x ${item.quantity}</p>
+                </div>
+            `;
 
-                cartContainer.appendChild(cartItem);
-            });
-        }
+            cartContainer.appendChild(cartItem);  // Add the item to the cart modal
+        });
+    }
 
-        document.getElementById('cartTotal').textContent = `₱${totalAmount.toFixed(2)}`;
-    };
+    // Display the overall total at the bottom
+    document.getElementById('cartTotal').textContent = `₱${totalAmount.toFixed(2)}`;  // Total of all items
+};
 
-    // function updates the cart icon badge to show the number of items in the cart
-    const updateCartBadge = () => {
-        const cartBadge = document.querySelector('.cart-badge');
-        const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
-        cartBadge.textContent = totalItems;
-    };
+// Function to update the cart icon badge to show the number of items in the cart
+const updateCartBadge = () => {
+    const cartBadge = document.querySelector('.cart-badge');
+    const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);  // Calculate total items
+    cartBadge.textContent = totalItems;  // Update the cart icon badge
+};
 
 
     // Open the cart modal when the cart icon is clicked
