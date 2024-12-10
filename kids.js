@@ -179,3 +179,4 @@ document.getElementById("modalAddCart").addEventListener("click", function (even
     const cartTab = document.querySelector(".cartTab");
     cartTab.style.transform = "translateX(0)";
 });
+

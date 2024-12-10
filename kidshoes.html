@@ -452,6 +452,70 @@
             font-size: 20px;
             font-weight: bold;
         }
+        
+/* Basic layout for the Favorites tab */
+.favorites-tab {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 30px;  /* Increased padding for a larger tab */
+    width: 350px;  /* Increased width for a larger tab */
+    height: 450px; /* Increased height for a larger tab */
+    display: none; /* Initially hidden */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Make sure it's on top of other content */
+    overflow-y: auto; /* Scrollable if there are many favorites */
+}
+
+/* Style for the close button */
+.favclose-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: black; /* Black color for the "X" */
+    border: none;
+    background: none; /* No background */
+    font-size: 24px; /* Larger font for the "X" */
+    cursor: pointer;
+}
+
+/* Hover effect for close button */
+.favclose-btn:hover {
+    color: #3B5998; /* Change color on hover */
+}
+
+/* Style for the header inside the Favorites tab */
+.favorites-tab h2 {
+    margin-top: 0;
+    font-size: 24px; /* Slightly larger header font */
+    color: #333;
+}
+
+/* Style for the list of favorite products */
+.favorites-list {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+/* Style for individual favorite items */
+.favorite-item {
+    background-color: #f0f0f0;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    color: #555;
+}
+
+/* Hover effect for favorite items */
+.favorite-item:hover {
+    background-color: #e0e0e0;
+}
+
     </style>
 </head>
 
@@ -470,13 +534,24 @@
                 <a href="#Categories">Categories</a>
                 <a href="#Contact">Contact Us</a>
             </div>
-            <div class="action-buttons">
-                <i class="fa-solid fa-heart"></i>
-                <i class="fa-solid fa-cart-shopping" onclick="goToCart()"><span id="cart-count">0</span></i>
-                <i class="fa-solid fa-user"></i>
-            </div>
+           <!-- Action Buttons -->
+<div class="action-buttons">
+    <span id="favorites-count" class="favorites-count">0</span>
+    <i class="fa-solid fa-heart" onclick="toggleFavoritesTab()"></i>
+    <i class="fa-solid fa-cart-shopping" onclick="goToCart()"><span id="cart-count">0</span></i>
+    <i class="fa-solid fa-user"></i>
+</div>
         </div>
     </header>
+
+<!-- Favorites Tab -->
+<div id="favoritesTab" class="favorites-tab" style="display: none;">
+    <button id="favclose-btn" class="favclose-btn">X</button> <!-- Close Button -->
+    <h2>Your Favorites</h2>
+    <div id="favoritesList" class="favorites-list">
+        <!-- Favorite products will be dynamically added here -->
+    </div>
+</div>
 
     <!-- Products Section -->
     <div class="box-container">
@@ -609,6 +684,37 @@
             </div>
         </div>
     </footer>
+
+    <!-- Script to close the tab -->
+<script>
+   // Function to open or close the Favorites tab when the heart icon is clicked
+function toggleFavoritesTab() {
+    const favoritesTab = document.getElementById('favoritesTab');
+    // Toggle the display between block and none
+    if (favoritesTab.style.display === 'none' || favoritesTab.style.display === '') {
+        favoritesTab.style.display = 'block'; // Show the tab
+    } else {
+        favoritesTab.style.display = 'none'; // Hide the tab
+    }
+}
+
+// Function to close the Favorites tab when the close button is clicked
+function closeFavoritesTab() {
+    const favoritesTab = document.getElementById('favoritesTab');
+    favoritesTab.style.display = 'none'; // Hide the tab
+}
+
+// Ensure the event listener is properly attached when the DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    const closeButton = document.getElementById('favclose-btn');
+    if (closeButton) {
+        closeButton.addEventListener('click', closeFavoritesTab);
+    } else {
+        console.error("Close button not found");
+    }
+});
+    </script>
+    
 
 </body>
 
