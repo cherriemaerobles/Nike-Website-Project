@@ -36,67 +36,73 @@
 
   <body>
     <!--==================== HEADER ====================-->
-    <header class="header" id="header">
-      <nav class="nav container">
-        <a href="#" class="nav__logo">
-          <a href="#" style="font-weight: 600; color: black; font-size: large"
-            >NIKE</a
-          >
-        </a>
-
-        <div class="nav__menu" id="nav-menu">
-          <ul class="nav__list">
-            <li class="nav__item">
-              <a href="#home" class="nav__link active-link">HOME</a>
-            </li>
-
-            <li class="nav__item dropdown">
-              <a href="#categories" class="nav__link dropdown-toggle"
-                >CATEGORIES</a
-              >
-              <ul class="dropdown-menu">
-                <li>
-                  <a href="#mens-shoes" class="dropdown-item">Men's Shoes</a>
-                </li>
-                <li>
-                  <a href="#womens-shoes" class="dropdown-item"
-                    >Women's Shoes</a
-                  >
-                </li>
-                <li>
-                  <a href="#kids-shoes" class="dropdown-item">Kids' Shoes</a>
-                </li>
-              </ul>
-            </li>
-
-            <li class="nav__item">
-              <a href="#about" class="nav__link">ABOUT US</a>
-            </li>
-
-            <li class="nav__item">
-              <a href="#contact" class="nav__link">CONTACT US</a>
-            </li>
-            <a href="#" class="iconis">
-              <ion-icon name="heart"></ion-icon>
-            </a>
-            <a href="#" class="iconis">
-              <ion-icon name="cart"></ion-icon>
-            </a>
-            <a href="#" class="button button--ghost">
-              <ion-icon name="person"></ion-icon>
-            </a>
-          </ul>
-
-          <div class="nav__close" id="nav-close">
-            <i class="bx bx-x"></i>
+    <header>
+      <div class="navbar-container">
+          <div class="logo">
+              <h1>Nike</h1>
           </div>
-        </div>
+          <div class="navbar-links">
+              <a href="index.html">Home</a>
+              <a href="#Products">About</a>
+              <a href="#Categories">Categories</a>
+              <a href="#Contact">Contact Us</a>
+          </div>
+          <div class="action-buttons">
+              <i class="fa-solid fa-heart">
+                  <span class="favorite-badge">0</span> <!-- Badge showing the favorite count -->
+              </i>
+              <i class="fa-solid fa-cart-shopping">                
+                  <span id="cartBadge">0</span> <!-- Cart Badge (will display the number of items) -->
+              </i> <!-- Cart Icon -->
+              <i class="fa-solid fa-user"></i> <!-- User Icon -->
+          </div>
+          
+  </header>
 
-        <div class="nav__toggle" id="nav-toggle">
-          <i class="bx bx-grid-alt"></i>
-        </div>
-      </nav>
-    </header>
+<!-- Product Description Modal -->
+<div id="productModal" class="modal">
+  <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2 id="productTitle"></h2>
+      <div id="productDescription"></div>
+      <div class="price" id="productPrice"></div>
+      <!-- Add Quantity Input for Modal -->
+      <input type="number" class="quantity-input" value="1" min="1" id="quantity-modal">
+      <!-- Use a different class name for the button in the modal -->
+      <button class="btn add-to-cart-modal">Add to Cart</button>
+      <br>
+      <button class="btn add-fav">Favorite</button>
+  </div>
+</div>
+
+
+
+  <!-- Favorites Modal -->
+  <div id="favoritesModal" class="modal">
+      <div class="modal-content">
+          <span class="close" id="favoritesClose">&times;</span>
+          <h2>Favorite Products</h2>
+          <div id="favoritesContainer">
+              <!-- Favorited products will be dynamically inserted here -->
+          </div>
+      </div>
+  </div>
+
+  <!-- Cart Modal -->
+  <div id="cartModal" class="modal">
+      <div class="modal-content">
+          <span class="close" id="cartClose">&times;</span>
+          <h2>Cart</h2>
+          <div id="cartContainer">
+              <!-- Cart products will be dynamically inserted here -->
+          </div>
+          <div style="margin-top: 20px;">
+              <strong>Total:</strong> <span id="cartTotal">₱0</span>
+          </div>
+          <buttons id="checkoutButton" class="btn checkout" style="margin-top: 20px; width: 100%;">Checkout</buttons>
+      </div>
+  </div>
+
     <div class="modal-overlay">
       <div class="wrapper">
         <span class="icon-close">
@@ -244,7 +250,6 @@
             <p>Nike Air Force 1 '07</p>
             <h3>₱6,195</h3>
             <a href="#" class="btn">Add To Cart</a>
-            <a href="#" class="btn2">Details</a>
           </div>
         </div>
 
@@ -259,7 +264,6 @@
             <p>Nike Air Max 90 LV8</p>
             <h3>₱4,739</h3>
             <a href="#" class="btn">Add To Cart</a>
-            <a href="#" class="btn2">Details</a>
           </div>
         </div>
 
@@ -273,7 +277,6 @@
             <p>Nike Tanjun Easy On</p>
             <h3>₱2,309</h3>
             <a href="#" class="btn">Add To Cart</a>
-            <a href="#" class="btn2">Details</a>
           </div>
         </div>
       </div>
