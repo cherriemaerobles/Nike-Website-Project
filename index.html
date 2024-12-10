@@ -2,11 +2,20 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nike - Just Do It</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="shortcut icon" href="img/logo-nike.jpeg" />
+
+    <!--=============== FAVICON ===============-->
+    <link
+      rel="shortcut icon"
+      href="assets/img/favicon.png"
+      type="image/x-icon"
+    />
+
+    <!--=============== BOXICONS ===============-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
@@ -18,45 +27,85 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-  </head>
-  <body>
-    <section>
-      <nav>
-        <div class="logo">
-          <h1>Nike</h1>
-        </div>
-        <ul class="menu">
-          <li><a href="#Home">HOME</a></li>
-          <li><a href="#About">ABOUT</a></li>
-          <li class="dropdown">
-            <a href="#Categories">CATEGORIES</a>
-            <ul class="dropdown-menu">
-              <li><a href="#MensShoes">Men's Shoes</a></li>
-              <li><a href="#WomensShoes">Women's Shoes</a></li>
-              <li><a href="#KidsShoes">Kids' Shoes</a></li>
-            </ul>
-          </li>
-          <li><a href="#Contact">CONTACT US</a></li>
-        </ul>
 
-        <div class="icons">
-          <i class="fa-solid fa-heart"></i>
-          <i class="fa-solid fa-cart-shopping"></i>
-          <i class="fa-solid fa-user" id="openModal"></i>
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Nike</title>
+  </head>
+
+  <body>
+    <!--==================== HEADER ====================-->
+    <header class="header" id="header">
+      <nav class="nav container">
+        <a href="#" class="nav__logo">
+          <a href="#" style="font-weight: 600; color: black; font-size: large"
+            >NIKE</a
+          >
+        </a>
+
+        <div class="nav__menu" id="nav-menu">
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a href="#home" class="nav__link active-link">HOME</a>
+            </li>
+
+            <li class="nav__item dropdown">
+              <a href="#categories" class="nav__link dropdown-toggle"
+                >CATEGORIES</a
+              >
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="#mens-shoes" class="dropdown-item">Men's Shoes</a>
+                </li>
+                <li>
+                  <a href="#womens-shoes" class="dropdown-item"
+                    >Women's Shoes</a
+                  >
+                </li>
+                <li>
+                  <a href="#kids-shoes" class="dropdown-item">Kids' Shoes</a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav__item">
+              <a href="#about" class="nav__link">ABOUT US</a>
+            </li>
+
+            <li class="nav__item">
+              <a href="#contact" class="nav__link">CONTACT US</a>
+            </li>
+            <a href="#" class="iconis">
+              <ion-icon name="heart"></ion-icon>
+            </a>
+            <a href="#" class="iconis">
+              <ion-icon name="cart"></ion-icon>
+            </a>
+            <a href="#" class="button button--ghost">
+              <ion-icon name="person"></ion-icon>
+            </a>
+          </ul>
+
+          <div class="nav__close" id="nav-close">
+            <i class="bx bx-x"></i>
+          </div>
+        </div>
+
+        <div class="nav__toggle" id="nav-toggle">
+          <i class="bx bx-grid-alt"></i>
         </div>
       </nav>
-
-      <div class="main" id="Home"></div>
-    </section>
-
-    <!--Login n SignUp-->
-    <div class="wrapper-modal">
+    </header>
+    <div class="modal-overlay">
       <div class="wrapper">
-        <span class="close-btn">&times;</span>
-        <div class="login-container">
+        <span class="icon-close">
+          <ion-icon name="close"></ion-icon>
+        </span>
+        <div class="form-box login">
           <h2>Login</h2>
-          <form action="">
-            <div class="form-group">
+          <form action="#">
+            <div class="input-box">
               <label for="email">Email</label>
               <input
                 type="email"
@@ -66,7 +115,7 @@
                 required
               />
             </div>
-            <div class="form-group">
+            <div class="input-box">
               <label for="password">Password</label>
               <input
                 type="password"
@@ -76,14 +125,11 @@
                 required
               />
             </div>
-            <div class="forgot-password">
-                <input type="checkbox" id="rememberMe" />
-              <label for="rememberMe">Remember me</label>
-              <a href="#">Forgot your password?</a>
+            <div class="remember-forgot">
+              <label><input type="checkbox" />Remember me</label>
+              <a href="#">Forgot Password? </a>
             </div>
-            <div class="form-group">
-              <button type="submit">Login</button>
-            </div>
+            <button type="submit" class="btn">Login</button>
             <div class="social-login">
               <button type="button" class="facebook-btn">
                 <img
@@ -100,26 +146,28 @@
                 Sign in with Google
               </button>
             </div>
-            <div class="register">
+
+            <div class="login-register">
               <p>
                 Don't have an account?
-                <a href="#" class="register-link">Register here!</a>
+                <a href="#" class="register-link">Sign Up</a>
               </p>
             </div>
           </form>
         </div>
-        <div class="signup-container">
+
+        <div class="form-box register">
           <h2>Sign Up</h2>
-          <form class="signup-form">
-            <div class="form-group">
+          <form action="#">
+            <div class="input-box">
               <label for="fullname">Full Name</label>
               <input type="text" id="fullname" name="fullname" required />
             </div>
-            <div class="form-group">
+            <div class="input-box">
               <label for="email">Email</label>
               <input type="email" id="signup-email" name="email" required />
             </div>
-            <div class="form-group">
+            <div class="input-box">
               <label for="password">Password</label>
               <input
                 type="password"
@@ -128,7 +176,7 @@
                 required
               />
             </div>
-            <div class="form-group">
+            <div class="input-box">
               <label for="confirmPassword">Confirm Password</label>
               <input
                 type="password"
@@ -137,13 +185,13 @@
                 required
               />
             </div>
-            <div class="forgot-password">
-              <input type="checkbox" id="terms" required />
-              <label for="terms">I accept the Terms & Conditions</label>
+            <div class="remember-forgot">
+              <label
+                ><input type="checkbox" />I agree to the terms &
+                conditions</label
+              >
             </div>
-            <div class="form-group">
-              <button type="submit">Sign Up</button>
-            </div>
+            <button type="submit" class="btn">Sign Up</button>
             <div class="social-login">
               <button type="button" class="facebook-btn">
                 <img
@@ -160,23 +208,24 @@
                 Sign up with Google
               </button>
             </div>
+            <div class="login-register">
+              <p>
+                Already have an account?
+                <a href="#" class="login-link">Login</a>
+              </p>
+            </div>
           </form>
-          <div class="register">
-            <p>
-              Already have an account?
-              <a href="#" class="login-link">Login here</a>
-            </p>
-          </div>
         </div>
       </div>
     </div>
 
-    <!--<div class="parallax-text">
-      <span class="parallax-text" text="NIKE"> NIKE </span>
-      <img src="img/shoes.png" alt="Nike sneaker" />
-    </div>
-
-    Products-->
+    <section class="parallax-section">
+        <div class="parallax-text">
+            <span class="parallax-text" text="NIKE">NIKE</span>
+            <img src="img/shoes.png" alt="Nike sneaker" />
+        </div>
+    </section>
+    
 
     <div class="featured-box" id="Products">
       <h1>featured</h1>
@@ -379,7 +428,7 @@
       </div>
     </footer>
 
-    <script href="script.js"></script>
+    <script src="script.js"></script>
     <script
       type="module"
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
