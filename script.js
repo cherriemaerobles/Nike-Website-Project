@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', initializeCart);
 const wrapper = document.querySelector('.wrapper');
 const loginlink = document.querySelector('.login-link');
 const registerlink = document.querySelector('.register-link');
-const fauser = document.querySelector('.fa-user');
+const fauser = document.querySelector('.button-user');
 const iconclose = document.querySelector('.icon-close');
 const modalOverlay = document.querySelector('.modal-overlay'); // Get the modal overlay
 
@@ -124,50 +124,6 @@ if (navToggle) {
     })
 }
 
-/*===== MENU HIDDEN =====*/
-/* Validate if constant exists */
-if (navClose) {
-    navClose.addEventListener('click', () => {
-        navMenu.classList.remove('show-menu')
-    })
-}
-
-/*=============== REMOVE MENU MOBILE ===============*/
-const navLink = document.querySelectorAll('.nav__link')
-
-function linkAction() {
-    const navMenu = document.getElementById('nav-menu')
-    // When we click on each nav__link, we remove the show-menu class
-    navMenu.classList.remove('show-menu')
-}
-navLink.forEach(n => n.addEventListener('click', linkAction))
-
-/*=============== HOME SWIPER ===============*/
-let homeSwiper = new Swiper(".home-swiper", {
-    spaceBetween: 30,
-    loop: 'true',
-
-    pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-    },
-})
-
-/*=============== CHANGE BACKGROUND HEADER ===============*/
-function scrollHeader() {
-    const header = document.getElementById('header')
-    // When the scroll is greater than 50 viewport height, add the scroll-header class to the header tag
-    if (this.scrollY >= 50) header.classList.add('scroll-header'); else header.classList.remove('scroll-header')
-}
-window.addEventListener('scroll', scrollHeader)
-
-/*=============== NEW SWIPER ===============*/
-let newSwiper = new Swiper(".new-swiper", {
-    centeredSlides: true,
-    slidesPerView: "auto",
-    loop: 'true',
-    spaceBetween: 16,
-});
 
 /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
 const sections = document.querySelectorAll('section[id]')
