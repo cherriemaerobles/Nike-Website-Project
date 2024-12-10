@@ -236,223 +236,297 @@
             color: #c72092;
         }
 
-        .cartTab {
-            width: 360px;
-            height: 100%;
-            background-color: white;
-            color: black;
-            position: fixed;
-            inset: 0 0 0 auto;
-            display: grid;
-            grid-template-rows: 70px 1fr 70px;
-            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            transition: transform 0.5s;
-        }
+     /* Existing Styles */
+.cartTab {
+    width: 360px;
+    height: 100%;
+    background-color: white;
+    color: black;
+    position: fixed;
+    inset: 0 0 0 auto;
+    display: grid;
+    grid-template-rows: 70px 1fr 70px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    transition: transform 0.5s;
+}
 
-        .cartTab h1 {
-            padding: 20px;
-            margin: 0;
-            font-size: 20px;
-            font-weight: 300;
-            color: black;
-            text-align: left;
-        }
+.cartTab h1 {
+    padding: 20px;
+    margin: 0;
+    font-size: 20px;
+    font-weight: 300;
+    color: black;
+    text-align: left;
+}
 
-        .cartTab .listcart {
-            overflow-y: auto;
-            padding: 15px;
-        }
+.cartTab .listcart {
+    overflow-y: auto;
+    padding: 15px;
+}
 
-        .cartTab .cartbtn {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            height: 50px;
-        }
+.cartTab .cartbtn {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    height: 50px;
+}
 
-        .cartTab .cartbtn button {
-            font-size: 14px;
-            border: none;
-            background-color: #333;
-            color: white;
-            cursor: pointer;
-        }
+.cartTab .cartbtn button {
+    font-size: 14px;
+    border: none;
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+}
 
-        .cartTab .cartbtn button:hover {
-            background-color: #F6E96B;
-            color: black;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
+.cartTab .cartbtn button:hover {
+    background-color: #F6E96B;
+    color: black;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
 
-        .cartTab .cartbtn .close {
-            background-color: #3B5998;
-        }
+.cartTab .cartbtn .close {
+    background-color: #3B5998;
+}
 
-        .cartTab .cartbtn .close:hover {
-            background-color: #F6E96B;
-            color: black;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
+.cartTab .cartbtn .close:hover {
+    background-color: #F6E96B;
+    color: black;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
 
-        .cartTab .cartbtn .checkOut {
-            background-color: black;
-        }
+.cartTab .cartbtn .checkOut {
+    background-color: black;
+}
 
-        .cartTab .cartbtn .checkOut:hover {
-            background-color: #F6E96B;
-            color: black;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
+.cartTab .cartbtn .checkOut:hover {
+    background-color: #F6E96B;
+    color: black;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
 
-        .cartTab .listcart .item img {
-            width: 100%;
-        }
+.cartTab .listcart .item img {
+    width: 100%;
+}
 
-        .cartTab .listcart .item {
-            display: grid;
-            grid-template-columns: 50px 100px 50px 1fr auto;
-            gap: 10px;
-            text-align: center;
-            align-items: center;
-        }
+.cartTab .listcart .item {
+    display: grid;
+    grid-template-columns: 50px 100px 50px 1fr auto;
+    gap: 10px;
+    text-align: center;
+    align-items: center;
+}
 
-        .listcart .quantity {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+.listcart .quantity {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-        .listcart .quantity span {
-            display: inline-block;
-            width: 22px;
-            height: 22px;
-            background-color: black;
-            color: white;
-            border-radius: 50%;
-            cursor: pointer;
-            margin: 0 5px;
-        }
+.listcart .quantity span {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    background-color: black;
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 0 5px;
+}
 
-        .listcart .quantity span:hover {
-            background-color: #F6E96B;
-            color: #000;
+.listcart .quantity span:hover {
+    background-color: #F6E96B;
+    color: #000;
+}
 
-        }
+.listcart .quantity span:nth-child(2) {
+    background-color: transparent;
+    color: #000;
+}
 
-        .listcart .quantity span:nth-child(2) {
-            background-color: transparent;
-            color: #000;
-        }
+.listcart .item .delete {
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+}
 
-        .listcart .item .delete {
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            text-align: center;
-        }
+.listcart {
+    overflow: auto;
+}
 
-        .listcart {
-            overflow: auto;
+.listcart::-webkit-scrollbar {
+    width: 0;
+}
 
-        }
+.total-price {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+    border-top: 2px solid #ccc;
+    padding-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
 
-        .listcart::-webkit-scrollbar {
-            width: 0;
-        }
+#cart-items {
+    margin-bottom: 20px;
+}
 
-        .total-price {
-            display: flex;
-            justify-content: flex-end;
-            /* Align to the right */
-            margin-top: 20px;
-            border-top: 2px solid #ccc;
-            /* Add border above the total price */
-            padding-top: 10px;
-            font-size: 18px;
-            font-weight: bold;
-        }
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
 
-        #cart-items {
-            margin-bottom: 20px;
-        }
+.modal-content {
+    background-color: white;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    width: 500px;
+    max-width: 90%;
+    max-height: 80%;
+    overflow-y: auto;
+}
 
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
+.modal-content img {
+    width: 40%;
+    height: auto;
+    display: block;
+    margin: 0 auto 10px auto;
+}
 
-        .modal-content {
-            background-color: white;
-            padding: 15px;
-            border-radius: 5px;
-            text-align: center;
-            width: 500px;
-            max-width: 90%;
-            max-height: 80%;
-            overflow-y: auto;
-            
-        }
+.modal-content h3 {
+    font-size: 1.3em;
+    margin: 10px 0;
+}
 
-        .modal-content img {
-            width: 40%;
-            height: auto;
-            display: block;
-            margin: 0 auto 10px auto;
-           
-        }
+.modal-content p {
+    font-size: 1em;
+    margin: 8px 0;
+}
 
-        .modal-content h3 {
-            font-size: 1.3em;
-            margin: 10px 0;
-           
-        }
+.modal-content .price {
+    font-size: 1.2em;
+    color: #333;
+    margin: 10px 0;
+    font-weight: bold;
+}
 
-        .modal-content p {
-            font-size: 1em;
-            margin: 8px 0;
-            
-        }
+.modal-content .btn {
+    display: inline-block;
+    margin: 5px;
+    padding: 8px 15px;
+    background-color: black;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+}
 
-        .modal-content .price {
-            font-size: 1.2em;
-            color: #333;
-            margin: 10px 0;
-            font-weight: bold;
-        }
+.modal-content .btn:hover {
+    background-color: #F6E96B;
+}
 
-        .modal-content .btn {
-            display: inline-block;
-            margin: 5px;
-            padding: 8px 15px;
-            background-color: black;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 1em;
-            cursor: pointer;
-        }
+.modal-content .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+}
 
-        .modal-content .btn:hover {
-            background-color: #F6E96B;
-        }
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .cartTab {
+        width: 300px; /* Reduce width for tablets */
+    }
 
-        .modal-content .close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-            font-size: 20px;
-            font-weight: bold;
-        }
-        
+    .cartTab h1 {
+        font-size: 18px;
+        padding: 15px;
+    }
+
+    .cartTab .listcart .item {
+        grid-template-columns: 50px 80px 50px 1fr auto; /* Adjust item grid */
+    }
+
+    .cartTab .cartbtn {
+        grid-template-columns: 2fr; /* Stack buttons vertically */
+    }
+
+    .cartTab .cartbtn button {
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    .modal-content {
+        width: 90%;
+        padding: 10px;
+    }
+
+    .modal-content h3 {
+        font-size: 1.1em;
+    }
+
+    .modal-content p {
+        font-size: 0.9em;
+    }
+
+    .modal-content .price {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .cartTab {
+        width: 100%; /* Full width for mobile */
+        height: auto;
+    }
+
+    .cartTab h1 {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .cartTab .listcart .item {
+        grid-template-columns: 50px 70px 50px 1fr auto; /* Adjust item grid for mobile */
+    }
+
+    .cartTab .cartbtn button {
+        font-size: 12px;
+        padding: 8px;
+        grid-template-columns: 2fr; /* Stack buttons vertically */
+    }
+
+    .modal-content {
+        width: 95%;
+        padding: 8px;
+    }
+
+    .modal-content h3 {
+        font-size: 1em;
+    }
+
+    .modal-content p {
+        font-size: 0.85em;
+    }
+
+    .modal-content .price {
+        font-size: 1em;
+    }
+}
+
 /* Basic layout for the Favorites tab */
 .favorites-tab {
     position: fixed;
