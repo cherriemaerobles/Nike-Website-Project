@@ -610,30 +610,6 @@
         </div>
     </footer>
 
-    <script>
-        function showDetails(name, description, price, image) {
-            document.getElementById('modalName').textContent = name;
-            document.getElementById('modalDescription').textContent = description;
-            document.getElementById('modalPrice').textContent = `₱${price}`;
-            document.getElementById('modalImage').src = image;
-
-            // Update Add to Cart and Favorite buttons with appropriate actions
-            document.getElementById('modalAddCart').setAttribute(
-                'onclick', `addToCart('${name}', ${price}, '${image}')`
-            );
-            document.getElementById('modalAddFav').setAttribute(
-                'onclick', `addToFavorite('${name}')`
-            );
-
-            // Display the modal
-            document.getElementById('productModal').style.display = 'flex';
-        }
-
-        function closeModal() {
-            document.getElementById('productModal').style.display = 'none';
-        }
-    </script>
-
 </body>
 
 </html>

@@ -142,6 +142,28 @@ document.addEventListener('DOMContentLoaded', () => {
     loadCartItems();
 });
 
+function showDetails(name, description, price, image) {
+    document.getElementById('modalName').textContent = name;
+    document.getElementById('modalDescription').textContent = description;
+    document.getElementById('modalPrice').textContent = `₱${price}`;
+    document.getElementById('modalImage').src = image;
+
+    // Update Add to Cart and Favorite buttons with appropriate actions
+    document.getElementById('modalAddCart').setAttribute(
+        'onclick', `addToCart('${name}', ${price}, '${image}')`
+    );
+    document.getElementById('modalAddFav').setAttribute(
+        'onclick', `addToFavorite('${name}')`
+    );
+
+    // Display the modal
+    document.getElementById('productModal').style.display = 'flex';
+}
+
+function closeModal() {
+    document.getElementById('productModal').style.display = 'none';
+}
+
 document.getElementById("modalAddCart").addEventListener("click", function (event) {
     event.preventDefault(); // Prevent default anchor behavior
 
@@ -157,4 +179,3 @@ document.getElementById("modalAddCart").addEventListener("click", function (even
     const cartTab = document.querySelector(".cartTab");
     cartTab.style.transform = "translateX(0)";
 });
-
