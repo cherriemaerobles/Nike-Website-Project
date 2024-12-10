@@ -141,3 +141,20 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCartCount();
     loadCartItems();
 });
+
+document.getElementById("modalAddCart").addEventListener("click", function (event) {
+    event.preventDefault(); // Prevent default anchor behavior
+
+    // Get the product details from modal content
+    const productName = document.getElementById("modalName").textContent;
+    const productPrice = parseFloat(document.getElementById("modalPrice").textContent.replace("₱", ""));
+    const productImage = document.getElementById("modalImage").src;
+
+    // Add the item to the cart
+    addToCart(productName, productPrice, productImage);
+
+    // Automatically show the cart after adding an item
+    const cartTab = document.querySelector(".cartTab");
+    cartTab.style.transform = "translateX(0)";
+});
+
