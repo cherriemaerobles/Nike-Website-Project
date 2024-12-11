@@ -1,5 +1,3 @@
-// Initialize the cart functionality when the DOM is fully loaded 
-document.addEventListener('DOMContentLoaded', initializeCart);
 
 
 
