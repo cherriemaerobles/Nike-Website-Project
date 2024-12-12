@@ -844,24 +844,24 @@ document.querySelectorAll('.btn.add-cart').forEach((button, index) => {
         }
     });
 
-// Handle Cart Updates
-document.getElementById('addToCartBtn').addEventListener('click', function() {
-    const quantityInput = document.getElementById('productQuantity');
-    const cartQuantity = document.getElementById('cartQuantity');
+    // Handle Cart Updates
+    document.getElementById('addToCartBtn').addEventListener('click', function() {
+        const quantityInput = document.getElementById('productQuantity');
+        const cartQuantity = document.getElementById('cartQuantity');
 
-    // Get the current quantity value
-    const addedQuantity = parseInt(quantityInput.value) || 0;
+        // Get the current quantity value
+        const addedQuantity = parseInt(quantityInput.value) || 0;
 
-    // Get the existing quantity in the cart
-    const currentCartQuantity = parseInt(cartQuantity.textContent) || 0;
+        // Get the existing quantity in the cart
+        const currentCartQuantity = parseInt(cartQuantity.textContent) || 0;
 
-    // Update the cart quantity
-    const newCartQuantity = currentCartQuantity + addedQuantity;
-    cartQuantity.textContent = newCartQuantity;
+        // Update the cart quantity
+        const newCartQuantity = currentCartQuantity + addedQuantity;
+        cartQuantity.textContent = newCartQuantity;
 
-    // Reset the input value (optional)
-    quantityInput.value = 1;
-});
+        // Reset the input value (optional)
+        quantityInput.value = 1;
+    });
 
 </script>
 </body>
