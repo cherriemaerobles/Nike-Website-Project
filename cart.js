@@ -1,8 +1,8 @@
 let cart = [];  // This will store the items in the cart 
 let cartCount = 0; // Total items count in the cart 
  
-// Update the cart icon counter 
-const updateCartCounter = () => { 
+    // Update the cart icon counter 
+    const updateCartCounter = () => { 
     const cartIcon = document.querySelector('.fa-cart-shopping'); 
  
     // If cart badge doesn't exist, create one 
@@ -28,8 +28,8 @@ const updateCartCounter = () => {
     cartBadge.textContent = cartCount; 
 }; 
  
-// Function to open the cart modal and display items 
-const openCartModal = () => { 
+    // Function to open the cart modal and display items 
+    const openCartModal = () => { 
     const cartModal = document.getElementById('cartModal'); 
     const cartItemsContainer = document.getElementById('cartItemsContainer'); 
     cartItemsContainer.innerHTML = '';  // Clear the cart items container 
@@ -55,8 +55,8 @@ const openCartModal = () => {
     cartModal.style.display = "block"; 
 }; 
  
-// Function to remove an item from the cart 
-const removeCartItem = (productId) => { 
+    // Function to remove an item from the cart 
+    const removeCartItem = (productId) => { 
     // Filter out the item with the given productId 
     cart = cart.filter(item => item.id !== productId);  
     cartCount = cart.length; 
@@ -192,5 +192,4 @@ document.addEventListener('DOMContentLoaded', () => {
             updateCartBadge(); // Update the badge to show 0 items
         }
     });
-    
 });
