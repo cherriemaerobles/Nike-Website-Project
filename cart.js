@@ -67,4 +67,116 @@ const removeCartItem = (productId) => {
 
  
 // Initialize the cart functionality when the DOM is fully loaded 
-document.addEventListener('DOMContentLoaded', initializeCart);
+document.addEventListener('DOMContentLoaded', () => {
+    let cartItems = []; // Store items in the cart
+
+    // Function to update the cart modal content
+    const updateCartModal = () => {
+        const cartContainer = document.getElementById('cartContainer');
+        cartContainer.innerHTML = ''; // Clear previous items
+        let totalAmount = 0; // Calculate total price
+
+        if (cartItems.length === 0) {
+            cartContainer.innerHTML = '<p>No items in the cart.</p>';
+        } else {
+            cartItems.forEach((item, index) => {
+                totalAmount += item.totalPrice;
+
+                const cartItem = document.createElement('div');
+                cartItem.classList.add('cart-item');
+                cartItem.style.display = 'flex';
+                cartItem.style.alignItems = 'center';
+                cartItem.style.marginBottom = '15px';
+
+                cartItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; object-fit: cover; margin-right: 10px; border-radius: 5px;">
+                    <div style="flex-grow: 1;">
+                        <h4>${item.name}</h4>
+                        <p>${item.price} x 
+                            <input type="number" class="quantity-input" value="${item.quantity}" min="1" data-index="${index}">
+                        </p>
+                    </div>
+                    <button class="btn delete-item" data-index="${index}" style="margin-left: 10px;">Delete</button>
+                `;
+
+                cartContainer.appendChild(cartItem);
+            });
+
+            // Add event listeners for quantity inputs
+            document.querySelectorAll('.quantity-input').forEach(input => {
+                input.addEventListener('change', (event) => {
+                    const index = event.target.dataset.index;
+                    const newQuantity = parseInt(event.target.value) || 1;
+
+                    // Update quantity and total price
+                    cartItems[index].quantity = newQuantity;
+                    cartItems[index].totalPrice = parseFloat(cartItems[index].price.replace('₱', '').replace(',', '')) * newQuantity;
+
+                    updateCartModal(); // Refresh the cart modal
+                    updateCartBadge(); // Update the cart badge
+                });
+            });
+
+            // Add event listeners for delete buttons
+            document.querySelectorAll('.delete-item').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const index = event.target.dataset.index;
+                    cartItems.splice(index, 1); // Remove item from the cart
+                    updateCartModal(); // Refresh the cart modal
+                    updateCartBadge(); // Update the cart badge
+                });
+            });
+        }
+
+        document.getElementById('cartTotal').textContent = `₱${totalAmount.toFixed(2)}`;
+    };
+
+    // Function to update the cart badge
+    const updateCartBadge = () => {
+        const cartBadge = document.getElementById('cartBadge');
+        cartBadge.textContent = cartItems.length; // Show total unique items in the cart
+    };
+
+    // Function to add items to the cart
+    const addToCart = (product, quantity) => {
+        const existingItemIndex = cartItems.findIndex(item => item.id === product.id);
+        if (existingItemIndex !== -1) {
+            // Update the quantity and total price for an existing item
+            cartItems[existingItemIndex].quantity += quantity;
+            cartItems[existingItemIndex].totalPrice = cartItems[existingItemIndex].quantity * parseFloat(product.price.replace('₱', '').replace(',', ''));
+        } else {
+            // Add a new item to the cart
+            cartItems.push({
+                ...product,
+                quantity: quantity,
+                totalPrice: parseFloat(product.price.replace('₱', '').replace(',', '')) * quantity
+            });
+        }
+        updateCartBadge();
+        updateCartModal();
+    };
+
+    // Attach event listener to all "Add to Cart" buttons
+    document.querySelectorAll('.btn.add-cart').forEach(button => {
+        button.addEventListener('click', (event) => {
+            const productIndex = event.target.dataset.index;
+            const product = products[productIndex]; // Fetch product details from your products array
+            const quantityInput = document.getElementById(`quantity-${product.id}`);
+            const quantity = parseInt(quantityInput.value) || 1;
+
+            addToCart(product, quantity);
+            alert(`${product.name} has been added to the cart.`);
+        });
+    });
+
+    // Open the cart modal on cart icon click
+    document.querySelector('.fa-cart-shopping').addEventListener('click', () => {
+        updateCartModal();
+        document.getElementById('cartModal').style.display = 'block';
+    });
+
+    // Close the cart modal
+    document.getElementById('cartClose').addEventListener('click', () => {
+        document.getElementById('cartModal').style.display = 'none';
+    });
+});
