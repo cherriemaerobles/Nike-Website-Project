@@ -179,4 +179,17 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('cartClose').addEventListener('click', () => {
         document.getElementById('cartModal').style.display = 'none';
     });
+
+    // Add checkout functionality
+    document.getElementById('checkoutButton').addEventListener('click', () => {
+        if (cartItems.length === 0) {
+            alert('Your cart is empty. Please add items to proceed with checkout.');
+        } else {
+            const totalAmount = cartItems.reduce((total, item) => total + item.totalPrice, 0);
+            alert(`Thank you for your purchase! Your total is ₱${totalAmount.toFixed(2)}.`);
+            cartItems = []; // Clear the cart
+            updateCartModal(); // Update the modal to reflect an empty cart
+            updateCartBadge(); // Update the badge to show 0 items
+        }
+    });
 });
