@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        document.getElementById('cartTotal').textContent = `₱${totalAmount.toFixed(2)}`;
+        document.getElementById('cartTotal').textContent = `₱${totalAmount.toLocaleString()}`;
     };
 
     // Function to update the cart badge
@@ -186,10 +186,11 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Your cart is empty. Please add items to proceed with checkout.');
         } else {
             const totalAmount = cartItems.reduce((total, item) => total + item.totalPrice, 0);
-            alert(`Thank you for your purchase! Your total is ₱${totalAmount.toFixed(2)}.`);
+            alert(`Thank you for your purchase! Your total is ₱${totalAmount.toLocaleString()}.`);
             cartItems = []; // Clear the cart
             updateCartModal(); // Update the modal to reflect an empty cart
             updateCartBadge(); // Update the badge to show 0 items
         }
     });
+    
 });
