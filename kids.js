@@ -1,71 +1,71 @@
 let cart = [];  // This will store the items in the cart 
 let cartCount = 0; // Total items count in the cart 
- 
+
 // Update the cart icon counter 
-const updateCartCounter = () => { 
-    const cartIcon = document.querySelector('.fa-cart-shopping'); 
- 
+const updateCartCounter = () => {
+    const cartIcon = document.querySelector('.fa-cart-shopping');
+
     // If cart badge doesn't exist, create one 
-    if (!cartBadge) { 
-        cartBadge = document.createElement('span'); 
-        cartBadge.style.position = 'absolute'; 
-        cartBadge.style.top = '0'; 
-        cartBadge.style.right = '0'; 
-        cartBadge.style.backgroundColor = '#c72092'; 
-        cartBadge.style.color = 'white'; 
-        cartBadge.style.borderRadius = '50%'; 
-        cartBadge.style.padding = '5px'; 
-        cartBadge.style.fontSize = '12px'; 
-        cartBadge.style.fontWeight = 'bold'; 
-        cartBadge.style.minWidth = '20px'; 
-        cartBadge.style.textAlign = 'center'; 
-        cartBadge.style.transform = 'translate(50%, -50%)'; 
- 
-        cartIcon.style.position = 'relative'; 
-        cartIcon.appendChild(cartBadge); 
-    } 
- 
-    cartBadge.textContent = cartCount; 
-}; 
- 
+    if (!cartBadge) {
+        cartBadge = document.createElement('span');
+        cartBadge.style.position = 'absolute';
+        cartBadge.style.top = '0';
+        cartBadge.style.right = '0';
+        cartBadge.style.backgroundColor = '#c72092';
+        cartBadge.style.color = 'white';
+        cartBadge.style.borderRadius = '50%';
+        cartBadge.style.padding = '5px';
+        cartBadge.style.fontSize = '12px';
+        cartBadge.style.fontWeight = 'bold';
+        cartBadge.style.minWidth = '20px';
+        cartBadge.style.textAlign = 'center';
+        cartBadge.style.transform = 'translate(50%, -50%)';
+
+        cartIcon.style.position = 'relative';
+        cartIcon.appendChild(cartBadge);
+    }
+
+    cartBadge.textContent = cartCount;
+};
+
 // Function to open the cart modal and display items 
-const openCartModal = () => { 
-    const cartModal = document.getElementById('cartModal'); 
-    const cartItemsContainer = document.getElementById('cartItemsContainer'); 
+const openCartModal = () => {
+    const cartModal = document.getElementById('cartModal');
+    const cartItemsContainer = document.getElementById('cartItemsContainer');
     cartItemsContainer.innerHTML = '';  // Clear the cart items container 
- 
+
     // Check if the cart is empty and display accordingly 
-    if (cart.length === 0) { 
-        cartItemsContainer.innerHTML = '<p>Your cart is empty.</p>'; 
-    } else { 
+    if (cart.length === 0) {
+        cartItemsContainer.innerHTML = '<p>Your cart is empty.</p>';
+    } else {
         // Loop through the cart items and display them 
-        cart.forEach(item => { 
-            const cartItem = document.createElement('div'); 
-            cartItem.classList.add('cart-item'); 
+        cart.forEach(item => {
+            const cartItem = document.createElement('div');
+            cartItem.classList.add('cart-item');
             cartItem.innerHTML = ` 
                 <div class="cart-item-name">${item.name}</div> 
                 <div class="cart-item-price">${item.price}</div> 
                 <button class="btn remove-cart-item" data-id="${item.id}">Remove</button> 
-            `; 
-            cartItemsContainer.appendChild(cartItem); 
-        }); 
-    } 
- 
+            `;
+            cartItemsContainer.appendChild(cartItem);
+        });
+    }
+
     // Show the cart modal 
-    cartModal.style.display = "block"; 
-}; 
- 
+    cartModal.style.display = "block";
+};
+
 // Function to remove an item from the cart 
-const removeCartItem = (productId) => { 
+const removeCartItem = (productId) => {
     // Filter out the item with the given productId 
-    cart = cart.filter(item => item.id !== productId);  
-    cartCount = cart.length; 
+    cart = cart.filter(item => item.id !== productId);
+    cartCount = cart.length;
     updateCartCounter();  // Update the cart icon count 
     openCartModal(); // Refresh the modal 
-}; 
- 
+};
 
- 
+
+
 // Initialize the cart functionality when the DOM is fully loaded 
 document.addEventListener('DOMContentLoaded', () => {
     let cartItems = []; // Store items in the cart
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div style="flex-grow: 1;">
                         <h4>${item.name}</h4>
                         <p>${item.price} x 
-                            <input type="number" class="quantity-input" value="${item.quantity}" min="1" data-index="${index}">
+                            <input type="number" class="quantity-input" value="${item.quantity}" min="1" data-index="${index}" oninput="restrictNegativeAndZero(this)" onblur="ensureValidValue(this)">
                         </p>
                     </div>
                     <button class="btn delete-item" data-index="${index}" style="margin-left: 10px;">Delete</button>
@@ -101,6 +101,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 cartContainer.appendChild(cartItem);
             });
+
+            // Function to restrict typing negative and zero values
+            function restrictNegativeAndZero(input) {
+                // Allow only numbers greater than 0
+                let value = input.value;
+
+                // Remove non-numeric characters and check for negative signs
+                value = value.replace(/[^0-9]/g, ''); // Remove anything that's not a number
+
+                // If the value is 0, replace it with 1 (to prevent typing zero)
+                if (value === "0") {
+                    value = "1";
+                }
+
+                input.value = value;
+            }
+
+            // Function to ensure the value is valid when the user finishes editing (loses focus)
+            function ensureValidValue(input) {
+                // Ensure that the value is at least 1
+                if (parseInt(input.value) < 1) {
+                    input.value = "1"; // Set to 1 if the value is less than 1
+                }
+            }
+
+            // Adding event listener to update cart items' quantities dynamically (if necessary)
+            document.querySelectorAll('.quantity-input').forEach(input => {
+                input.addEventListener('change', (event) => {
+                    const index = event.target.dataset.index;
+                    const newQuantity = parseInt(event.target.value) || 1;  // Default to 1 if invalid
+
+                    // Update the quantity and total price for the item
+                    cartItems[index].quantity = newQuantity;
+                    cartItems[index].totalPrice = parseFloat(cartItems[index].price.replace('₱', '').replace(',', '')) * newQuantity;
+
+                    updateCartModal(); // Refresh the cart modal
+                    updateCartBadge(); // Update the cart badge
+                });
+            });
+
 
             // Add event listeners for quantity inputs
             document.querySelectorAll('.quantity-input').forEach(input => {
@@ -192,5 +232,5 @@ document.addEventListener('DOMContentLoaded', () => {
             updateCartBadge(); // Update the badge to show 0 items
         }
     });
-    
+
 });
