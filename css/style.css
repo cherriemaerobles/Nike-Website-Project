@@ -171,7 +171,7 @@ header {
 }
 
 .navbar-links a:hover {
-  color: #c72092;
+  color: #3B5998;
 }
 .dropdown {
   position: relative;
@@ -393,14 +393,14 @@ footer .social-icons a {
 }
 
 .action-buttons i:hover {
-  color: #c72092;
+  color: #3B5998;
 }
 
 .cart-badge {
   position: absolute;
   top: -5px;
   right: -10px;
-  background-color: #c72092;
+  background-color: #3B5998;
   color: white;
   font-size: 12px;
   font-weight: bold;
@@ -414,7 +414,7 @@ footer .social-icons a {
   position: absolute;
   top: -5px;
   right: -10px;
-  background-color: #c72092;
+  background-color: #3B5998;
   color: white;
   font-size: 12px;
   font-weight: bold;
@@ -492,7 +492,7 @@ footer .social-icons a {
   position: absolute;
   top: -5px;
   right: -10px;
-  background-color: #c72092;
+  background-color: #3B5998;
   color: white;
   font-size: 12px;
   font-weight: bold;
