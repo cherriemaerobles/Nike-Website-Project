@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div style="flex-grow: 1;">
                         <h4>${item.name}</h4>
                         <p>${item.price} x 
-                            <input type="number" class="quantity-input" value="${item.quantity}" min="1" data-index="${index}">
+                            <input type="number" class="quantity-input" value="${item.quantity}" min="1" data-index="${index}" oninput="restrictNegativeAndZero(this)" onblur="ensureValidValue(this)">
                         </p>
                     </div>
                     <button class="btn delete-item" data-index="${index}" style="margin-left: 10px;">Delete</button>
@@ -101,6 +101,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 cartContainer.appendChild(cartItem);
             });
+
+            // Function to restrict typing negative and zero values
+            function restrictNegativeAndZero(input) {
+                // Allow only numbers greater than 0
+                let value = input.value;
+
+                // Remove non-numeric characters and check for negative signs
+                value = value.replace(/[^0-9]/g, ''); // Remove anything that's not a number
+
+                // If the value is 0, replace it with 1 (to prevent typing zero)
+                if (value === "0") {
+                    value = "1";
+                }
+
+                input.value = value;
+            }
+
+            // Function to ensure the value is valid when the user finishes editing (loses focus)
+            function ensureValidValue(input) {
+                // Ensure that the value is at least 1
+                if (parseInt(input.value) < 1) {
+                    input.value = "1"; // Set to 1 if the value is less than 1
+                }
+            }
 
             // Add event listeners for quantity inputs
             document.querySelectorAll('.quantity-input').forEach(input => {
