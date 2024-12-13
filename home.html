@@ -61,7 +61,7 @@
               <i class="fa-solid fa-cart-shopping">                
                   <span id="cartBadge">0</span> <!-- Cart Badge (will display the number of items) -->
               </i> <!-- Cart Icon -->
-              <button class="button-user">
+              <button class="button-user" onclick="logout()">
                 <i class="fa-solid fa-user"></i>
             </button><!-- User Icon -->
           </div>
@@ -179,6 +179,11 @@
         function functio(small) {
           var full = document.getElementById("imagebox");
           full.src = small.src;
+        }
+        function logout() {
+            // Add your logout logic here, e.g., clearing session storage or redirecting
+            alert('You have been logged out!');
+            window.location.href = 'index.html'; // Redirect to login page
         }
       </script>
     </div>
