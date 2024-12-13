@@ -623,7 +623,6 @@ header {
 
 .products {
   width: 100%;
-  height: 140vh;
   padding: 25px 0;
 }
 
@@ -631,36 +630,17 @@ header {
   width: 90%;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 25px 0;
-  margin-left: 18%;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
   margin-top: 5%;
 }
 
 .products .box .card {
-  width: 290px;
-  height: 440px;
   box-shadow: 0 0 8px #000000;
   border-radius: 5px;
   text-align: center;
   padding: 10px 20px;
   background: #f6f6f6;
-}
-
-.products .box .card .small_card {
-  display: flex;
-  flex-flow: column;
-  position: absolute;
-  margin: 10px 0;
-  transform: translateX(-20px);
-  transition: 0.3s;
-  opacity: 0;
-}
-
-.products .box .card:hover .small_card {
-  transform: translateX(2px);
-  cursor: pointer;
-  opacity: 1;
 }
 
 .products .box .card .image {
@@ -677,21 +657,6 @@ header {
 
 .products .box .card:hover .image img {
   transform: scale(1.1);
-}
-
-.products .box .card .small_card i {
-  width: 45px;
-  height: 45px;
-  border-radius: 5px;
-  font-size: 18px;
-  margin: 2px 0;
-  line-height: 40px;
-  border: 2px solid #999999;
-  transition: 0.2s;
-}
-
-.products .box .card .small_card i:hover {
-  color: #000000;
 }
 
 .products .box .card .products_text h2 {
@@ -718,16 +683,8 @@ header {
   background: black;
   color: white;
 }
-.products .box .card .products_text .btn2 {
-  text-decoration: none;
-  padding: 10px 20px;
-  background: #3b5998;
-  color: white;
-}
+
 .products .box .card .products_text .btn:hover {
-  background-color: #ffd700;
-}
-.products .box .card .products_text .btn2:hover {
   background-color: #ffd700;
 }
 
@@ -779,56 +736,93 @@ header {
   overflow: hidden;
   font-family: "Poppins", sans-serif;
 }
-/*About*/
 
+/* Responsive Design */
+
+@media (max-width: 768px) {
+  .products .box {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+  }
+
+  .featured-box,
+  .featured-box2 {
+    height: 150px;
+  }
+
+  .featured-box h1,
+  .featured-box h2,
+  .featured-box2 h1,
+  .featured-box2 h2 {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .products .box {
+    grid-template-columns: 1fr;
+  }
+
+  .products .box .card {
+    padding: 10px;
+  }
+
+  .featured-box h1,
+  .featured-box h2,
+  .featured-box2 h1,
+  .featured-box2 h2 {
+    font-size: 16px;
+  }
+}
+
+/*About*/
+/* Responsive About Section */
 .about {
   width: 100%;
-  height: 100vh;
   padding: 35px 0;
+  height: auto;
 }
 
 .about h1 {
-  font-size: 60px;
+  font-size: 40px;
   margin-top: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
   background: black;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-transform: uppercase;
 }
+
 .about .about_main {
   position: relative;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   display: flex;
-  justify-content: space-around;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
+  gap: 20px;
+  padding: 20px;
 }
 
 .about .about_main .about_image {
   display: flex;
-  margin-top: 50px;
-  margin-left: 10%;
+  flex-direction: column;
+  align-items: center;
 }
 
 .about .about_main .about_image .about_small_image {
   display: flex;
-  flex-direction: column;
-  position: relative;
-  top: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
 }
 
 .about .about_main .about_image .about_small_image img {
-  height: 92px;
-  margin: 5px 0;
+  height: 75px;
+  margin: 5px;
   cursor: pointer;
   background: black;
-  display: block;
   border-radius: 6px;
-  padding: 5px 5px;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
   opacity: 0.8;
   transition: 0.3s;
@@ -839,34 +833,78 @@ header {
 }
 
 .about .about_main .image_contaner {
-  padding: 10px;
   display: flex;
+  justify-content: center;
+  padding: 10px;
 }
 
 .about .about_main .image_contaner img {
+  max-width: 100%;
+  height: auto;
   border: 3px solid black;
   border-radius: 20px;
-  height: 430px;
-  padding: 30px;
   box-shadow: 0 0 8px #6d6d6d;
 }
 
 .about .about_main .about_text {
-  margin-top: 45px;
-  margin-right: 10%;
+  margin-top: 20px;
+  padding: 15px;
+  max-width: 600px;
+  text-align: justify;
 }
 
 .about .about_main .about_text p {
   background: black;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  line-height: 22px;
-  width: 600px;
-  text-align: justify;
-  padding: 25px 30px;
+  line-height: 1.6;
   border: 2px solid black;
   border-radius: 20px;
   box-shadow: 0 0 8px black;
+  padding: 20px;
+}
+
+/* Media Queries for Smaller Screens */
+@media (max-width: 768px) {
+  .about h1 {
+    font-size: 32px;
+  }
+
+  .about .about_main {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .about .about_main .about_image .about_small_image img {
+    height: 60px;
+  }
+
+  .about .about_main .image_contaner img {
+    height: auto;
+  }
+
+  .about .about_main .about_text p {
+    font-size: 14px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about h1 {
+    font-size: 24px;
+  }
+
+  .about .about_main {
+    padding: 5px;
+  }
+
+  .about .about_main .about_image .about_small_image img {
+    height: 50px;
+  }
+
+  .about .about_main .about_text p {
+    font-size: 12px;
+  }
 }
 
 /*TEAM*/
@@ -878,15 +916,17 @@ header {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding: 20px;
 }
 
 .heading {
-  font-size: 1.3rem;
+  font-size: 1.8rem;
   color: #2c2c2c;
   font-weight: 500;
   display: flex;
   align-items: center;
   margin: 20px;
+  text-align: center;
 }
 
 .heading i {
@@ -901,9 +941,18 @@ header {
   margin: 0 20px;
 }
 
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
 .box1 {
-  width: 266px;
-  height: 340px;
+  width: 90%;
+  max-width: 300px;
+  height: auto;
   background-color: #000000;
   display: flex;
   flex-direction: column;
@@ -911,18 +960,11 @@ header {
   justify-content: space-between;
   padding: 20px;
   border-radius: 10px;
-  margin: 20px;
   position: relative;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.top-bar {
+.box1 .top-bar {
   width: 50%;
   height: 4px;
   position: absolute;
@@ -933,18 +975,15 @@ header {
   border-radius: 0 0 10px 10px;
 }
 
-.verify {
-  color: #333;
-}
-
-.details {
+.box1 .details {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  text-align: center;
 }
 
-.details img {
+.box1 .details img {
   width: 100px;
   height: 100px;
   border-radius: 50%;
@@ -953,49 +992,88 @@ header {
   object-position: center;
 }
 
-.details p {
-  font-size: 0.8rem;
+.box1 .details p {
+  font-size: 0.9rem;
   color: #7a7a7a;
   margin: 5px 0;
 }
 
-.btn1 {
+.box1 strong {
+  color: white;
+  margin: 10px 0;
+  font-size: 1.1rem;
+}
+
+.box1 .btn1 {
   width: 100%;
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 10px;
+  margin-top: 10px;
 }
 
-.btn1 a {
+.box1 .btn1 a {
   height: 45px;
   width: 45px;
   border-radius: 10px;
   font-size: 22px;
   line-height: 45px;
   color: #ffffff;
-}
-
-.btn1 a i {
-  padding-left: 13px;
-}
-
-.btn1 a:hover {
-  color: #fff;
-  background-color: #333;
+  background-color: #3b5998;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
   transition: all ease 0.3s;
 }
 
-.box1:hover {
-  transform: scale(1.01);
-  transition: all ease 0.1s;
+.box1 .btn1 a:hover {
+  background-color: #333;
 }
 
-@media (max-width: 612px) {
+.box1:hover {
+  transform: scale(1.03);
+  transition: all ease 0.3s;
+}
+
+@media (max-width: 768px) {
   .box1 {
-    flex-grow: 0.7;
+    width: 80%;
+    padding: 15px;
+  }
+
+  .box1 .details img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .box1 strong {
+    font-size: 1rem;
+  }
+
+  .box1 .details p {
+    font-size: 0.8rem;
+  }
+
+  .btn1 a {
+    height: 40px;
+    width: 40px;
+    font-size: 20px;
+    line-height: 40px;
   }
 }
+
+@media (max-width: 480px) {
+  .heading {
+    font-size: 1.5rem;
+  }
+
+  .box1 {
+    width: 100%;
+  }
+}
+
 
 /*Footer*/
 footer {
