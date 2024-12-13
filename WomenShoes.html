@@ -464,6 +464,8 @@
         </div>
     </div>
 
+
+
     <!-- Cart Modal -->
     <div id="cartModal" class="modal">
         <div class="modal-content">
@@ -702,51 +704,72 @@
     const heartIcon = document.querySelector('.fa-heart');
     heartIcon.addEventListener('click', displayFavorites);
 
-    const favoritesModal = document.getElementById('favoritesModal');
+        const favoritesModal = document.getElementById('favoritesModal');
     const favoritesContainer = document.getElementById('favoritesContainer');
     const favoritesClose = document.getElementById('favoritesClose');
 
-    // Open the favorites modal when the heart icon is clicked
-    heartIcon.addEventListener('click', () => {
-        // Clear the container before adding items
+    // Function to update favorites modal content
+    const updateFavoritesModal = () => {
         favoritesContainer.innerHTML = '';
 
-    if (favoritedProducts.length === 0) {
-        favoritesContainer.innerHTML = '<p>No favorites yet.</p>';
-    } else {
-        favoritedProducts.forEach(productId => {
-            const product = products.find(p => p.id === productId);
-            const favoriteItem = document.createElement('div');
-            favoriteItem.style.display = 'flex';
-            favoriteItem.style.alignItems = 'center';
-            favoriteItem.style.marginBottom = '15px';
+        if (favoritedProducts.length === 0) {
+            favoritesContainer.innerHTML = '<p>No favorites yet.</p>';
+        } else {
+            favoritedProducts.forEach(productId => {
+                const product = products.find(p => p.id === productId);
+                const favoriteItem = document.createElement('div');
+                favoriteItem.style.display = 'flex';
+                favoriteItem.style.alignItems = 'center';
+                favoriteItem.style.marginBottom = '15px';
 
-            favoriteItem.innerHTML = `
-                <img src="${product.image}" alt="${product.name}" style="width: 60px; height: 60px; object-fit: cover; margin-right: 10px; border-radius: 5px;">
-                <div>
-                    <h4 style="margin: 0;">${product.name}</h4>
-                    <p style="margin: 0;">${product.price}</p>
-                </div>
-            `;
+                favoriteItem.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}" style="width: 60px; height: 60px; object-fit: cover; margin-right: 10px; border-radius: 5px;">
+                    <div style="flex: 1;">
+                        <h4 style="margin: 0;">${product.name}</h4>
+                        <p style="margin: 0;">${product.price}</p>
+                    </div>
+                    <button class="remove-favorite" data-id="${product.id}" style="background-color: red; color: white; border: none; border-radius: 5px; padding: 5px 10px; cursor: pointer;">Remove</button>
+                `;
 
-            favoritesContainer.appendChild(favoriteItem);
-        });
-    }
+                favoritesContainer.appendChild(favoriteItem);
+            });
 
-    favoritesModal.style.display = 'block';
-});
+            // Attach event listeners to remove buttons
+            document.querySelectorAll('.remove-favorite').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const productId = event.target.dataset.id;
 
-    // Close the favorites modal when the close button is clicked
+                    // Remove product from favoritedProducts array
+                    const productIndex = favoritedProducts.indexOf(productId);
+                    if (productIndex !== -1) {
+                        favoritedProducts.splice(productIndex, 1); // Remove product
+                    }
+
+                    // Refresh the favorites modal
+                    updateFavoritesModal();
+                });
+            });
+        }
+    };
+
+    // Open the favorites modal
+    heartIcon.addEventListener('click', () => {
+        updateFavoritesModal(); // Update the modal with current favorites
+        favoritesModal.style.display = 'block';
+    });
+
+    // Close the favorites modal
     favoritesClose.addEventListener('click', () => {
         favoritesModal.style.display = 'none';
     });
 
-    // Close the modal if the user clicks outside of the modal content
+    // Close modal when clicking outside the modal
     window.addEventListener('click', (event) => {
         if (event.target === favoritesModal) {
             favoritesModal.style.display = 'none';
         }
     });
+
 
     // ABOUT CART MODAL ICON
 
