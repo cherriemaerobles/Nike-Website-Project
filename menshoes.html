@@ -3,14 +3,394 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Men's Shoes</title>
-    <link rel="stylesheet" href="menstyle.css">
+    <title>Women's Shoes</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-   </head>
-<script src="men.js"></script>
+    <style>
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
+        header {
+            background-color: white;
+            padding: 10px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 30px; 
+        }
+
+        .navbar-links a {
+            color: black;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase; 
+        }
+
+        .navbar-links a:hover {
+            color: #c72092;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .action-buttons button {
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: black;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .action-buttons i {
+            transition: color 0.2s;
+        }
+
+        .action-buttons i:hover {
+            color: gray; 
+        }
+
+        .box-container {
+            padding: 20px 20px;
+            text-align: center;
+        }
+
+        .box:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transform: scale(1.05); 
+            background-color: white;
+        }
+
+        .containerProduct .row {
+            justify-content: center;
+        }
+
+        .box {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 10px;
+            text-align: center;
+        }
+
+        .box img {
+            width: 100%;
+            height: auto;
+            max-height: 150px;
+            object-fit: contain;
+        }
+
+        .box h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 10px 0;
+        }
+
+        .price {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .btn.add-cart {
+            font-size: 1rem;
+            padding: 10px 20px;
+            background-color: #000;
+            color: #fff;
+            border-radius: 5px;
+            border: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn.add-cart:hover {
+            background-color: #F6E96B;
+            color: #000;
+        }
+
+        .btn.add-to-cart-modal {
+            font-size: 1rem;
+            padding: 10px 20px;
+            background-color: #000;
+            color: #fff;
+            border-radius: 5px;
+            border: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn.add-to-cart-modal:hover {
+            background-color: #F6E96B;
+            color: #000;
+        }
+
+        .btn.checkout {
+            font-size: 1rem;
+            padding: 10px 20px;
+            background-color: #000;
+            color: #fff;
+            border-radius: 5px;
+            border: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn.checkout:hover {
+            background-color: #F6E96B;
+            color: #000;
+        }
+
+        .btn.add-fav {
+            font-size: 1rem;
+            padding: 10px 20px;
+            background-color: #3B5998;
+            color: #fff;
+            border-radius: 5px;
+            border: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn.add-fav:hover {
+            background-color: #F6E96B;
+            color: #000;
+        }
+
+        .btn.view-details {
+            font-size: 1rem;
+            padding: 10px 20px;
+            background-color: #3B5998;
+            color: #fff;
+            border-radius: 5px;
+            border: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            margin-top: 10px;
+            margin-left: 50px;
+        }
+
+        .btn.view-details:hover {
+            background-color: #F6E96B;
+            color: #000;
+        }
+
+        footer {
+            background-color: #000;
+            color: white;
+            padding: 20px 0;
+        }
+
+        footer .social-icons a {
+            margin: 0 10px;
+            color: white;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 5px;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        /* CART CSS */
+        .action-buttons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .action-buttons i {
+            font-size: 24px; /* Size of the icon */
+            position: relative;
+            color: black;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .action-buttons i:hover {
+            color: #c72092;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background-color: #c72092;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 50%;
+            padding: 2px 6px;
+            text-align: center;
+            min-width: 20px;
+        }
+
+        .favorite-badge {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background-color: #c72092;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 50%;
+            padding: 2px 6px;
+            text-align: center;
+            min-width: 20px;
+        }
+
+        #favoritesModal .modal-content {
+            width: 80%;
+            max-width: 500px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            position: relative;
+            margin: 10% auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #favoritesModal .close {
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #888;
+        }
+
+        #favoritesModal .close:hover {
+            color: black;
+        }
+
+        #favoritesContainer img {
+            border-radius: 8px;
+            margin-right: 15px;
+        }
+
+        /* Quantity */
+        .product-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Adjust spacing between the quantity input and the button */
+        }
+
+        .quantity-input {
+            width: 50px; /* Small width for the input */
+            height: 40px; /* Adjust height to match the button */
+            text-align: center; /* Align the value in the center */
+            font-size: 14px; /* Small font size */
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .add-to-cart-btn {
+            padding: 8px 16px;
+            font-size: 14px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* CART */
+        .cart-icon {
+            position: relative;
+            font-size: 24px;
+            color: #333;
+        }
+        #cartBadge {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background-color: #c72092;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 50%;
+            padding: 2px 6px;
+            text-align: center;
+            min-width: 20px;
+        }
+        .cart-quantity {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background-color: red;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 50%;
+            padding: 4px 6px;
+            min-width: 18px;
+            text-align: center;
+        }
+
+        /* SUBTITLE CSS */
+        .navbar-subtitle {
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-top: 100px;
+            margin-bottom: 0px; /* Reduced space below the subtitle */
+            color: #333;
+            font-family: 'Poppins', sans-serif;
+        }
+
+
+    </style>
+
+    <script src="cart.js"></script>
 
 </head>
 <body>
@@ -30,14 +410,17 @@
                 <i class="fa-solid fa-heart">
                     <span class="favorite-badge">0</span> <!-- Badge showing the favorite count -->
                 </i>
-                <i class="fa-solid fa-cart-shopping"></i> <!-- Cart Icon -->
+                <i class="fa-solid fa-cart-shopping">                
+                    <span id="cartBadge">0</span> <!-- Cart Badge (will display the number of items) -->
+                </i> <!-- Cart Icon -->
                 <i class="fa-solid fa-user"></i> <!-- User Icon -->
             </div>
             
     </header>
 
+    <!-- NAVBAR SUBTITLE -->
     <div class="navbar-subtitle">
-        <h2>Men's Shoes</h2>
+        <h2>Women's Shoes</h2>
     </div>
     <section class="products-container" id="Products">
         <!-- Product boxes go here -->
@@ -52,21 +435,26 @@
         </div>
     </div>
 
-    <!-- Product Description Modal -->
+<!-- Product Description Modal -->
     <div id="productModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2 id="productTitle"></h2>
             <div id="productDescription"></div>
             <div class="price" id="productPrice"></div>
-            <button class="btn add-cart">Add to Cart</button>
+            <!-- Add Quantity Input for Modal -->
+            <input type="number" class="quantity-input" value="1" min="1" id="quantity-modal" oninput="restrictNegativeAndZero(this)" onblur="ensureValidValue(this)">
+            <!-- Use a different class name for the button in the modal -->
+            <button class="btn add-to-cart-modal">Add to Cart</button>
             <br>
             <button class="btn add-fav">Favorite</button>
         </div>
     </div>
 
-       <!-- Favorites Modal -->
-       <div id="favoritesModal" class="modal">
+
+
+    <!-- Favorites Modal -->
+    <div id="favoritesModal" class="modal">
         <div class="modal-content">
             <span class="close" id="favoritesClose">&times;</span>
             <h2>Favorite Products</h2>
@@ -76,21 +464,23 @@
         </div>
     </div>
 
+
+
     <!-- Cart Modal -->
     <div id="cartModal" class="modal">
         <div class="modal-content">
             <span class="close" id="cartClose">&times;</span>
             <h2>Cart</h2>
             <div id="cartContainer">
-                <!-- Cart products will be dynamically inserted here -->
+                <!-- Items will be dynamically added here -->
             </div>
             <div style="margin-top: 20px;">
                 <strong>Total:</strong> <span id="cartTotal">₱0</span>
             </div>
-            <buttons id="checkoutButton" class="btn add-cart" style="margin-top: 20px; width: 100%;">Checkout</buttons>
+            <button id="checkoutButton" class="btn checkout" style="margin-top: 20px; width: 100%;">Checkout</button>
         </div>
     </div>
-
+    
 
     <!-- Footer -->
     <footer>
@@ -109,63 +499,63 @@
         const products = [
             {
                 id: 1,
-                name: "Nike Air Force 1 '07",
-                image: "Shoes/men shoes 1.jpg",
-                price: "₱6,195",
-                description: "The radiance lives on with the b-ball original. Crossing hardwood comfort with off-court flair, it puts a fresh spin on what you know best: '80s-inspired construction, bold details and nothin'-but-net style."
+                name: "Nike Air Max 90",
+                image: "Shoes/women shoes 1.jpg",
+                price: "₱4,739",
+                description: "The Air Max 90 LV8 takes your favourite silhouette to the next level with stacked Nike Air units. Not only do you get extra cushioning, but you get extra height, creating the perfect platform that's easy to style. <br><br> <strong>Colour Shown:</strong> Red Stardust <br><strong>Style:</strong> HF0782-101 <br><strong>Country/Region of Origin:</strong> Vietnam"
             },
             {
                 id: 2,
-                name: "Nike Court Vision Low",
-                image: "Shoes/men shoes 2.jpg",
-                price: "₱3,695",
-                description: "A classic remixed, its crisp upper and stitched overlays keep the soul of the original style. The plush, low-cut collar keeps it sleek and comfortable for your world."
+                name: "Nike Court Legacy",
+                image: "Shoes/women shoes 2.jpg",
+                price: "₱1,299",
+                description: "The Nike Court Legacy is a classic, re-imagined with a timeless design that blends style and comfort for everyday wear.  <br><br> <strong>Colour Shown:</strong> Red Stardust <br><strong>Style:</strong> HF0782-101 <br><strong>Country/Region of Origin:</strong> Vietnam"
             },
             {
                 id: 3,
-                name: "Air Jordan 3 Retro",
-                image: "Shoes/men shoes 3.jpg",
-                price: "₱11,295",
-                description: "Quality leather in the upper—with that luxurious elephant print texture—is combined with visible Air in the sole to make a comfortable, everyday icon. Fire-red details burn through, giving you one hot look."
+                name: "Nike Air Max 97",
+                image: "Shoes/women shoes 3.jpg",
+                price: "₱6,179",
+                description: "The Nike Air Max 97 gives you a sleek, modern look with full-length visible Air cushioning that delivers all-day comfort.  <br><br> <strong>Colour Shown:</strong> Red Stardust <br><strong>Style:</strong> HF0782-101 <br><strong>Country/Region of Origin:</strong> Vietnam"
             },
             {
                 id: 4,
-                name: "Kobe 9 Elite Low Protro",
-                image: "Shoes/men shoes 4.jpg",
-                price: "₱11,295",
-                description: "The Kobe 9 Elite Protro 'Halo' is a symbol of Kobe's dedication to always getting better—and it's our challenge to hoopers to push your game to new levels. Proving that even a masterpiece can be improved on, the addition of Nike React in the midsole means greater responsiveness that'll have you feeling connected to the court."
+                name: "Nike Dunk Low Twist",
+                image: "Shoes/women shoes 4.jpg",
+                price: "₱3,719",
+                description: "The Nike Dunk Low Twist is a modern twist on the classic Dunk silhouette, delivering a fresh look and comfortable feel.  <br><br> <strong>Colour Shown:</strong> Red Stardust <br><strong>Style:</strong> HF0782-101 <br><strong>Country/Region of Origin:</strong> Vietnam"
             },
             {
                 id: 5,
-                name: "Nike V2K Run",
-                image: "Shoes/men shoes 5.jpg",
-                price: "₱6,895",
+                name: "Air Jordan 1 Mid",
+                image: "Shoes/women shoes 5.jpg",
+                price: "₱4,259",
                 description: "The Air Jordan 1 Mid combines heritage style with modern details, offering the perfect blend of comfort and style.  <br><br> <strong>Colour Shown:</strong> Red Stardust <br><strong>Style:</strong> HF0782-101 <br><strong>Country/Region of Origin:</strong> Vietnam"
             },
             {
                 id: 6,
                 name: "Nike Air Max Plus",
-                image: "Shoes/men shoes 6.jpg",
+                image: "Shoes/women shoes 6.jpg",
                 price: "₱5,639",
-                description: "he V2K remasters everything you love about the Vomero in a look pulled straight from an early '00s running catalogue. Layer up in a mixture of flashy metallics, referential plastic details and a midsole with a perfectly vintage aesthetic.  <br><br> <strong>Colour Shown:</strong> Red Stardust <br><strong>Style:</strong> HF0782-101 <br><strong>Country/Region of Origin:</strong> Vietnam"
+                description: "The Nike Air Max Plus features a stylish, unique design with responsive cushioning for long-lasting comfort.  <br><br> <strong>Colour Shown:</strong> Red Stardust <br><strong>Style:</strong> HF0782-101 <br><strong>Country/Region of Origin:</strong> Vietnam"
             },
             {
                 id: 7,
-                name: "Sabrina 2 EP",
-                image: "Shoes/men shoes 7.jpg",
-                price: "₱7,395",
-                description: "Our newest Cushlon foam helps keep you fresh, Air Zoom cushioning adds the pop and sticky traction helps you create that next-level distance. Sabrina's handed you the tools. Time to go to work. With its extra-durable rubber outsole, this version gives you traction for outdoor courts.  <br><br> <strong>Colour Shown:</strong> Red Stardust <br><strong>Style:</strong> HF0782-101 <br><strong>Country/Region of Origin:</strong> Vietnam"
+                name: "Air Jordan 1 Elevate",
+                image: "Shoes/women shoes 7.png",
+                price: "₱4,259",
+                description: "The Air Jordan 1 Elevate brings you a sleek and stylish update to the classic silhouette, designed for all-day comfort and support.  <br><br> <strong>Colour Shown:</strong> Red Stardust <br><strong>Style:</strong> HF0782-101 <br><strong>Country/Region of Origin:</strong> Vietnam"
             },
             {
                 id: 8,
-                name: "Air Foamposite One",
-                image: "Shoes/men shoes 8.jpg",
-                price: "₱12,295",
-                description: "Rare, classic and way ahead of its time, it's a testament to Penny Hardaway's unforgettable game—and one of the boldest looks to move off court. The striking Metallic Copper colourway brings the heat, while its distinctive liquid-like design boosts the cool factor. The finishing touch? Penny's signature 1 cent logo delivers the slick assist.  <br><br> <strong>Colour Shown:</strong> Red Stardust <br><strong>Style:</strong> HF0782-101 <br><strong>Country/Region of Origin:</strong> Vietnam"
+                name: "Nike Air Max Plus Plus",
+                image: "Shoes/women shoes 8.png",
+                price: "₱5,939",
+                description: "Nike Air Max Plus brings an iconic, sporty look with responsive cushioning and a durable build for everyday wear.  <br><br> <strong>Colour Shown:</strong> Red Stardust <br><strong>Style:</strong> HF0782-101 <br><strong>Country/Region of Origin:</strong> Vietnam"
             }
         ];
 
-        const productCardsContainer = document.getElementById('product-cards-container');
+    const productCardsContainer = document.getElementById('product-cards-container');
     const modal = document.getElementById('productModal');
     const closeModal = document.querySelector('.close');
 
@@ -179,27 +569,53 @@
     };
 
     const displayFavorites = () => {
-        alert("Favorite Products:\n" + favoritedProducts.map(id => {
-            const product = products.find(p => p.id === id);
-            return product ? product.name : '';
-        }).join('\n') || "No favorites yet!");
-    };
-
+    const favoriteList = favoritedProducts.map(id => {
+        const product = products.find(p => p.id === id);
+        return product ? product.name : '';
+    }).join('\n') || "No favorites yet!";
+    
+    console.log("Favorite Products:\n" + favoriteList);
+};
     // Create product cards dynamically
     products.forEach((product, index) => {
-        const productCard = document.createElement('div');
-        productCard.classList.add('col-md-4', 'col-lg-3');
-        productCard.innerHTML = `
-            <div class="box">
-                <img src="${product.image}" alt="${product.name}">
-                <h3>${product.name}</h3>
-                <div class="price">${product.price}</div>
-                <button class="btn add-cart">Add to Cart</button>
-                <button class="btn view-details" data-index="${index}">Details</button>
-            </div>
-        `;
-        productCardsContainer.appendChild(productCard);
-    });
+    const productCard = document.createElement('div');
+    productCard.classList.add('col-md-4', 'col-lg-3');
+    productCard.innerHTML = `
+        <div class="box">
+            <img src="${product.image}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <div class="price">${product.price}</div>
+            <input type="number" class="quantity-input" value="1" min="1" id="quantity-${product.id}" oninput="restrictNegativeAndZero(this)" onblur="ensureValidValue(this)">
+            <button class="btn add-cart" data-index="${index}">Add to Cart</button>
+            <button class="btn view-details" data-index="${index}">Details</button>
+        </div>
+    `;
+    productCardsContainer.appendChild(productCard);
+});
+
+    // Function to restrict typing negative and zero values
+    function restrictNegativeAndZero(input) {
+        // Allow only numbers greater than 0
+        let value = input.value;
+        
+        // Remove non-numeric characters and check for negative signs
+        value = value.replace(/[^0-9]/g, ''); // Remove anything that's not a number
+        
+        // If the value is 0, replace it with 1 (to prevent typing zero)
+        if (value === "0") {
+        value = "1";
+        }
+
+        input.value = value;
+    }
+
+    // Function to ensure the value is valid when the user finishes editing (loses focus)
+    function ensureValidValue(input) {
+        // Ensure that the value is at least 1
+        if (parseInt(input.value) < 1) {
+        input.value = "1"; // Set to 1 if the value is less than 1
+        }
+    }
 
     // Show product details in the modal when the Details button is clicked
     document.querySelectorAll('.btn.view-details').forEach(button => {
@@ -209,7 +625,7 @@
 
             // Show the product details inside the modal
             document.getElementById('productTitle').textContent = product.name;
-            document.getElementById('productDescription').innerHTML = product.description;
+            document.getElementById('productDescription').innerHTML = product.description || 'No description available';
             document.getElementById('productPrice').textContent = product.price;
 
             // Show the modal
@@ -228,13 +644,54 @@
                 updateFavoriteCounter(); // Update the favorite count display
                 alert("Product added to favorites!");
             };
+
+            // Add functionality for the Add to Cart button inside the modal
+            const addToCartButton = document.querySelector('.btn.add-to-cart-modal');
+            addToCartButton.onclick = () => {
+                const quantityInput = document.getElementById('quantity-modal');
+                const quantity = parseInt(quantityInput.value) || 1; // Default to 1 if invalid value
+
+                // Create the cart item
+                const cartItem = {
+                    ...product,
+                    quantity: quantity,
+                    totalPrice: parseFloat(product.price.replace('₱', '').replace(',', '')) * quantity
+                };
+
+                // Check if the product is already in the cart
+                const existingItemIndex = cartItems.findIndex(item => item.id === product.id);
+                if (existingItemIndex !== -1) {
+                    // Update the quantity and total price if the product is already in the cart
+                    cartItems[existingItemIndex].quantity += quantity;
+                    cartItems[existingItemIndex].totalPrice = cartItems[existingItemIndex].quantity * parseFloat(product.price.replace('₱', '').replace(',', ''));
+                } else {
+                    // Add the new item to the cart if it doesn't already exist
+                const cartItem = {
+                    ...product,
+                    quantity: quantity,
+                    totalPrice: parseFloat(product.price.replace('₱', '').replace(',', '')) * quantity
+                };
+                cartItems.push(cartItem);
+                }
+
+                // Update the cart modal and cart badge
+                updateCartModal(); 
+                updateCartBadge();
+
+                // Close the modal after adding to cart
+                modal.style.display = 'none';
+            };
         });
     });
 
-    // Close the modal when the close button is clicked
-    closeModal.addEventListener('click', () => {
-        modal.style.display = "none";
+    // Modal close button functionality
+    document.querySelector('.modal .close').addEventListener('click', () => {
+        modal.style.display = 'none';  // Close the modal when the user clicks the close button
     });
+        // Close the modal when the close button is clicked
+        closeModal.addEventListener('click', () => {
+            modal.style.display = "none";
+        });
 
     // Close the modal if the user clicks outside of the modal content
     window.addEventListener('click', (event) => {
@@ -243,56 +700,76 @@
         }
     });
 
-    
     // Add click event listener to the heart icon
     const heartIcon = document.querySelector('.fa-heart');
     heartIcon.addEventListener('click', displayFavorites);
 
-    const favoritesModal = document.getElementById('favoritesModal');
+        const favoritesModal = document.getElementById('favoritesModal');
     const favoritesContainer = document.getElementById('favoritesContainer');
     const favoritesClose = document.getElementById('favoritesClose');
 
-    // Open the favorites modal when the heart icon is clicked
-    heartIcon.addEventListener('click', () => {
-        // Clear the container before adding items
+    // Function to update favorites modal content
+    const updateFavoritesModal = () => {
         favoritesContainer.innerHTML = '';
 
-    if (favoritedProducts.length === 0) {
-        favoritesContainer.innerHTML = '<p>No favorites yet.</p>';
-    } else {
-        favoritedProducts.forEach(productId => {
-            const product = products.find(p => p.id === productId);
-            const favoriteItem = document.createElement('div');
-            favoriteItem.style.display = 'flex';
-            favoriteItem.style.alignItems = 'center';
-            favoriteItem.style.marginBottom = '15px';
+        if (favoritedProducts.length === 0) {
+            favoritesContainer.innerHTML = '<p>No favorites yet.</p>';
+        } else {
+            favoritedProducts.forEach(productId => {
+                const product = products.find(p => p.id === productId);
+                const favoriteItem = document.createElement('div');
+                favoriteItem.style.display = 'flex';
+                favoriteItem.style.alignItems = 'center';
+                favoriteItem.style.marginBottom = '15px';
 
-            favoriteItem.innerHTML = `
-                <img src="${product.image}" alt="${product.name}" style="width: 60px; height: 60px; object-fit: cover; margin-right: 10px; border-radius: 5px;">
-                <div>
-                    <h4 style="margin: 0;">${product.name}</h4>
-                    <p style="margin: 0;">${product.price}</p>
-                </div>
-            `;
+                favoriteItem.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}" style="width: 60px; height: 60px; object-fit: cover; margin-right: 10px; border-radius: 5px;">
+                    <div style="flex: 1;">
+                        <h4 style="margin: 0;">${product.name}</h4>
+                        <p style="margin: 0;">${product.price}</p>
+                    </div>
+                    <button class="remove-favorite" data-id="${product.id}" style="background-color: red; color: white; border: none; border-radius: 5px; padding: 5px 10px; cursor: pointer;">Remove</button>
+                `;
 
-            favoritesContainer.appendChild(favoriteItem);
-        });
-    }
+                favoritesContainer.appendChild(favoriteItem);
+            });
 
-    favoritesModal.style.display = 'block';
-});
+            // Attach event listeners to remove buttons
+            document.querySelectorAll('.remove-favorite').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const productId = event.target.dataset.id;
 
-    // Close the favorites modal when the close button is clicked
+                    // Remove product from favoritedProducts array
+                    const productIndex = favoritedProducts.indexOf(productId);
+                    if (productIndex !== -1) {
+                        favoritedProducts.splice(productIndex, 1); // Remove product
+                    }
+
+                    // Refresh the favorites modal
+                    updateFavoritesModal();
+                });
+            });
+        }
+    };
+
+    // Open the favorites modal
+    heartIcon.addEventListener('click', () => {
+        updateFavoritesModal(); // Update the modal with current favorites
+        favoritesModal.style.display = 'block';
+    });
+
+    // Close the favorites modal
     favoritesClose.addEventListener('click', () => {
         favoritesModal.style.display = 'none';
     });
 
-    // Close the modal if the user clicks outside of the modal content
+    // Close modal when clicking outside the modal
     window.addEventListener('click', (event) => {
         if (event.target === favoritesModal) {
             favoritesModal.style.display = 'none';
         }
     });
+
 
     // ABOUT CART MODAL ICON
 
@@ -301,48 +778,53 @@
     const cartContainer = document.getElementById('cartContainer');
     const cartClose = document.getElementById('cartClose');
 
-let cartItems = [];
+    let cartItems = [];
 
-    // Function to update the cart modal content
-const updateCartModal = () => {
-    cartContainer.innerHTML = '';  // Clear the previous cart items
-    let totalAmount = 0;  // Variable to keep track of the total amount
+        // Function to update the cart modal content
+    const updateCartModal = () => {
+        cartContainer.innerHTML = '';  // Clear the previous cart items
+        let totalAmount = 0;  // Variable to keep track of the total amount
 
-    if (cartItems.length === 0) {
-        cartContainer.innerHTML = '<p>No items in the cart.</p>';  // If the cart is empty
-    } else {
-        // Loop through each item in the cart and display it
-        cartItems.forEach(item => {
-            totalAmount += item.totalPrice;  // Add the item total to the totalAmount
+        if (cartItems.length === 0) {
+            cartContainer.innerHTML = '<p>No items in the cart.</p>';  // If the cart is empty
+        } else {
+            // Loop through each item in the cart and display it
+            cartItems.forEach(item => {
+                totalAmount += item.totalPrice;  // Add the item total to the totalAmount
 
-            const cartItem = document.createElement('div');
-            cartItem.style.display = 'flex';
-            cartItem.style.alignItems = 'center';
-            cartItem.style.marginBottom = '15px';
+                const cartItem = document.createElement('div');
+                cartItem.style.display = 'flex';
+                cartItem.style.alignItems = 'center';
+                cartItem.style.marginBottom = '15px';
 
-            cartItem.innerHTML = `
-                <img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; object-fit: cover; margin-right: 10px; border-radius: 5px;">
-                <div>
-                    <h4 style="margin: 0;">${item.name}</h4>
-                    <p style="margin: 0;">${item.price} x ${item.quantity}</p>
-                </div>
-            `;
+                cartItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; object-fit: cover; margin-right: 10px; border-radius: 5px;">
+                    <div>
+                        <h4 style="margin: 0;">${item.name}</h4>
+                        <p style="margin: 0;">${item.price} x ${item.quantity}</p>
+                    </div>
+                `;
 
-            cartContainer.appendChild(cartItem);  // Add the item to the cart modal
-        });
+                cartContainer.appendChild(cartItem);  // Add the item to the cart modal
+            });
+        }
+
+        // Display the overall total at the bottom
+        document.getElementById('cartTotal').textContent = `₱${totalAmount.toFixed(2)}`;  // Total of all items
+    };
+
+    // Function to update the cart icon badge to show the number of unique items (products) in the cart
+    function updateCartBadge() {
+        const cartBadge = document.getElementById('cartBadge'); // Get the cart badge element
+
+        // If the cartBadge element exists, update its text content
+        if (cartBadge) {
+            const uniqueProductCount = cartItems.length;  // The number of unique products in the cart
+            cartBadge.textContent = uniqueProductCount;  // Update the badge with the total count of unique products
+        } else {
+            console.warn("Cart badge element not found.");
+        }
     }
-
-    // Display the overall total at the bottom
-    document.getElementById('cartTotal').textContent = `₱${totalAmount.toFixed(2)}`;  // Total of all items
-};
-
-// Function to update the cart icon badge to show the number of items in the cart
-const updateCartBadge = () => {
-    const cartBadge = document.querySelector('.cart-badge');
-    const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);  // Calculate total items
-    cartBadge.textContent = totalItems;  // Update the cart icon badge
-};
-
 
     // Open the cart modal when the cart icon is clicked
     cartIcon.addEventListener('click', () => {
@@ -366,29 +848,33 @@ const updateCartBadge = () => {
     document.querySelectorAll('.btn.add-cart').forEach((button, index) => {
         button.addEventListener('click', () => {
             const quantityInput = document.getElementById(`quantity-${products[index].id}`);
-            const quantity = parseInt(quantityInput.value);
+            const quantity = parseInt(quantityInput.value) || 1; // Default to 1 if invalid value
             const product = products[index];
-            
-            // Add product to cart
+
             const cartItem = {
-                ...product,
-                quantity: quantity,
-                totalPrice: parseFloat(product.price.replace('₱', '').replace(',', '')) * quantity
-            };
+                    ...product,
+                    quantity: quantity,
+                    totalPrice: parseFloat(product.price.replace('₱', '').replace(',', '')) * quantity
+                };
 
-        // Check if the product is already in the cart
-        const existingItemIndex = cartItems.findIndex(item => item.id === product.id);
-        if (existingItemIndex !== -1) {
-            cartItems[existingItemIndex].quantity += quantity;  // Increase quantity if product already in cart
-            cartItems[existingItemIndex].totalPrice = cartItems[existingItemIndex].quantity * parseFloat(product.price.replace('₱', '').replace(',', ''));
-        } else {
-            cartItems.push(cartItem);
-        }
+            // Check if the product is already in the cart
+            const existingItemIndex = cartItems.findIndex(item => item.id === product.id);
 
-        updateCartModal();  // Update the cart modal
-        updateCartBadge();  // Update cart icon badge
+            if (existingItemIndex !== -1) {
+                // Update the quantity and total price if the product is already in the cart
+                cartItems[existingItemIndex].quantity += quantity;  // Increment quantity
+                cartItems[existingItemIndex].totalPrice = cartItems[existingItemIndex].quantity * parseFloat(product.price.replace('₱', '').replace(',', ''));
+            } else {
+                // Add the new item to the cart if it doesn't already exist
+                
+                cartItems.push(cartItem);
+            }
+
+            // Update the cart modal and cart badge
+            updateCartModal(); 
+            updateCartBadge(); // Update the cart badge with unique item count
+        });
     });
-});
 
     // validation
     const quantityInput = document.getElementById('productQuantity');
@@ -400,24 +886,25 @@ const updateCartBadge = () => {
         }
     });
 
-// Handle Cart Updates
-document.getElementById('addToCartBtn').addEventListener('click', function() {
-    const quantityInput = document.getElementById('productQuantity');
-    const cartQuantity = document.getElementById('cartQuantity');
+    // Handle Cart Updates
+    document.getElementById('addToCartBtn').addEventListener('click', function() {
+        const quantityInput = document.getElementById('productQuantity');
+        const cartQuantity = document.getElementById('cartQuantity');
 
-    // Get the current quantity value
-    const addedQuantity = parseInt(quantityInput.value) || 0;
+        // Get the current quantity value
+        const addedQuantity = parseInt(quantityInput.value) || 0;
 
-    // Get the existing quantity in the cart
-    const currentCartQuantity = parseInt(cartQuantity.textContent) || 0;
+        // Get the existing quantity in the cart
+        const currentCartQuantity = parseInt(cartQuantity.textContent) || 0;
 
-    // Update the cart quantity
-    const newCartQuantity = currentCartQuantity + addedQuantity;
-    cartQuantity.textContent = newCartQuantity;
+        // Update the cart quantity
+        const newCartQuantity = currentCartQuantity + addedQuantity;
+        cartQuantity.textContent = newCartQuantity;
 
-    // Reset the input value (optional)
-    quantityInput.value = 1;
-});
+        // Reset the input value (optional)
+        quantityInput.value = 1;
+    });
+
 </script>
 </body>
 </html>
