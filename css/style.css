@@ -173,10 +173,12 @@ header {
 .navbar-links a:hover {
   color: #3B5998;
 }
+
 .dropdown {
   position: relative;
   display: inline-block;
 }
+
 .dropdown-content {
   display: none;
   position: absolute;
@@ -185,19 +187,21 @@ header {
   box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
   z-index: 1;
 }
+
 .dropdown-content a {
   color: black;
   padding: 10px 15px;
   text-decoration: none;
   display: block;
 }
+
 .dropdown-content a:hover {
   background-color: #f1f1f1;
 }
+
 .dropdown:hover .dropdown-content {
   display: block;
 }
-
 
 .action-buttons {
   display: flex;
@@ -220,29 +224,69 @@ header {
 .action-buttons i:hover {
   color: gray;
 }
+
 .button-user {
-  background-color: #f5f5f5; /* Neutral background */
-  border: none; /* Remove border */
-  border-radius: 50%; /* Circular shape */
-  padding: 10px; /* Adjust padding for size */
-  cursor: pointer; /* Pointer cursor for interactivity */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+  background-color: #f5f5f5;
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .button-user:hover {
-  background-color: #e0e0e0; /* Slightly darker on hover */
-  transform: scale(1.1); /* Enlarge on hover */
+  background-color: #e0e0e0;
+  transform: scale(1.1);
 }
 
 .button-user:active {
-  background-color: #d0d0d0; /* Even darker when clicked */
-  transform: scale(1); /* Reset scale */
+  background-color: #d0d0d0;
+  transform: scale(1);
 }
 
 .button-user i {
-  font-size: 1.5rem; /* Adjust icon size */
-  color: #333; /* Icon color */
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.hamburger div {
+  width: 25px;
+  height: 3px;
+  background-color: black;
+}
+
+@media (max-width: 768px) {
+  .navbar-links {
+      display: none;
+      flex-direction: column;
+      background-color: white;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 20px 0;
+  }
+
+  .navbar-links.active {
+      display: flex;
+  }
+
+  .hamburger {
+      display: flex;
+  }
+
+  .action-buttons {
+      gap: 10px;
+  }
 }
 
 /*Login*/
@@ -474,49 +518,6 @@ header {
   width: 20px;
   height: 20px;
   margin-right: 10px;
-}
-
-
-/*=============== BUTTONS ===============*/
-.button {
-  display: inline-block;
-  background-color: black;
-  color: var(--title-color);
-  padding: 1rem 1.75rem;
-  border-radius: 0.5rem;
-  font-weight: var(--font-medium);
-  transition: 0.3s;
-}
-
-.button:hover {
-  background-color: #3b5998;
-  border: 2px solid #000000;
-}
-
-.button__icon {
-  font-size: 1.25rem;
-}
-
-.button--ghost {
-  border: 2px solid;
-  background-color: transparent;
-  border-radius: 3rem;
-  padding: 0.75rem 1.5rem;
-  transition: 0.5s;
-}
-
-.button--ghost:hover {
-  background: #3b5998;
-}
-
-.button--link {
-  color: var(--title-color);
-}
-
-.button--flex {
-  display: inline-flex;
-  align-items: center;
-  column-gap: 0.5rem;
 }
 
 /*Yung shoes na nalutang*/

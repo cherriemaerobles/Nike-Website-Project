@@ -24,23 +24,28 @@
 <body>
   <!--==================== HEADER ====================-->
   <header>
-    <div class="navbar-container" id="myTopnav">
-      <div class="logo">
-        <h1>Nike</h1>
-      </div>
-      <div class="navbar-links">
-        <a href="#home">Home</a>
-        <a href="#About">About</a>
-        <div class="dropdown">
-          <a href="#Products">Categories</a>
-          <div class="dropdown-content">
-            <a href="WomenShoes.html">Women Shoes</a>
-            <a href="kidshoes.html">Kids Shoes</a>
-            <a href="menshoes.html">Men Shoes</a>
-          </div>
+    <div class="navbar-container">
+        <div class="logo">
+            <h1>Nike</h1>
         </div>
-        <a href="#Contact">Contact Us</a>
-      </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="navbar-links">
+            <a href="home.html">Home</a>
+            <a href="home.html">About</a>
+            <div class="dropdown">
+                <a href="#Categories">Categories</a>
+                <div class="dropdown-content">
+                    <a href="WomenShoes.html">Women Shoes</a>
+                    <a href="kidshoes.html">Kids Shoes</a>
+                    <a href="menshoes.html">Men Shoes</a>
+                </div>
+            </div>
+            <a href="home.html">Contact Us</a>
+        </div>
       <div class="action-buttons">
         <button class="button-user" onclick="logout()">
           <i class="fa-solid fa-user"></i>
@@ -166,7 +171,10 @@
         alert('You have been logged out!');
         window.location.href = 'index.html'; // Redirect to login page
       }
-      
+      function toggleMenu() {
+        const navbarLinks = document.querySelector('.navbar-links');
+        navbarLinks.classList.toggle('active');
+    }
     </script>
   </div>
 
