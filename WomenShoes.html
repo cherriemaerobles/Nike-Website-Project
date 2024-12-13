@@ -562,10 +562,34 @@
     const favoritedProducts = [];
 
     const updateFavoriteCounter = () => {
-        const heartIcon = document.querySelector('.fa-heart');
-        const favoriteBadge = heartIcon.querySelector('.favorite-badge');
-        favoriteBadge.textContent = favoriteCount;
-    };
+    const heartIcon = document.querySelector('.fa-heart');
+
+    if (heartIcon) {
+        // Ensure the badge exists; if not, create it
+        let favoriteBadge = heartIcon.querySelector('.favorite-badge');
+        if (!favoriteBadge) {
+            favoriteBadge = document.createElement('span');
+            favoriteBadge.classList.add('favorite-badge');
+            favoriteBadge.style.position = 'absolute';
+            favoriteBadge.style.top = '0';
+            favoriteBadge.style.right = '0';
+            favoriteBadge.style.backgroundColor = 'red';
+            favoriteBadge.style.color = 'white';
+            favoriteBadge.style.borderRadius = '50%';
+            favoriteBadge.style.padding = '2px 6px';
+            favoriteBadge.style.fontSize = '12px';
+            heartIcon.appendChild(favoriteBadge);
+        }
+
+        // Update the badge with the current favorite count
+        favoriteBadge.textContent = favoritedProducts.length;
+
+        // Hide the badge if the favorite count is zero
+        favoriteBadge.style.display = favoritedProducts.length > 0 ? 'inline-block' : 'none';
+    } else {
+        console.warn('Heart icon not found on the page.');
+    }
+};
 
     const displayFavorites = () => {
     const favoriteList = favoritedProducts.map(id => {
@@ -707,37 +731,39 @@
     const favoritesContainer = document.getElementById('favoritesContainer');
     const favoritesClose = document.getElementById('favoritesClose');
 
-    // Function to update favorites modal content
     const updateFavoritesModal = () => {
-        favoritesContainer.innerHTML = '';
+    favoritesContainer.innerHTML = '';
 
-        if (favoritedProducts.length === 0) {
-            favoritesContainer.innerHTML = '<p>No favorites yet.</p>';
-        } else {
-            favoritedProducts.forEach(productId => {
-                const product = products.find(p => p.id === productId);
-                const favoriteItem = document.createElement('div');
-                favoriteItem.style.display = 'flex';
-                favoriteItem.style.alignItems = 'center';
-                favoriteItem.style.marginBottom = '15px';
+    if (favoritedProducts.length === 0) {
+        favoritesContainer.innerHTML = '<p>No favorites yet.</p>';
+    } else {
+        favoritedProducts.forEach(productId => {
+            const product = products.find(p => p.id === productId);
+            const favoriteItem = document.createElement('div');
+            favoriteItem.style.display = 'flex';
+            favoriteItem.style.alignItems = 'center';
+            favoriteItem.style.marginBottom = '15px';
 
-                favoriteItem.innerHTML = `
-                    <img src="${product.image}" alt="${product.name}" style="width: 60px; height: 60px; object-fit: cover; margin-right: 10px; border-radius: 5px;">
-                    <div style="flex: 1;">
-                        <h4 style="margin: 0;">${product.name}</h4>
-                        <p style="margin: 0;">${product.price}</p>
-                    </div>
-                    <button class="remove-favorite" data-id="${product.id}" style="background-color: red; color: white; border: none; border-radius: 5px; padding: 5px 10px; cursor: pointer;">Remove</button>
-                `;
+            favoriteItem.innerHTML = `
+                <img src="${product.image}" alt="${product.name}" style="width: 60px; height: 60px; object-fit: cover; margin-right: 10px; border-radius: 5px;">
+                <div style="flex: 1;">
+                    <h4 style="margin: 0;">${product.name}</h4>
+                    <p style="margin: 0;">${product.price}</p>
+                </div>
+                <button class="remove-favorite" data-id="${product.id}" style="background-color: red; color: white; border: none; border-radius: 5px; padding: 5px 10px; cursor: pointer;">Remove</button>
+            `;
 
-                favoritesContainer.appendChild(favoriteItem);
-            });
+            favoritesContainer.appendChild(favoriteItem);
+        });
 
-            // Attach event listeners to remove buttons
-            document.querySelectorAll('.remove-favorite').forEach(button => {
-                button.addEventListener('click', (event) => {
-                    const productId = event.target.dataset.id;
+        // Attach event listeners to remove buttons
+        document.querySelectorAll('.remove-favorite').forEach(button => {
+            button.addEventListener('click', (event) => {
+                const productId = Number(event.target.dataset.id); // Convert to number
 
+                // Show a confirmation dialog
+                const isConfirmed = confirm("Are you sure you want to remove this item from your favorites?");
+                if (isConfirmed) {
                     // Remove product from favoritedProducts array
                     const productIndex = favoritedProducts.indexOf(productId);
                     if (productIndex !== -1) {
@@ -746,10 +772,13 @@
 
                     // Refresh the favorites modal
                     updateFavoritesModal();
-                });
+                    updateFavoriteCounter();
+                }
             });
-        }
-    };
+        });
+    }
+};
+
 
     // Open the favorites modal
     heartIcon.addEventListener('click', () => {
@@ -780,38 +809,136 @@
     let cartItems = [];
 
         // Function to update the cart modal content
-    const updateCartModal = () => {
-        cartContainer.innerHTML = '';  // Clear the previous cart items
-        let totalAmount = 0;  // Variable to keep track of the total amount
+        const updateCartModal = () => {
+        const cartContainer = document.getElementById('cartContainer');
+        cartContainer.innerHTML = ''; // Clear previous items
+        let totalAmount = 0; // Calculate total price
 
         if (cartItems.length === 0) {
-            cartContainer.innerHTML = '<p>No items in the cart.</p>';  // If the cart is empty
+            cartContainer.innerHTML = '<p>No items in the cart.</p>';
         } else {
-            // Loop through each item in the cart and display it
-            cartItems.forEach(item => {
-                totalAmount += item.totalPrice;  // Add the item total to the totalAmount
+            cartItems.forEach((item, index) => {
+                totalAmount += item.totalPrice;
 
                 const cartItem = document.createElement('div');
+                cartItem.classList.add('cart-item');
                 cartItem.style.display = 'flex';
                 cartItem.style.alignItems = 'center';
                 cartItem.style.marginBottom = '15px';
 
                 cartItem.innerHTML = `
                     <img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; object-fit: cover; margin-right: 10px; border-radius: 5px;">
-                    <div>
-                        <h4 style="margin: 0;">${item.name}</h4>
-                        <p style="margin: 0;">${item.price} x ${item.quantity}</p>
+                    <div style="flex-grow: 1;">
+                        <h4>${item.name}</h4>
+                        <p>${item.price} x 
+                            <input type="number" class="quantity-input" value="${item.quantity}" min="1" data-index="${index}" oninput="restrictNegativeAndZero(this)" onblur="ensureValidValue(this)">
+                        </p>
                     </div>
+                    <button class="btn delete-item" data-index="${index}" style="background-color: red; color: white; border: none; border-radius: 5px; padding: 5px 10px; cursor: pointer;">Delete</button>
                 `;
 
-                cartContainer.appendChild(cartItem);  // Add the item to the cart modal
+                cartContainer.appendChild(cartItem);
             });
+
+            // Function to restrict typing negative and zero values
+            function restrictNegativeAndZero(input) {
+                // Allow only numbers greater than 0
+                let value = input.value;
+
+                // Remove non-numeric characters and check for negative signs
+                value = value.replace(/[^0-9]/g, ''); // Remove anything that's not a number
+
+                // If the value is 0, replace it with 1 (to prevent typing zero)
+                if (value === "0") {
+                    value = "1";
+                }
+
+                input.value = value;
+            }
+
+            // Function to ensure the value is valid when the user finishes editing (loses focus)
+            function ensureValidValue(input) {
+                // Ensure that the value is at least 1
+                if (parseInt(input.value) < 1) {
+                    input.value = "1"; // Set to 1 if the value is less than 1
+                }
+            }
+
+            // Add event listeners for quantity inputs
+            document.querySelectorAll('.quantity-input').forEach(input => {
+                input.addEventListener('change', (event) => {
+                    const index = event.target.dataset.index;
+                    const newQuantity = parseInt(event.target.value) || 1;
+
+                    // Update quantity and total price
+                    cartItems[index].quantity = newQuantity;
+                    cartItems[index].totalPrice = parseFloat(cartItems[index].price.replace('₱', '').replace(',', '')) * newQuantity;
+
+                    updateCartModal(); // Refresh the cart modal
+                    updateCartBadge(); // Update the cart badge
+                });
+            });
+
+            // Add event listeners for delete buttons
+            document.querySelectorAll('.delete-item').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const index = event.target.dataset.index;
+
+                    // Show a confirmation dialog
+                    const isConfirmed = confirm("Are you sure you want to delete this item?");
+                    
+                    if (isConfirmed) {
+                        cartItems.splice(index, 1); // Remove item from the cart
+                        updateCartModal(); // Refresh the cart modal
+                        updateCartBadge(); // Update the cart badge
+                    }
+                });
+});
+
         }
 
-        // Display the overall total at the bottom
-        document.getElementById('cartTotal').textContent = `₱${totalAmount.toFixed(2)}`;  // Total of all items
+        document.getElementById('cartTotal').textContent = `₱${totalAmount.toLocaleString()}`;
     };
+    
+    
+// Add checkout functionality
+document.getElementById('checkoutButton').addEventListener('click', () => {
+    if (cartItems.length === 0) {
+        alert('Your cart is empty. Please add items to proceed with checkout.');
+    } else {
+        const totalAmount = cartItems.reduce((total, item) => total + item.totalPrice, 0);
 
+        // Confirm before proceeding with checkout
+        const userConfirmed = confirm(`Your total is ₱${totalAmount.toLocaleString()}. Do you want to proceed with checkout?`);
+
+        if (userConfirmed) {
+            // Display a success message
+            const successMessage = document.createElement('div');
+            successMessage.textContent = 'Thank you for your purchase! Your order has been placed.';
+            successMessage.style.position = 'fixed';
+            successMessage.style.top = '20px';
+            successMessage.style.right = '20px';
+            successMessage.style.backgroundColor = '#4caf50';
+            successMessage.style.color = 'white';
+            successMessage.style.padding = '10px 20px';
+            successMessage.style.borderRadius = '5px';
+            successMessage.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+            successMessage.style.zIndex = '1000';
+            document.body.appendChild(successMessage);
+
+            // Clear the cart
+            cartItems = [];
+            updateCartModal(); // Update the modal to reflect an empty cart
+            updateCartBadge(); // Update the badge to show 0 items
+
+            // Remove the success message after 3 seconds
+            setTimeout(() => {
+                successMessage.remove();
+            }, 3000);
+        }
+    }
+});
+    
     // Function to update the cart icon badge to show the number of unique items (products) in the cart
     function updateCartBadge() {
         const cartBadge = document.getElementById('cartBadge'); // Get the cart badge element
