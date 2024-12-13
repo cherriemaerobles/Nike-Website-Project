@@ -12,25 +12,37 @@
 <body>
 
     <section>
-        <nav>
+      <header>
+        <div class="navbar-container">
             <div class="logo">
                 <h1>Nike</h1>
             </div>
-            <a href="#Contact">Contact Us</a>
-        </div>
-          <div class="action-buttons">
-              <i class="fa-solid fa-heart">
-                  <span class="favorite-badge">0</span> <!-- Badge showing the favorite count -->
-              </i>
-              <i class="fa-solid fa-cart-shopping">                
-                  <span id="cartBadge">0</span> <!-- Cart Badge (will display the number of items) -->
-              </i> <!-- Cart Icon -->
-              <button class="button-user">
-                <i class="fa-solid fa-user"></i>
-            </button><!-- User Icon -->
+            <div class="navbar-links">
+              <a href="#home">Home</a>
+              <a href="#About">About</a>
+              <div class="dropdown">
+                  <a href="#Categories">Categories</a>
+                  <div class="dropdown-content">
+                      <a href="#womens-shoes">Women Shoes</a>
+                      <a href="#kids-shoes">Kids Shoes</a>
+                      <a href="#mens-shoes">Men Shoes</a>
+                  </div>
+              </div>
+              <a href="#Contact">Contact Us</a>
           </div>
-          
-  </header>
+            <div class="action-buttons">
+                <i class="fa-solid fa-heart">
+                    <span class="favorite-badge">0</span> <!-- Badge showing the favorite count -->
+                </i>
+                <i class="fa-solid fa-cart-shopping">                
+                    <span id="cartBadge">0</span> <!-- Cart Badge (will display the number of items) -->
+                </i> <!-- Cart Icon -->
+                <button class="button-user">
+                  <i class="fa-solid fa-user"></i>
+              </button><!-- User Icon -->
+            </div>
+            
+    </header>
  
     <div class="modal-overlay">
       <div class="wrapper">
