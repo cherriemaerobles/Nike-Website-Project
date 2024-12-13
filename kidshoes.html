@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kid's Shoes</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        /* Add your styles here */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: white;
+            padding: 10px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .navbar-links a {
+            color: black;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .navbar-links a:hover {
+            color: #c72092;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .action-buttons button {
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: black;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .action-buttons i {
+            transition: color 0.2s;
+        }
+
+        .action-buttons i:hover {
+            color: gray;
+        }
+
+        .box-container {
+            padding: 20px 20px;
+            text-align: center;
+        }
+
+        .box:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transform: scale(1.05);
+            background-color: white;
+        }
+
+        .containerProduct .row {
+            justify-content: center;
+        }
+
+        .box {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 10px;
+            text-align: center;
+        }
+
+        .box img {
+            width: 100%;
+            height: auto;
+            max-height: 150px;
+            object-fit: contain;
+        }
+
+        .box h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 10px 0;
+        }
+
+        .price {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .btn.add-cart {
+            font-size: 1rem;
+            padding: 10px 20px;
+            background-color: #000;
+            color: #fff;
+            border-radius: 5px;
+            border: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn.add-cart:hover {
+            background-color: #F6E96B;
+            color: #000;
+        }
+
+        .btn.add-to-cart-modal {
+            font-size: 1rem;
+            padding: 10px 20px;
+            background-color: #000;
+            color: #fff;
+            border-radius: 5px;
+            border: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn.add-to-cart-modal:hover {
+            background-color: #F6E96B;
+            color: #000;
+        }
+
+        .btn.checkout {
+            font-size: 1rem;
+            padding: 10px 20px;
+            background-color: #000;
+            color: #fff;
+            border-radius: 5px;
+            border: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn.checkout:hover {
+            background-color: #F6E96B;
+            color: #000;
+        }
+
+        .btn.add-fav {
+            font-size: 1rem;
+            padding: 10px 20px;
+            background-color: #3B5998;
+            color: #fff;
+            border-radius: 5px;
+            border: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn.add-fav:hover {
+            background-color: #F6E96B;
+            color: #000;
+        }
+
+        .btn.view-details {
+            font-size: 1rem;
+            padding: 10px 20px;
+            background-color: #3B5998;
+            color: #fff;
+            border-radius: 5px;
+            border: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            margin-top: 10px;
+            margin-left: 50px;
+        }
+
+        .btn.view-details:hover {
+            background-color: #F6E96B;
+            color: #000;
+        }
+
+        footer {
+            background-color: #000;
+            color: white;
+            padding: 20px 0;
+        }
+
+        footer .social-icons a {
+            margin: 0 10px;
+            color: white;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 5px;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* CART CSS */
+        .action-buttons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .action-buttons i {
+            font-size: 24px;
+            /* Size of the icon */
+            position: relative;
+            color: black;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .action-buttons i:hover {
+            color: #c72092;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background-color: #c72092;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 50%;
+            padding: 2px 6px;
+            text-align: center;
+            min-width: 20px;
+        }
+
+        .favorite-badge {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background-color: #c72092;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 50%;
+            padding: 2px 6px;
+            text-align: center;
+            min-width: 20px;
+        }
+
+
+        #favoritesModal .modal-content {
+            width: 80%;
+            max-width: 500px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            position: relative;
+            margin: 10% auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #favoritesModal .close {
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #888;
+        }
+
+        #favoritesModal .close:hover {
+            color: black;
+        }
+
+        #favoritesContainer img {
+            border-radius: 8px;
+            margin-right: 15px;
+        }
+
+        /* Quantity */
+        .product-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            /* Adjust spacing between the quantity input and the button */
+        }
+
+        .quantity-input {
+            width: 50px;
+            /* Small width for the input */
+            height: 40px;
+            /* Adjust height to match the button */
+            text-align: center;
+            /* Align the value in the center */
+            font-size: 14px;
+            /* Small font size */
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .add-to-cart-btn {
+            padding: 8px 16px;
+            font-size: 14px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* CART */
+        .cart-icon {
+            position: relative;
+            font-size: 24px;
+            color: #333;
+        }
+
+        #cartBadge {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background-color: #c72092;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 50%;
+            padding: 2px 6px;
+            text-align: center;
+            min-width: 20px;
+        }
+
+        .cart-quantity {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background-color: red;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 50%;
+            padding: 4px 6px;
+            min-width: 18px;
+            text-align: center;
+        }
+
+        /* SUBTITLE CSS */
+        .navbar-subtitle {
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-top: 100px;
+            margin-bottom: 0px;
+            /* Reduced space below the subtitle */
+            color: #333;
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+
+    <script src="kids.js"></script>
+
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="navbar-container">
+            <div class="logo">
+                <h1>Nike</h1>
+            </div>
+            <div class="navbar-links">
+                <a href="index.html">Home</a>
+                <a href="#Products">About</a>
+                <a href="#Categories">Categories</a>
+                <a href="#Contact">Contact Us</a>
+            </div>
+            <div class="action-buttons">
+                <i class="fa-solid fa-heart">
+                    <span class="favorite-badge">0</span> <!-- Badge showing the favorite count -->
+                </i>
+                <i class="fa-solid fa-cart-shopping">
+                    <span id="cartBadge">0</span> <!-- Cart Badge (will display the number of items) -->
+                </i> <!-- Cart Icon -->
+                <i class="fa-solid fa-user"></i> <!-- User Icon -->
+            </div>
+
+    </header>
+
+    <!-- NAVBAR SUBTITLE -->
+    <div class="navbar-subtitle">
+        <h2>Kid's Shoes</h2>
+    </div>
+    <section class="products-container" id="Products">
+        <!-- Product boxes go here -->
+    </section>
+
+    <!-- Products Section -->
+    <div class="box-container">
+        <div class="containerProduct">
+            <div class="row" id="product-cards-container">
+                <!-- Product Cards will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Description Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="productTitle"></h2>
+            <div id="productDescription"></div>
+            <div class="price" id="productPrice"></div>
+            <!-- Add Quantity Input for Modal -->
+            <input type="number" class="quantity-input" value="1" min="1" id="quantity-modal" oninput="restrictNegativeAndZero(this)" onblur="ensureValidValue(this)">
+            <!-- Use a different class name for the button in the modal -->
+            <button class="btn add-to-cart-modal">Add to Cart</button>
+            <br>
+            <button class="btn add-fav">Favorite</button>
+        </div>
+    </div>
+
+    <!-- Favorites Modal -->
+    <div id="favoritesModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="favoritesClose">&times;</span>
+            <h2>Favorite Products</h2>
+            <div id="favoritesContainer">
+                <!-- Favorited products will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="cartClose">&times;</span>
+            <h2>Cart</h2>
+            <div id="cartContainer">
+                <!-- Items will be dynamically added here -->
+            </div>
+            <div style="margin-top: 20px;">
+                <strong>Total:</strong> <span id="cartTotal">₱0</span>
+            </div>
+            <button id="checkoutButton" class="btn checkout" style="margin-top: 20px; width: 100%;">Checkout</button>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p>© 2024 NIKE</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const products = [
+            {
+                id: 9,
+                name: "Nike Tanjun EasyOn",
+                image: "Shoes/kids shoes 1.png",
+                price: "₱1,379",
+                description: "Made for kids (and their squirmy feet), these Air Max Shoes have an easy-on system that makes putting them on a breeze. The laces are just for show—the entire lace area lifts up, making a large slip-in space.<br><br> <strong>Colour Shown:</strong> Light Pink <br><strong>Style:</strong> DX9043-301 <br><strong>Country/Region of Origin:</strong> Vietnam"
+            },
+            {
+                id: 10,
+                name: "Nike Air Max 90 LTR",
+                image: "Shoes/kids shoes 2.png",
+                price: "₱3,219",
+                description: "The Nike Air Max 90 LTR returns with an even better feel for you. Cushioning is softer and more flexible, the Max Air unit is tuned for growing feet and the shape gives your toes more wiggle room.<br><br> <strong>Colour Shown:</strong> Platinum Violet <br><strong>Style:</strong> CD6864-126 <br><strong>Country/Region of Origin:</strong> Indonesia"
+            },
+            {
+                id: 11,
+                name: "Nike Flex Plus 2",
+                image: "Shoes/kids shoes 3.png",
+                price: "₱2,479",
+                description: "The Nike Flex Plus 2 wastes no time so you can get out the door to run and play. We're talking break time, PE class and all of your favourite activities. The innovative elastic band system makes getting these shoes on a breeze.<br><br> <strong>Colour Shown:</strong> Light Armoury Blue <br><strong>Style:</strong> DV8999-402 <br><strong>Country/Region of Origin:</strong> Indonesia"
+            },
+            {
+                id: 12,
+                name: "Nike Crosscourt",
+                image: "Shoes/kids shoes 4.png",
+                price: "₱3,995",
+                description: "Made specifically for indoor courts, the Nike Crosscourt uses multi-directional traction to help you stop in an instant and change direction fast. Plus, springy foam underfoot and breathable mesh up top.<br><br> <strong>Colour Shown:</strong> Astronomy Blue <br><strong>Style:</strong> FN2231-400 <br><strong>Country/Region of Origin:</strong> Indonesia"
+            },
+            {
+                id: 13,
+                name: "Nike Infinity Flow",
+                image: "Shoes/kids shoes 5.png",
+                price: "₱2,799",
+                description: "For starters, we stacked it with soft and bouncy foam to help cushion every stride your little runner takes. A breathable mesh upper helps keep little feet cool, while a hook-and-loop strap lets kids secure their fit fast. <br><br> <strong>Colour Shown:</strong> light green <br><strong>Style:</strong> FD6061-700 <br><strong>Country/Region of Origin:</strong> Vietnam"
+            },
+            {
+                id: 14,
+                name: "Nike Air Flight 89",
+                image: "Shoes/kids shoes 6.png",
+                price: "₱4,195",
+                description: "The Nike Air Max Plus features a stylish, unique design with responsive cushioning for long-lasting comfort.  <br><br> <strong>Colour Shown:</strong> Varsity Red <br><strong>Style:</strong> HF0406-101 <br><strong>Country/Region of Origin:</strong> Indonesia"
+            },
+            {
+                id: 15,
+                name: "Nike Blazer Low '77",
+                image: "Shoes/kids shoes 7.png",
+                price: "₱₱1,999",
+                description: "The Nike Blazer Low '77 has transcended the basketball court to streetwear and is ready to land on your kid's feet.Tuck their toes into this icon for an old-school look that keeps little feet comfy on all their adventures. <br><br> <strong>Colour Shown:</strong> Gym Red <br><strong>Style:</strong> DA4075-126 <br><strong>Country/Region of Origin:</strong> Indonesia"
+            },
+            {
+                id: 16,
+                name: "Nike Air Max 1 SE",
+                image: "Shoes/kids shoes 8.png",
+                price: "₱3,119",
+                description: "A true original, the Air Max 1 was our first shoe with visible Air. It's been a legend ever since. Inspired by the ways we move, this special edition has reflective design details and a layered Swoosh logo to help your style shine when you step on the beat.<br><br> <strong>Colour Shown:</strong> Astronomy Blue <br><strong>Style:</strong> FQ7407-001 <br><strong>Country/Region of Origin:</strong> Indonesia"
+            }
+        ];
+
+        const productCardsContainer = document.getElementById('product-cards-container');
+        const modal = document.getElementById('productModal');
+        const closeModal = document.querySelector('.close');
+
+        let favoriteCount = 0;
+        const favoritedProducts = [];
+
+        const updateFavoriteCounter = () => {
+            const heartIcon = document.querySelector('.fa-heart');
+            const favoriteBadge = heartIcon.querySelector('.favorite-badge');
+            favoriteBadge.textContent = favoriteCount;
+        };
+
+        const displayFavorites = () => {
+            const favoriteList = favoritedProducts.map(id => {
+                const product = products.find(p => p.id === id);
+                return product ? product.name : '';
+            }).join('\n') || "No favorites yet!";
+
+            console.log("Favorite Products:\n" + favoriteList);
+        };
+
+        // Create product cards dynamically
+        products.forEach((product, index) => {
+            const productCard = document.createElement('div');
+            productCard.classList.add('col-md-4', 'col-lg-3');
+            productCard.innerHTML = `
+        <div class="box">
+            <img src="${product.image}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <div class="price">${product.price}</div>
+        <input type="number" class="quantity-input" value="1" min="1" id="quantity-${product.id}" oninput="restrictNegativeAndZero(this)" onblur="ensureValidValue(this)">
+            <button class="btn add-cart" data-index="${index}">Add to Cart</button>
+            <button class="btn view-details" data-index="${index}">Details</button>
+        </div>
+    `;
+            productCardsContainer.appendChild(productCard);
+        });
+
+        // Function to restrict typing negative and zero values
+        function restrictNegativeAndZero(input) {
+            // Allow only numbers greater than 0
+            let value = input.value;
+
+            // Remove non-numeric characters and check for negative signs
+            value = value.replace(/[^0-9]/g, ''); // Remove anything that's not a number
+
+            // If the value is 0, replace it with 1 (to prevent typing zero)
+            if (value === "0") {
+                value = "1";
+            }
+
+            input.value = value;
+        }
+
+        // Function to ensure the value is valid when the user finishes editing (loses focus)
+        function ensureValidValue(input) {
+            // Ensure that the value is at least 1
+            if (parseInt(input.value) < 1) {
+                input.value = "1"; // Set to 1 if the value is less than 1
+            }
+        }
+
+        // Show product details in the modal when the Details button is clicked
+        document.querySelectorAll('.btn.view-details').forEach(button => {
+            button.addEventListener('click', (event) => {
+                const productIndex = event.target.getAttribute('data-index');
+                const product = products[productIndex];
+
+                // Show the product details inside the modal
+                document.getElementById('productTitle').textContent = product.name;
+                document.getElementById('productDescription').innerHTML = product.description || 'No description available';
+                document.getElementById('productPrice').textContent = product.price;
+
+                // Show the modal
+                modal.style.display = "block";
+
+                // Add functionality for the Add to Favorites button inside the modal
+                const addToFavButton = document.querySelector('.btn.add-fav');
+                addToFavButton.onclick = () => {
+                    if (favoritedProducts.includes(product.id)) {
+                        alert("You have already added this product to favorites.");
+                        return;
+                    }
+
+                    favoritedProducts.push(product.id); // Add product to favorites
+                    favoriteCount++; // Increment favorite count
+                    updateFavoriteCounter(); // Update the favorite count display
+                    alert("Product added to favorites!");
+                };
+
+                // Add functionality for the Add to Cart button inside the modal
+                const addToCartButton = document.querySelector('.btn.add-to-cart-modal');
+                addToCartButton.onclick = () => {
+                    const quantityInput = document.getElementById('quantity-modal');
+                    const quantity = parseInt(quantityInput.value) || 1; // Default to 1 if invalid value
+
+                    // Create the cart item
+                    const cartItem = {
+                        ...product,
+                        quantity: quantity,
+                        totalPrice: parseFloat(product.price.replace('₱', '').replace(',', '')) * quantity
+                    };
+
+                    // Check if the product is already in the cart
+                    const existingItemIndex = cartItems.findIndex(item => item.id === product.id);
+                    if (existingItemIndex !== -1) {
+                        // Update the quantity and total price if the product is already in the cart
+                        cartItems[existingItemIndex].quantity += quantity;
+                        cartItems[existingItemIndex].totalPrice = cartItems[existingItemIndex].quantity * parseFloat(product.price.replace('₱', '').replace(',', ''));
+                    } else {
+                        // Add the new item to the cart if it doesn't already exist
+                        const cartItem = {
+                            ...product,
+                            quantity: quantity,
+                            totalPrice: parseFloat(product.price.replace('₱', '').replace(',', '')) * quantity
+                        };
+                        cartItems.push(cartItem);
+                    }
+
+                    // Update the cart modal and cart badge
+                    updateCartModal();
+                    updateCartBadge();
+
+                    // Close the modal after adding to cart
+                    modal.style.display = 'none';
+                };
+            });
+        });
+
+        // Modal close button functionality
+        document.querySelector('.modal .close').addEventListener('click', () => {
+            modal.style.display = 'none';  // Close the modal when the user clicks the close button
+        });
+        // Close the modal when the close button is clicked
+        closeModal.addEventListener('click', () => {
+            modal.style.display = "none";
+        });
+
+        // Close the modal if the user clicks outside of the modal content
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        });
+
+        // Add click event listener to the heart icon
+        const heartIcon = document.querySelector('.fa-heart');
+        heartIcon.addEventListener('click', displayFavorites);
+
+        const favoritesModal = document.getElementById('favoritesModal');
+        const favoritesContainer = document.getElementById('favoritesContainer');
+        const favoritesClose = document.getElementById('favoritesClose');
+
+        // Open the favorites modal when the heart icon is clicked
+        heartIcon.addEventListener('click', () => {
+            // Clear the container before adding items
+            favoritesContainer.innerHTML = '';
+
+            if (favoritedProducts.length === 0) {
+                favoritesContainer.innerHTML = '<p>No favorites yet.</p>';
+            } else {
+                favoritedProducts.forEach(productId => {
+                    const product = products.find(p => p.id === productId);
+                    const favoriteItem = document.createElement('div');
+                    favoriteItem.style.display = 'flex';
+                    favoriteItem.style.alignItems = 'center';
+                    favoriteItem.style.marginBottom = '15px';
+
+                    favoriteItem.innerHTML = `
+                <img src="${product.image}" alt="${product.name}" style="width: 60px; height: 60px; object-fit: cover; margin-right: 10px; border-radius: 5px;">
+                <div>
+                    <h4 style="margin: 0;">${product.name}</h4>
+                    <p style="margin: 0;">${product.price}</p>
+                </div>
+            `;
+
+                    favoritesContainer.appendChild(favoriteItem);
+                });
+            }
+
+
+
+
+
+            favoritesModal.style.display = 'block';
+        });
+
+        // Close the favorites modal when the close button is clicked
+        favoritesClose.addEventListener('click', () => {
+            favoritesModal.style.display = 'none';
+        });
+
+        // Close the modal if the user clicks outside of the modal content
+        window.addEventListener('click', (event) => {
+            if (event.target === favoritesModal) {
+                favoritesModal.style.display = 'none';
+            }
+        });
+
+        // ABOUT CART MODAL ICON
+
+        const cartIcon = document.querySelector('.fa-cart-shopping');
+        const cartModal = document.getElementById('cartModal');
+        const cartContainer = document.getElementById('cartContainer');
+        const cartClose = document.getElementById('cartClose');
+
+        let cartItems = [];
+
+        // Function to update the cart modal content
+        const updateCartModal = () => {
+            cartContainer.innerHTML = '';  // Clear the previous cart items
+            let totalAmount = 0;  // Variable to keep track of the total amount
+
+            if (cartItems.length === 0) {
+                cartContainer.innerHTML = '<p>No items in the cart.</p>';  // If the cart is empty
+            } else {
+                // Loop through each item in the cart and display it
+                cartItems.forEach(item => {
+                    totalAmount += item.totalPrice;  // Add the item total to the totalAmount
+
+                    const cartItem = document.createElement('div');
+                    cartItem.style.display = 'flex';
+                    cartItem.style.alignItems = 'center';
+                    cartItem.style.marginBottom = '15px';
+
+                    cartItem.innerHTML = `
+                <img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; object-fit: cover; margin-right: 10px; border-radius: 5px;">
+                <div>
+                    <h4 style="margin: 0;">${item.name}</h4>
+                    <p style="margin: 0;">${item.price} x ${item.quantity}</p>
+                </div>
+            `;
+
+                    cartContainer.appendChild(cartItem);  // Add the item to the cart modal
+                });
+            }
+
+            // Display the overall total at the bottom
+            document.getElementById('cartTotal').textContent = `₱${totalAmount.toFixed(2)}`;  // Total of all items
+        };
+
+        // Function to update the cart icon badge to show the number of unique items (products) in the cart
+        function updateCartBadge() {
+            const cartBadge = document.getElementById('cartBadge'); // Get the cart badge element
+
+            // If the cartBadge element exists, update its text content
+            if (cartBadge) {
+                const uniqueProductCount = cartItems.length;  // The number of unique products in the cart
+                cartBadge.textContent = uniqueProductCount;  // Update the badge with the total count of unique products
+            } else {
+                console.warn("Cart badge element not found.");
+            }
+        }
+
+
+
+
+
+        // Open the cart modal when the cart icon is clicked
+        cartIcon.addEventListener('click', () => {
+            updateCartModal();
+            cartModal.style.display = 'block';
+        });
+
+        // Close the cart modal when the close button is clicked
+        cartClose.addEventListener('click', () => {
+            cartModal.style.display = 'none';
+        });
+
+        // Close the modal if the user clicks outside of the modal content
+        window.addEventListener('click', (event) => {
+            if (event.target === cartModal) {
+                cartModal.style.display = 'none';
+            }
+        });
+
+        // Add "Add to Cart" button functionality
+        document.querySelectorAll('.btn.add-cart').forEach((button, index) => {
+            button.addEventListener('click', () => {
+                const quantityInput = document.getElementById(`quantity-${products[index].id}`);
+                const quantity = parseInt(quantityInput.value) || 1; // Default to 1 if invalid value
+                const product = products[index];
+
+                const cartItem = {
+                    ...product,
+                    quantity: quantity,
+                    totalPrice: parseFloat(product.price.replace('₱', '').replace(',', '')) * quantity
+                };
+
+                // Check if the product is already in the cart
+                const existingItemIndex = cartItems.findIndex(item => item.id === product.id);
+
+                if (existingItemIndex !== -1) {
+                    // Update the quantity and total price if the product is already in the cart
+                    cartItems[existingItemIndex].quantity += quantity;  // Increment quantity
+                    cartItems[existingItemIndex].totalPrice = cartItems[existingItemIndex].quantity * parseFloat(product.price.replace('₱', '').replace(',', ''));
+                } else {
+                    // Add the new item to the cart if it doesn't already exist
+
+                    cartItems.push(cartItem);
+                }
+
+                // Update the cart modal and cart badge
+                updateCartModal();
+                updateCartBadge(); // Update the cart badge with unique item count
+            });
+        });
+
+
+
+        // validation
+        const quantityInput = document.getElementById('productQuantity');
+
+        // Ensure the quantity is at least 1
+        quantityInput.addEventListener('change', function () {
+            if (quantityInput.value < 1) {
+                quantityInput.value = 1;
+            }
+        });
+
+        // Handle Cart Updates
+        document.getElementById('addToCartBtn').addEventListener('click', function () {
+            const quantityInput = document.getElementById('productQuantity');
+            const cartQuantity = document.getElementById('cartQuantity');
+
+            // Get the current quantity value
+            const addedQuantity = parseInt(quantityInput.value) || 0;
+
+            // Get the existing quantity in the cart
+            const currentCartQuantity = parseInt(cartQuantity.textContent) || 0;
+
+            // Update the cart quantity
+            const newCartQuantity = currentCartQuantity + addedQuantity;
+            cartQuantity.textContent = newCartQuantity;
+
+            // Reset the input value (optional)
+            quantityInput.value = 1;
+        });
+
+    </script>
+</body>
+
+</html>
