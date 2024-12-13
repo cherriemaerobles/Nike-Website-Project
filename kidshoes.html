@@ -567,7 +567,7 @@
         favoriteBadge.textContent = favoriteCount;
     };
 
-    const displayFavorites = () => {
+const displayFavorites = () => {
     const favoriteList = favoritedProducts.map(id => {
         const product = products.find(p => p.id === id);
         return product ? product.name : '';
@@ -585,13 +585,37 @@
             <img src="${product.image}" alt="${product.name}">
             <h3>${product.name}</h3>
             <div class="price">${product.price}</div>
-            <input type="number" class="quantity-input" value="1" min="1" id="quantity-${product.id}">
+        <input type="number" class="quantity-input" value="1" min="1" id="quantity-${product.id}" oninput="restrictNegativeAndZero(this)" onblur="ensureValidValue(this)">
             <button class="btn add-cart" data-index="${index}">Add to Cart</button>
             <button class="btn view-details" data-index="${index}">Details</button>
         </div>
     `;
     productCardsContainer.appendChild(productCard);
 });
+
+ // Function to restrict typing negative and zero values
+ function restrictNegativeAndZero(input) {
+    // Allow only numbers greater than 0
+    let value = input.value;
+    
+    // Remove non-numeric characters and check for negative signs
+    value = value.replace(/[^0-9]/g, ''); // Remove anything that's not a number
+    
+    // If the value is 0, replace it with 1 (to prevent typing zero)
+    if (value === "0") {
+      value = "1";
+    }
+
+    input.value = value;
+  }
+
+  // Function to ensure the value is valid when the user finishes editing (loses focus)
+  function ensureValidValue(input) {
+    // Ensure that the value is at least 1
+    if (parseInt(input.value) < 1) {
+      input.value = "1"; // Set to 1 if the value is less than 1
+    }
+  }
 
 // Show product details in the modal when the Details button is clicked
 document.querySelectorAll('.btn.view-details').forEach(button => {
