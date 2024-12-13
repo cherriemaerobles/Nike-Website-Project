@@ -443,7 +443,7 @@
             <div id="productDescription"></div>
             <div class="price" id="productPrice"></div>
             <!-- Add Quantity Input for Modal -->
-            <input type="number" class="quantity-input" value="1" min="1" id="quantity-modal">
+            <input type="number" class="quantity-input" value="1" min="1" id="quantity-modal" oninput="restrictNegativeAndZero(this)" onblur="ensureValidValue(this)">
             <!-- Use a different class name for the button in the modal -->
             <button class="btn add-to-cart-modal">Add to Cart</button>
             <br>
