@@ -73,20 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCartModal();
     };
 
-// Add event listeners for delete buttons
-document.querySelectorAll('btn.delete-item').forEach(button => {
-    button.addEventListener('click', (event) => {
-        const index = event.target.dataset.index;
 
-        // Show a confirmation dialog
-        const isConfirmed = confirm("Are you sure you want to delete this item?");
-        
-        if (isConfirmed) {
-            cartItems.splice(index, 1); // Remove item from the cart
-            updateCartModal(); // Refresh the cart modal
-            updateCartBadge(); // Update the cart badge
-        }
-    });
-});
+
 
 });
