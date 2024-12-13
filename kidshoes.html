@@ -567,13 +567,6 @@
         favoriteBadge.textContent = favoriteCount;
     };
 
-    const displayFavorites = () => {
-        alert("Favorite Products:\n" + favoritedProducts.map(id => {
-            const product = products.find(p => p.id === id);
-            return product ? product.name : '';
-        }).join('\n') || "No favorites yet!");
-    };
-
     // Create product cards dynamically
     products.forEach((product, index) => {
     const productCard = document.createElement('div');
