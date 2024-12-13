@@ -193,16 +193,6 @@
             color: #000;
         }
 
-        footer {
-            background-color: #000;
-            color: white;
-            padding: 20px 0;
-        }
-
-        footer .social-icons a {
-            margin: 0 10px;
-            color: white;
-        }
 
         .modal {
             display: none;
@@ -485,6 +475,107 @@
             color: #333;
             /* Icon color */
         }
+
+        /*Footer*/
+        footer {
+            background-color: #111;
+        }
+
+        .footerContainer {
+            width: 100%;
+            padding: 70px 30px 20px;
+        }
+
+        .socialIcons {
+            display: flex;
+            justify-content: center;
+        }
+
+        .socialIcons a {
+            text-decoration: none;
+            padding: 10px;
+            background-color: white;
+            margin: 10px;
+            border-radius: 50%;
+        }
+
+        .socialIcons a i {
+            font-size: 2em;
+            color: black;
+            opacity: 0, 9;
+        }
+
+        /* Hover affect on social media icon */
+        .socialIcons a:hover {
+            background-color: #111;
+            transition: 0.5s;
+        }
+
+        .socialIcons a:hover i {
+            color: white;
+            transition: 0.5s;
+        }
+
+        .footerNav {
+            margin: 30px 0;
+        }
+
+        .footerNav ul {
+            display: flex;
+            justify-content: center;
+            list-style-type: none;
+        }
+
+        .footerNav ul li a {
+            color: white;
+            margin: 20px;
+            text-decoration: none;
+            font-size: 1.9em;
+            opacity: 0.7;
+            transition: 0.5s;
+            font-family: "Poppins", sans-serif;
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        .footerNav ul li a:hover {
+            opacity: 1;
+        }
+
+        .footerBottom {
+            background-color: #000;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .footerBottom p {
+            color: white;
+        }
+
+        .designer {
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 400;
+            margin: 0px 5px;
+        }
+
+        @media (max-width: 700px) {
+            .footerNav ul {
+                flex-direction: column;
+            }
+
+            .footerNav ul li {
+                width: 100%;
+                text-align: center;
+                margin: 10px;
+            }
+
+            .socialIcons a {
+                padding: 8px;
+                margin: 4px;
+            }
+        }
     </style>
 
     <script src="js/men.js"></script>
@@ -590,16 +681,29 @@
 
     <!-- Footer -->
     <footer>
-        <div class="container text-center">
-            <p>© 2024 NIKE</p>
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-            </div>
+        <div class="footerContainer" id="Contact">
+          <div class="socialIcons">
+            <a href=""><i class="fa-brands fa-facebook"></i></a>
+            <a href=""><i class="fa-brands fa-instagram"></i></a>
+            <a href=""><i class="fa-brands fa-twitter"></i></a>
+            <a href=""><i class="fa-brands fa-youtube"></i></a>
+            <a href=""><i class="fa-brands fa-github"></i></a>
+            <a href=""><i class="fa-brands fa-linkedin"></i></a>
+            <a href=""><i class="fa-brands fa-tiktok"></i></a>
+          </div>
+          <div class="footerNav">
+            <ul>
+              <li><a href="">NIKE</a></li>
+            </ul>
+          </div>
         </div>
-    </footer>
+        <div class="footerBottom">
+          <p>
+            Copyright &copy;2024; Designed by
+            <span class="designer">POWERPUFF GURLS @ MOJOJOJO</span>
+          </p>
+        </div>
+      </footer>
 
     <script>
         const products = [
