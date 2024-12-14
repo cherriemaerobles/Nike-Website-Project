@@ -1037,7 +1037,7 @@ header {
 
 @media (max-width: 768px) {
   .container {
-    gap: 15px;
+    gap: 20px;
     flex-wrap: wrap;
   }
 
@@ -1073,7 +1073,7 @@ header {
   }
 
   .container {
-    gap: 10px;
+    gap: 20px;
     flex-wrap: wrap;
   }
 
@@ -1123,7 +1123,7 @@ header {
     line-height: 30px;
   }
   .container {
-    gap: 10px;
+    gap: 20px;
     flex-wrap: wrap;
   }
 }
