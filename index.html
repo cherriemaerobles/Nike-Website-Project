@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nike - Just Do It</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="shortcut icon" href="img/logo-nike.jpeg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+  <section>
+    <header>
+      <div class="navbar-container">
+        <div class="logo">
+          <h1>Nike</h1>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+          <div>
+          </div>
+          <div></div>
+          <div></div>
+      </div>
+        <div class="navbar-links">
+          <a href="#home">Home</a>
+          <a href="#About">About</a>
+          <div class="dropdown">
+            <a href="#Products">Categories</a>
+            <div class="dropdown-content">
+                <a href="#womens-shoes" onclick="requireLogin(event)">Women Shoes</a>
+                <a href="#kids-shoes" onclick="requireLogin(event)">Kids Shoes</a>
+                <a href="#mens-shoes" onclick="requireLogin(event)">Men Shoes</a>
+            </div>
+        </div>
+          <a href="#Contact">Contact Us</a>
+        </div>
+        <div class="action-buttons">
+          <button class="button-user">
+            <i class="fa-solid fa-user"></i>
+          </button><!-- User Icon -->
+        </div>
+
+    </header>
+
+    <div class="modal-overlay">
+      <div class="wrapper">
+        <span class="icon-close">
+          <ion-icon name="close"></ion-icon>
+        </span>
+        <div class="form-box login">
+          <h2>Login</h2>
+          <form action="home.html" method="GET">
+            <div class="input-box">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" autocomplete="off" required />
+            </div>
+            <div class="input-box">
+              <label for="password">Password</label>
+              <input type="password" id="password" name="password" autocomplete="off" required />
+            </div>
+            <div class="remember-forgot">
+              <label><input type="checkbox" />Remember me</label>
+              <a href="#">Forgot Password? </a>
+            </div>
+            <a href="home.html"><button type="submit" class="btn">Login</button></a>
+            <div class="social-login">
+              <button type="button" class="facebook-btn">
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png" alt="Facebook logo" />
+                Sign in with Facebook
+              </button>
+              <button type="button" class="google-btn">
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/google-logo.png" alt="Google logo" />
+                Sign in with Google
+              </button>
+            </div>
+
+            <div class="login-register">
+              <p>
+                Don't have an account?
+                <a href="#" class="register-link">Sign Up</a>
+              </p>
+            </div>
+          </form>
+        </div>
+
+        <div class="form-box register">
+          <h2>Sign Up</h2>
+          <form action="#">
+            <div class="input-box">
+              <label for="fullname">Full Name</label>
+              <input type="text" id="fullname" name="fullname" required />
+            </div>
+            <div class="input-box">
+              <label for="email">Email</label>
+              <input type="email" id="signup-email" name="email" required />
+            </div>
+            <div class="input-box">
+              <label for="password">Password</label>
+              <input type="password" id="signup-password" name="password" required />
+            </div>
+            <div class="input-box">
+              <label for="confirmPassword">Confirm Password</label>
+              <input type="password" id="confirmPassword" name="confirmPassword" required />
+            </div>
+            <div class="remember-forgot">
+              <label><input type="checkbox" />I agree to the terms &
+                conditions</label>
+            </div>
+            <button type="submit" class="btn">Sign Up</button>
+            <div class="social-login">
+              <button type="button" class="facebook-btn">
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/facebook-new.png" alt="Facebook logo" />
+                Sign up with Facebook
+              </button>
+              <button type="button" class="google-btn">
+                <img src="https://img.icons8.com/ios-filled/50/ffffff/google-logo.png" alt="Google logo" />
+                Sign up with Google
+              </button>
+            </div>
+            <div class="login-register">
+              <p>
+                Already have an account?
+                <a href="#" class="login-link">Login</a>
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <section class="parallax-section" id="home">
+      <div class="parallax-text">
+        <span class="parallax-text" text="NIKE">NIKE</span>
+        <img src="img/shoes.png" alt="Nike sneaker" />
+      </div>
+    </section>
+
+
+    <div class="featured-box" id="Products">
+      <h1>featured</h1>
+      <h2>product</h2>
+    </div>
+
+    <div class="products">
+
+      <div class="box">
+        <div class="card">
+          <h2>Men's Shoes</h2>
+          <div class="image">
+            <img src="img/nike men.png">
+          </div>
+
+          <div class="products_text">
+            <p>Nike Air Force 1 '07</p>
+            <h3>₱6,195</h3>
+            <a href="#" class="btn" onclick="requireLogin(event)">Shop Now!</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Women's Shoes
+          </h2>
+
+          <div class="image">
+            <img src="img/nike women.png">
+          </div>
+
+          <div class="products_text">
+            <p>Nike Air Max 90 LV8</p>
+            <h3>₱4,739</h3>
+            <a href="#" class="btn" onclick="requireLogin(event)">Shop Now!</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Kid's Shoes</h2>
+          <div class="image">
+            <img src="img/nike kids.png">
+          </div>
+
+          <div class="products_text">
+            <p>Nike Tanjun Easy On</p>
+            <h3>₱2,309</h3>
+            <a href="#" class="btn" onclick="requireLogin(event)">Shop Now!</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--About-->
+
+    <div class="featured-box2" id="About">
+      <h1>ABOUT US</h1>
+    </div>
+
+    <div class="about" id="About">
+      <div class="about_main">
+        <div class="about_image">
+          <div class="about_small_image">
+            <img src="img/nike4.png" onclick="functio(this)" />
+            <img src="img/nike3.png" onclick="functio(this)" />
+            <img src="img/nike2.png" onclick="functio(this)" />
+            <img src="img/nike1.png" onclick="functio(this)" />
+          </div>
+
+          <div class="image_contaner">
+            <img src="img/nike4.png" id="imagebox" />
+          </div>
+        </div>
+
+        <div class="about_text">
+          <p>
+            <b>Nike: Empowering Every Athlete</b><br />
+            Nike is more than just a brand—it's a symbol of inspiration,
+            innovation, and excellence in sportswear and lifestyle apparel.
+            Founded in 1964 as Blue Ribbon Sports, Nike has grown to become one
+            of the most recognizable names in the world, with its iconic Swoosh
+            logo and "Just Do It" slogan.
+            <br /><b>Nike: Innovation in Every Step</b><br />
+            Nike combines performance and style, inspiring athletes and
+            trendsetters worldwide with iconic designs like Air Max and Jordan.
+            <br /><b>Empower Your Journey</b><br />
+            From sports to streetwear, Nike delivers comfort, durability, and
+            innovation for every step of your journey.
+            <br /><b>Move with Nike</b><br />
+            Nike’s cutting-edge technology and iconic designs make every step
+            bold, confident, and unforgettable.
+            <br /><b>Just Do It</b><br />
+            Nike redefines sportswear with innovation, style, and a commitment
+            to empowering every athlete.
+            <br /><b>Nike: Gear for Greatness</b><br />
+            Whether on the field or the streets, Nike equips you to perform and
+            inspire.
+          </p>
+        </div>
+      </div>
+
+      <script>
+        function functio(small) {
+          var full = document.getElementById("imagebox");
+          full.src = small.src;
+        }
+
+        function requireLogin(event) {
+          event.preventDefault(); // Prevent default anchor behavior
+          alert('You need to login first!');
+        }
+      </script>
+    </div>
+
+    <section id="team">
+      <h1 class="heading">
+        <i class="fas fa-rocket"></i><strong>OUR TEAM</strong>
+      </h1>
+      <div class="container">
+        <div class="box1">
+          <div class="top-bar"></div>
+          <div class="details">
+            <img src="img/chirimi.jpg" alt="" />
+            <strong style="color: white">Robles, Cherrie Mae</strong>
+            <p>22-63247@g.batstate-u.edu.ph</p>
+          </div>
+
+          <div class="btn1">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="box1">
+          <div class="top-bar"></div>
+          <div class="details">
+            <img src="img/pola.jpg" alt="" />
+            <strong style="color: white">Aquivido, Jean Paula</strong>
+            <p>22-69061@g.batstate-u.edu.ph</p>
+          </div>
+
+          <div class="btn1">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="box1">
+          <div class="top-bar"></div>
+          <div class="details">
+            <img src="img/lyn.jpg" alt="" />
+            <strong style="color: white">Saguan, Lielyn</strong>
+            <p>22-60289@g.batstate-u.edu.ph</p>
+          </div>
+
+          <div class="btn1">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="box1">
+          <div class="top-bar"></div>
+          <div class="details">
+            <img src="img/rhyun.jpg" alt="" />
+            <strong style="color: white">Manalang, Enrico</strong>
+            <p>21-00431@g.batstate-u.edu.ph</p>
+          </div>
+
+          <div class="btn1">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footerContainer" id="Contact">
+        <div class="socialIcons">
+          <a href=""><i class="fa-brands fa-facebook"></i></a>
+          <a href=""><i class="fa-brands fa-instagram"></i></a>
+          <a href=""><i class="fa-brands fa-twitter"></i></a>
+          <a href=""><i class="fa-brands fa-youtube"></i></a>
+          <a href=""><i class="fa-brands fa-github"></i></a>
+          <a href=""><i class="fa-brands fa-linkedin"></i></a>
+          <a href=""><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+        <div class="footerNav">
+          <ul>
+            <li><a href="">NIKE</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footerBottom">
+        <p>
+          Copyright &copy;2024; Designed by
+          <span class="designer">POWERPUFF GURLS @ MOJOJOJO</span>
+        </p>
+      </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>
