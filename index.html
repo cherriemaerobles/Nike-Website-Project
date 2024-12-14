@@ -26,18 +26,18 @@
           </div>
           <div></div>
           <div></div>
-      </div>
+        </div>
         <div class="navbar-links">
           <a href="#home">Home</a>
           <a href="#About">About</a>
           <div class="dropdown">
             <a href="#Products">Categories</a>
             <div class="dropdown-content">
-                <a href="#womens-shoes" onclick="requireLogin(event)">Women Shoes</a>
-                <a href="#kids-shoes" onclick="requireLogin(event)">Kids Shoes</a>
-                <a href="#mens-shoes" onclick="requireLogin(event)">Men Shoes</a>
+              <a href="#womens-shoes" onclick="requireLogin(event)">Women Shoes</a>
+              <a href="#kids-shoes" onclick="requireLogin(event)">Kids Shoes</a>
+              <a href="#mens-shoes" onclick="requireLogin(event)">Men Shoes</a>
             </div>
-        </div>
+          </div>
           <a href="#Contact">Contact Us</a>
         </div>
         <div class="action-buttons">
@@ -250,6 +250,10 @@
         function requireLogin(event) {
           event.preventDefault(); // Prevent default anchor behavior
           alert('You need to login first!');
+        }
+        function toggleMenu() {
+          const navbarLinks = document.querySelector('.navbar-links');
+          navbarLinks.classList.toggle('active');
         }
       </script>
     </div>
