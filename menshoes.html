@@ -391,6 +391,7 @@
             font-family: 'Poppins', sans-serif;
         }
 
+<<<<<<< HEAD
         .dropdown {
             position: relative;
             display: inline-block;
@@ -580,6 +581,8 @@
                 margin: 4px;
             }
         }
+=======
+>>>>>>> origin/Enrico
     </style>
 
     <script src="js/men.js"></script>
@@ -651,8 +654,6 @@
         </div>
     </div>
 
-
-
     <!-- Favorites Modal -->
     <div id="favoritesModal" class="modal">
         <div class="modal-content">
@@ -663,8 +664,6 @@
             </div>
         </div>
     </div>
-
-
 
     <!-- Cart Modal -->
     <div id="cartModal" class="modal">
@@ -680,8 +679,12 @@
             <button id="checkoutButton" class="btn checkout" style="margin-top: 20px; width: 100%;">Checkout</button>
         </div>
     </div>
+<<<<<<< HEAD
 
 
+=======
+    
+>>>>>>> origin/Enrico
     <!-- Footer -->
     <footer>
         <div class="footerContainer" id="Contact">
@@ -710,6 +713,7 @@
 
     <script>
         const products = [
+<<<<<<< HEAD
             {
                 id: 17,
                 name: "Nike Air Force 1 '07",
@@ -767,6 +771,65 @@
                 description: "Rare, classic and way ahead of its time, it's a testament to Penny Hardaway's unforgettable game—and one of the boldest looks to move off court. The striking Metallic Copper colourway brings the heat, while its distinctive liquid-like design boosts the cool factor. The finishing touch? Penny's signature 1 cent logo delivers the slick assist.  <br><br> <strong>Colour Shown:</strong> Red Stardust <br><strong>Style:</strong> HF0782-101 <br><strong>Country/Region of Origin:</strong> Vietnam"
             }
         ];
+=======
+             {
+                 id: 17,
+                 name: "Nike Air Force 1 '07",
+                 image: "Shoes/men shoes 1.jpg",
+                 price: "₱6,195",
+                 description: "The radiance lives on with the b-ball original. Crossing hardwood comfort with off-court flair, it puts a fresh spin on what you know best: '80s-inspired construction, bold details and nothin'-but-net style."
+             },
+             {
+                 id: 18,
+                 name: "Nike Court Vision Low",
+                 image: "Shoes/men shoes 2.jpg",
+                 price: "₱3,695",
+                 description: "A classic remixed, its crisp upper and stitched overlays keep the soul of the original style. The plush, low-cut collar keeps it sleek and comfortable for your world."
+             },
+             {
+                 id: 19,
+                 name: "Air Jordan 3 Retro",
+                 image: "Shoes/men shoes 3.jpg",
+                 price: "₱11,295",
+                 description: "Quality leather in the upper—with that luxurious elephant print texture—is combined with visible Air in the sole to make a comfortable, everyday icon. Fire-red details burn through, giving you one hot look."
+             },
+             {
+                 id: 20,
+                 name: "Kobe 9 Elite Low Protro",
+                 image: "Shoes/men shoes 4.jpg",
+                 price: "₱11,295",
+                 description: "The Kobe 9 Elite Protro 'Halo' is a symbol of Kobe's dedication to always getting better—and it's our challenge to hoopers to push your game to new levels. Proving that even a masterpiece can be improved on, the addition of Nike React in the midsole means greater responsiveness that'll have you feeling connected to the court."
+             },
+             {
+                 id: 21,
+                 name: "Nike V2K Run",
+                 image: "Shoes/men shoes 5.jpg",
+                 price: "₱6,895",
+                 description: "The Air Jordan 1 Mid combines heritage style with modern details, offering the perfect blend of comfort and style.  <br><br> <strong>Colour Shown:</strong> Red Stardust <br><strong>Style:</strong> HF0782-101 <br><strong>Country/Region of Origin:</strong> Vietnam"
+             },
+             {
+                 id: 22,
+                 name: "Nike Air Max Plus",
+                 image: "Shoes/men shoes 6.jpg",
+                 price: "₱5,639",
+                 description: "he V2K remasters everything you love about the Vomero in a look pulled straight from an early '00s running catalogue. Layer up in a mixture of flashy metallics, referential plastic details and a midsole with a perfectly vintage aesthetic.  <br><br> <strong>Colour Shown:</strong> Red Stardust <br><strong>Style:</strong> HF0782-101 <br><strong>Country/Region of Origin:</strong> Vietnam"
+             },
+             {
+                 id: 23,
+                 name: "Sabrina 2 EP",
+                 image: "Shoes/men shoes 7.jpg",
+                 price: "₱7,395",
+                 description: "Our newest Cushlon foam helps keep you fresh, Air Zoom cushioning adds the pop and sticky traction helps you create that next-level distance. Sabrina's handed you the tools. Time to go to work. With its extra-durable rubber outsole, this version gives you traction for outdoor courts.  <br><br> <strong>Colour Shown:</strong> Red Stardust <br><strong>Style:</strong> HF0782-101 <br><strong>Country/Region of Origin:</strong> Vietnam"
+             },
+             {
+                 id: 24,
+                 name: "Air Foamposite One",
+                 image: "Shoes/men shoes 8.jpg",
+                 price: "₱12,295",
+                 description: "Rare, classic and way ahead of its time, it's a testament to Penny Hardaway's unforgettable game—and one of the boldest looks to move off court. The striking Metallic Copper colourway brings the heat, while its distinctive liquid-like design boosts the cool factor. The finishing touch? Penny's signature 1 cent logo delivers the slick assist.  <br><br> <strong>Colour Shown:</strong> Red Stardust <br><strong>Style:</strong> HF0782-101 <br><strong>Country/Region of Origin:</strong> Vietnam"
+             }
+         ];
+>>>>>>> origin/Enrico
 
         const productCardsContainer = document.getElementById('product-cards-container');
         const modal = document.getElementById('productModal');
@@ -775,11 +838,43 @@
         let favoriteCount = 0;
         const favoritedProducts = [];
 
+<<<<<<< HEAD
         const updateFavoriteCounter = () => {
             const heartIcon = document.querySelector('.fa-heart');
             const favoriteBadge = heartIcon.querySelector('.favorite-badge');
             favoriteBadge.textContent = favoriteCount;
         };
+=======
+    const updateFavoriteCounter = () => {
+    const heartIcon = document.querySelector('.fa-heart');
+
+    if (heartIcon) {
+        // Ensure the badge exists; if not, create it
+        let favoriteBadge = heartIcon.querySelector('.favorite-badge');
+        if (!favoriteBadge) {
+            favoriteBadge = document.createElement('span');
+            favoriteBadge.classList.add('favorite-badge');
+            favoriteBadge.style.position = 'absolute';
+            favoriteBadge.style.top = '0';
+            favoriteBadge.style.right = '0';
+            favoriteBadge.style.backgroundColor = 'red';
+            favoriteBadge.style.color = 'white';
+            favoriteBadge.style.borderRadius = '50%';
+            favoriteBadge.style.padding = '2px 6px';
+            favoriteBadge.style.fontSize = '12px';
+            heartIcon.appendChild(favoriteBadge);
+        }
+
+        // Update the badge with the current favorite count
+        favoriteBadge.textContent = favoritedProducts.length;
+
+        // Hide the badge if the favorite count is zero
+        favoriteBadge.style.display = favoritedProducts.length > 0 ? 'inline-block' : 'none';
+    } else {
+        console.warn('Heart icon not found on the page.');
+    }
+};
+>>>>>>> origin/Enrico
 
         const displayFavorites = () => {
             const favoriteList = favoritedProducts.map(id => {
@@ -921,6 +1016,7 @@
         const favoritesContainer = document.getElementById('favoritesContainer');
         const favoritesClose = document.getElementById('favoritesClose');
 
+<<<<<<< HEAD
         // Function to update favorites modal content
         const updateFavoritesModal = () => {
             favoritesContainer.innerHTML = '';
@@ -946,6 +1042,55 @@
 
                     favoritesContainer.appendChild(favoriteItem);
                 });
+=======
+    const updateFavoritesModal = () => {
+    favoritesContainer.innerHTML = '';
+
+    if (favoritedProducts.length === 0) {
+        favoritesContainer.innerHTML = '<p>No favorites yet.</p>';
+    } else {
+        favoritedProducts.forEach(productId => {
+            const product = products.find(p => p.id === productId);
+            const favoriteItem = document.createElement('div');
+            favoriteItem.style.display = 'flex';
+            favoriteItem.style.alignItems = 'center';
+            favoriteItem.style.marginBottom = '15px';
+
+            favoriteItem.innerHTML = `
+                <img src="${product.image}" alt="${product.name}" style="width: 60px; height: 60px; object-fit: cover; margin-right: 10px; border-radius: 5px;">
+                <div style="flex: 1;">
+                    <h4 style="margin: 0;">${product.name}</h4>
+                    <p style="margin: 0;">${product.price}</p>
+                </div>
+                <button class="remove-favorite" data-id="${product.id}" style="background-color: red; color: white; border: none; border-radius: 5px; padding: 5px 10px; cursor: pointer;">Remove</button>
+            `;
+
+            favoritesContainer.appendChild(favoriteItem);
+        });
+
+        // Attach event listeners to remove buttons
+        document.querySelectorAll('.remove-favorite').forEach(button => {
+            button.addEventListener('click', (event) => {
+                const productId = Number(event.target.dataset.id); // Convert to number
+
+                // Show a confirmation dialog
+                const isConfirmed = confirm("Are you sure you want to remove this item from your favorites?");
+                if (isConfirmed) {
+                    // Remove product from favoritedProducts array
+                    const productIndex = favoritedProducts.indexOf(productId);
+                    if (productIndex !== -1) {
+                        favoritedProducts.splice(productIndex, 1); // Remove product
+                    }
+
+                    // Refresh the favorites modal
+                    updateFavoritesModal();
+                    updateFavoriteCounter();
+                }
+            });
+        });
+    }
+};
+>>>>>>> origin/Enrico
 
                 // Attach event listeners to remove buttons
                 document.querySelectorAll('.remove-favorite').forEach(button => {
@@ -983,8 +1128,12 @@
             }
         });
 
+<<<<<<< HEAD
 
         // ABOUT CART MODAL ICON
+=======
+    // ABOUT CART MODAL ICON
+>>>>>>> origin/Enrico
 
         const cartIcon = document.querySelector('.fa-cart-shopping');
         const cartModal = document.getElementById('cartModal');
@@ -995,6 +1144,7 @@
 
         // Function to update the cart modal content
         const updateCartModal = () => {
+<<<<<<< HEAD
             cartContainer.innerHTML = '';  // Clear the previous cart items
             let totalAmount = 0;  // Variable to keep track of the total amount
 
@@ -1009,15 +1159,36 @@
                     cartItem.style.display = 'flex';
                     cartItem.style.alignItems = 'center';
                     cartItem.style.marginBottom = '15px';
+=======
+        const cartContainer = document.getElementById('cartContainer');
+        cartContainer.innerHTML = ''; // Clear previous items
+        let totalAmount = 0; // Calculate total price
+
+        if (cartItems.length === 0) {
+            cartContainer.innerHTML = '<p>No items in the cart.</p>';
+        } else {
+            cartItems.forEach((item, index) => {
+                totalAmount += item.totalPrice;
+
+                const cartItem = document.createElement('div');
+                cartItem.classList.add('cart-item');
+                cartItem.style.display = 'flex';
+                cartItem.style.alignItems = 'center';
+                cartItem.style.marginBottom = '15px';
+>>>>>>> origin/Enrico
 
                     cartItem.innerHTML = `
                     <img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; object-fit: cover; margin-right: 10px; border-radius: 5px;">
-                    <div>
-                        <h4 style="margin: 0;">${item.name}</h4>
-                        <p style="margin: 0;">${item.price} x ${item.quantity}</p>
+                    <div style="flex-grow: 1;">
+                        <h4>${item.name}</h4>
+                        <p>${item.price} x 
+                            <input type="number" class="quantity-input" value="${item.quantity}" min="1" data-index="${index}" oninput="restrictNegativeAndZero(this)" onblur="ensureValidValue(this)">
+                        </p>
                     </div>
+                    <button class="btn delete-item" data-index="${index}" style="background-color: red; color: white; border: none; border-radius: 5px; padding: 5px 10px; cursor: pointer;">Delete</button>
                 `;
 
+<<<<<<< HEAD
                     cartContainer.appendChild(cartItem);  // Add the item to the cart modal
                 });
             }
@@ -1047,6 +1218,136 @@
 
         // Close the cart modal when the close button is clicked
         cartClose.addEventListener('click', () => {
+=======
+                cartContainer.appendChild(cartItem);
+            });
+
+            // Function to restrict typing negative and zero values
+            function restrictNegativeAndZero(input) {
+                // Allow only numbers greater than 0
+                let value = input.value;
+
+                // Remove non-numeric characters and check for negative signs
+                value = value.replace(/[^0-9]/g, ''); // Remove anything that's not a number
+
+                // If the value is 0, replace it with 1 (to prevent typing zero)
+                if (value === "0") {
+                    value = "1";
+                }
+
+                input.value = value;
+            }
+
+            // Function to ensure the value is valid when the user finishes editing (loses focus)
+            function ensureValidValue(input) {
+                // Ensure that the value is at least 1
+                if (parseInt(input.value) < 1) {
+                    input.value = "1"; // Set to 1 if the value is less than 1
+                }
+            }
+
+            // Add event listeners for quantity inputs
+            document.querySelectorAll('.quantity-input').forEach(input => {
+                input.addEventListener('change', (event) => {
+                    const index = event.target.dataset.index;
+                    const newQuantity = parseInt(event.target.value) || 1;
+
+                    // Update quantity and total price
+                    cartItems[index].quantity = newQuantity;
+                    cartItems[index].totalPrice = parseFloat(cartItems[index].price.replace('₱', '').replace(',', '')) * newQuantity;
+
+                    updateCartModal(); // Refresh the cart modal
+                    updateCartBadge(); // Update the cart badge
+                });
+            });
+
+            // Add event listeners for delete buttons
+            document.querySelectorAll('.delete-item').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const index = event.target.dataset.index;
+
+                    // Show a confirmation dialog
+                    const isConfirmed = confirm("Are you sure you want to delete this item?");
+                    
+                    if (isConfirmed) {
+                        cartItems.splice(index, 1); // Remove item from the cart
+                        updateCartModal(); // Refresh the cart modal
+                        updateCartBadge(); // Update the cart badge
+                    }
+                });
+});
+
+        }
+
+        document.getElementById('cartTotal').textContent = `₱${totalAmount.toLocaleString()}`;
+    };
+    
+// Add checkout functionality
+document.getElementById('checkoutButton').addEventListener('click', () => {
+    if (cartItems.length === 0) {
+        alert('Your cart is empty. Please add items to proceed with checkout.');
+    } else {
+        const totalAmount = cartItems.reduce((total, item) => total + item.totalPrice, 0);
+
+        // Confirm before proceeding with checkout
+        const userConfirmed = confirm(`Your total is ₱${totalAmount.toLocaleString()}. Do you want to proceed with checkout?`);
+
+        if (userConfirmed) {
+            // Display a success message
+            const successMessage = document.createElement('div');
+            successMessage.textContent = 'Thank you for your purchase! Your order has been placed.';
+            successMessage.style.position = 'fixed';
+            successMessage.style.top = '20px';
+            successMessage.style.right = '20px';
+            successMessage.style.backgroundColor = '#4caf50';
+            successMessage.style.color = 'white';
+            successMessage.style.padding = '10px 20px';
+            successMessage.style.borderRadius = '5px';
+            successMessage.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+            successMessage.style.zIndex = '1000';
+            document.body.appendChild(successMessage);
+
+            // Clear the cart
+            cartItems = [];
+            updateCartModal(); // Update the modal to reflect an empty cart
+            updateCartBadge(); // Update the badge to show 0 items
+
+            // Remove the success message after 3 seconds
+            setTimeout(() => {
+                successMessage.remove();
+            }, 3000);
+        }
+    }
+});
+    
+    // Function to update the cart icon badge to show the number of unique items (products) in the cart
+    function updateCartBadge() {
+        const cartBadge = document.getElementById('cartBadge'); // Get the cart badge element
+
+        // If the cartBadge element exists, update its text content
+        if (cartBadge) {
+            const uniqueProductCount = cartItems.length;  // The number of unique products in the cart
+            cartBadge.textContent = uniqueProductCount;  // Update the badge with the total count of unique products
+        } else {
+            console.warn("Cart badge element not found.");
+        }
+    }
+
+    // Open the cart modal when the cart icon is clicked
+    cartIcon.addEventListener('click', () => {
+        updateCartModal();
+        cartModal.style.display = 'block';
+    });
+
+    // Close the cart modal when the close button is clicked
+    cartClose.addEventListener('click', () => {
+        cartModal.style.display = 'none';
+    });
+
+    // Close the modal if the user clicks outside of the modal content
+    window.addEventListener('click', (event) => {
+        if (event.target === cartModal) {
+>>>>>>> origin/Enrico
             cartModal.style.display = 'none';
         });
 
