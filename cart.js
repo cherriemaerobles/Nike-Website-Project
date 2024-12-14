@@ -27,9 +27,7 @@ let cartCount = 0; // Total items count in the cart
  
     cartBadge.textContent = cartCount; 
 }; 
- 
 
- 
     // Function to remove an item from the cart 
     const removeCartItem = (productId) => { 
     // Filter out the item with the given productId 
@@ -38,15 +36,12 @@ let cartCount = 0; // Total items count in the cart
     updateCartCounter();  // Update the cart icon count 
     openCartModal(); // Refresh the modal 
 }; 
- 
 
- 
 // Initialize the cart functionality when the DOM is fully loaded 
 document.addEventListener('DOMContentLoaded', () => {
     let cartItems = []; // Store items in the cart
 
     // Function to update the cart modal content
-
 
     // Function to update the cart badge
     const updateCartBadge = () => {
@@ -72,8 +67,4 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCartBadge();
         updateCartModal();
     };
-
-
-
-
 });
